@@ -14,54 +14,94 @@
 </head>
 
 <body>
-    <main class="row">
-        <section class="container menu col-2">
-        </section>
-        <section class="conteudo_principal col-10">
-            <div class="container_pesquisa border">
-                <div class="espaco_pesquisar">
-                    <input class="form-control input_pesquisar" type="text" placeholder="PESQUISAR">
+    <div class="container-fluid">
+        <main class="row">
+            <section class="container menu col-2 text-center">
+                <div class="container_imagem_menu text-center mt-3">
+                    <img class="img-fluid imagem_logo"
+                        src="./img/Gemini_Generated_Image_wguaigwguaigwgua-removebg-preview 1@2x.png"
+                        alt="Logo Sistema">
+                    <hr>
                 </div>
-                <div class="conteudo_usuario">
-                    <i class="bi bi-person-fill fs-1"></i>
-                    <div class="conteudo_identificacao row">
-                        <p class="nome_usuario">MURILO BREVI</p>
-                        <p class="email_usuario">murilo@admin.com</p>
+                <div class="text-start w-100 botoes_navegacao">
+                    <div class="text-start w-75">
+                        <a class="botao_navegar botao_dashboard" href=""><i
+                                class="bi bi-clipboard-data icone_navegacao"></i>
+                            Dashboard</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href=""><i class="bi bi-inbox icone_navegacao"></i> Inventário</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href=""><i class="bi bi-phone icone_navegacao"></i> Produto</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href=""><i class="bi bi-person icone_navegacao"></i> Vendedores</a>
                     </div>
                 </div>
-            </div>
-            <div class="container_valores">
-                <div class="card col">
-                    <div class="card-body conteudo_card">
-                        <i class="bi bi-graph-up fs-3 icone_grafico"></i>
-                        <div class="total_inventario">
-                            <h1 class="valor_total card-subtitle"><span>R$ </span>280.000,00</h1>
-                            <p class="texto_card card-text">Valor Total</p>
+            </section>
+            <section class="conteudo_principal col-10">
+                <div class="container_pesquisa border">
+                    <div class="espaco_pesquisar">
+                        <input class="form-control input_pesquisar" type="text" placeholder="PESQUISAR">
+                    </div>
+                    <div class="conteudo_usuario">
+                        <i class="bi bi-person-fill fs-1"></i>
+                        <div class="conteudo_identificacao row">
+                            <p class="nome_usuario">MURILO BREVI</p>
+                            <p class="email_usuario">murilo@admin.com</p>
                         </div>
                     </div>
                 </div>
-                <div class="card col">
-                    <div class="card-body conteudo_card">
-                        <i class="bi bi-graph-down fs-3 icone_grafico"></i>
-                        <div class="total_inventario">
-                            <h1 class="valor_depreciacao card-subtitle"><span>R$ </span>56.000,00</h1>
-                            <p class="texto_card card-text">Depreciação</p>
+                <div class="container_valores">
+                    <div class="card col">
+                        <div class="card-body conteudo_card">
+                            <i class="bi bi-graph-up fs-3 icone_grafico"></i>
+                            <div class="total_inventario">
+                                <h1 class="valor_total card-subtitle"><span>R$ </span>280.000,00</h1>
+                                <p class="texto_card card-text">Valor Total</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col">
+                        <div class="card-body conteudo_card">
+                            <i class="bi bi-graph-down fs-3 icone_grafico"></i>
+                            <div class="total_inventario">
+                                <h1 class="valor_depreciacao card-subtitle"><span>R$ </span>56.000,00</h1>
+                                <p class="texto_card card-text">Depreciação</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col">
+                        <div class="card-body conteudo_card">
+                            <i class="bi bi-graph-down-arrow fs-3 icone_grafico"></i>
+                            <div class="total_inventario">
+                                <h1 class="valor_atual card-subtitle"><span>R$ </span>224.000,00</h1>
+                                <p class="texto_card card-text">Valor Total - Depreciação</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card col">
-                    <div class="card-body conteudo_card">
-                        <i class="bi bi-graph-down-arrow fs-3 icone_grafico"></i>
-                        <div class="total_inventario">
-                            <h1 class="valor_atual card-subtitle"><span>R$ </span>224.000,00</h1>
-                            <p class="texto_card card-text">Valor Total - Depreciação</p>
+                <div class="container_cards">
+                    <!-- <div class="row"> -->
+                    <div class="card_inventario col">
+                        <div class="card-body conteudo_card_inventario">
+                            <div class="espaco_icone_card row">
+                                <i class="bi bi-laptop fs-3"></i>
+                            </div>
+                            <div class="dados_card">
+                                <label class="texto_linhas">Linhas</label>
+                                <label class="texto_totais">Totais</label>
+                            </div>
                         </div>
                     </div>
+                    <!-- </div> -->
                 </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+        </main>
+    </div>
+
 </body>
 
 </html>

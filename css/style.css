@@ -90,6 +90,7 @@
     align-items: start;
 }
 
+
 .conteudo_card {
     display: flex;
     align-items: center;
@@ -133,4 +134,86 @@
     /* font-family: "Poppins"; */
     font-weight: bold;
     color: #9F9F9F;
+}
+
+.botoes_navegacao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.icone_navegacao {
+    margin-right: 10px;
+}
+
+.botao_navegar {
+    font-size: 24px;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    transition: 0.5s;
+}
+
+.botoes_navegacao div {
+    transition: 0.3s;
+}
+
+.botoes_navegacao div:hover {
+    transform: translateY(-5px);
+    transition: 0.5s;
+}
+
+.botao_dashboard {
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #20385c;
+}
+
+.container_imagem_menu {
+    padding-top: 20px;
+}
+
+.imagem_logo {
+    height: 70px !important;
+    width: 100%;
+
+    object-fit: cover;
+}
+
+.container_imagem_menu>hr {
+    height: 10px;
+    color: white;
+}
+
+.card_inventario {
+    width: 300px !important;
+    height: 130px !important;
+    border-radius: 10px !important;
+    margin-top: 30px;
+    padding: 10px;
+
+    display: flex;
+    align-items: start;
+
+    background-color: white;
+}
+
+.dados_card{
+    display: flex;
+    justify-content: space-between;
+}
+
+.conteudo_card_inventario{
+    display: flex;
+    flex-direction: column;
+}
+
+.texto_linhas, .texto_totais{
+    font-size: 13px;
+    font-weight: bold;
+    color: #999898;
 }
