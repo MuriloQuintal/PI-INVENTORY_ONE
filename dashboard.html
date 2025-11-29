@@ -25,7 +25,7 @@
                 </div>
                 <div class="text-start w-100 botoes_navegacao">
                     <div class="text-start w-75">
-                        <a class="botao_navegar botao_dashboard" href=""><i
+                        <a class="botao_navegar botao_dashboard" href="./cadastro_pessoas.html"><i
                                 class="bi bi-clipboard-data icone_navegacao"></i>
                             Dashboard</a>
                     </div>
@@ -41,19 +41,23 @@
                 </div>
             </section>
             <section class="conteudo_principal col-10">
-                <div class="container_pesquisa border">
-                    <div class="espaco_pesquisar">
-                        <input class="form-control input_pesquisar" type="text" placeholder="PESQUISAR">
-                    </div>
-                    <div class="conteudo_usuario">
-                        <i class="bi bi-person-fill fs-1"></i>
-                        <div class="conteudo_identificacao row">
-                            <p class="nome_usuario">MURILO BREVI</p>
-                            <p class="email_usuario">murilo@admin.com</p>
+                <div class="row px-3 ">
+                    <div class="container_pesquisa border">
+                        <div class="input-group espaco_pesquisar">
+                            <input class="form-control input_pesquisar" type="text" placeholder="PESQUISAR">
+                            <button class="btn botao_pesquisar" type="submit"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="conteudo_usuario">
+                            <i class="bi bi-person-fill fs-1"></i>
+                            <div class="conteudo_identificacao row">
+                                <p class="nome_usuario">MURILO BREVI</p>
+                                <p class="email_usuario">murilo@admin.com</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="container_valores">
+
+                <div class="container_valores row p-3">
                     <div class="card col">
                         <div class="card-body conteudo_card">
                             <i class="bi bi-graph-up fs-3 icone_grafico"></i>
@@ -82,20 +86,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="container_cards">
-                    <!-- <div class="row"> -->
-                    <div class="card_inventario col">
+                <div class="container_cards row p-3">
+                    <div class="card_inventario col-3">
                         <div class="card-body conteudo_card_inventario">
                             <div class="espaco_icone_card row">
                                 <i class="bi bi-laptop fs-3"></i>
                             </div>
-                            <div class="dados_card">
-                                <label class="texto_linhas">Linhas</label>
-                                <label class="texto_totais">Totais</label>
+                            <div class="dados_card row">
+                                <label class="texto_linhas col-6 text-start">Linhas</label>
+                                <label class="texto_totais col-6 text-end">Totais</label>
+                            </div>
+                            <div class="row">
+                                <label class="nome_item col-6 text-start">Notebook</label>
+                                <label class="qtd_item col-6 text-end">55</label>
+                            </div>
+                            <hr>
+                            <div class="row mt-2 text-center">
+                                <div class="col-6 text-start">
+                                    <a class="btn btn-danger d-flex align-items-center p-2" href="#">Indisponíveis <i
+                                            class="bi bi-x-lg icone_x mx-1 mt-1"></i></a>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a class="w-100 btn btn-success align-items-center p-2" href="#">Disponiveis<i
+                                            class="bi bi-check-lg mx-1 mt-1"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- </div> -->
                 </div>
             </section>
 

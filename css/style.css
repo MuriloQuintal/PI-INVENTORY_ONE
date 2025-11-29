@@ -5,8 +5,7 @@
 
 .conteudo_principal {
     background-color: #E9E9E9;
-    height: 100vh;
-    min-height: 100%;
+    min-height: 100vh;
     padding: 15px !important;
     width: 100%;
 }
@@ -32,7 +31,7 @@
 
 .input_pesquisar::placeholder {
     color: #CCCCCC !important;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     font-size: 14px;
     font-weight: bold;
 }
@@ -168,8 +167,8 @@
 }
 
 .botao_dashboard {
-    padding: 10px;
-    border-radius: 7px;
+    padding: 8px;
+    border-radius: 7px; 
     background-color: #20385c;
 }
 
@@ -191,9 +190,10 @@
 
 .card_inventario {
     width: 300px !important;
-    height: 130px !important;
+    height: 200px !important;
     border-radius: 10px !important;
     margin-top: 30px;
+    margin-bottom: 30px;
     padding: 10px;
 
     display: flex;
@@ -216,4 +216,34 @@
     font-size: 13px;
     font-weight: bold;
     color: #999898;
+}
+
+.nome_item, .qtd_item{
+    font-size: 20px;
+    
+    font-weight: bold;
+    /* font-family: "poppins"; */
+}
+
+.container_cards{
+    /* gap: 30px; */
+    justify-content: space-between;
+}
+
+.espaco_pesquisar{
+    width: 400px !important;
+}
+
+.icone_x{
+    font-size: 14px;
+}
+
+.botao_pesquisar{
+    color: #2F4E7C !important;
+    border: 1px #2F4E7C solid !important;
+}
+
+.botao_pesquisar:hover{
+    background-color: #2F4E7C !important;
+    color: white !important;
 }
