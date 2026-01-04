@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventoryOne-Cadastro</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+</head>
+
+<body class="bg-light">
+    <main class="d-flex min-vh-100 align-items-center justify-content-center container">
+        <div class="shadow bg-white formulario ">
+            <div class="row">
+                <div class="col-sm-6 d-none d-md-block">
+                    <div class="d-flex align-items-center h-100">
+                        <img class="img-fluid" src="/img/img-login.png">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="row mb-3">
+                        <div class="col-8 mt-2">
+                            <h1 class="text-center fs-3">Cadastro para Usuário</h1>
+                        </div>
+                        <div class="col-4">
+                            <img src="/img/logo-inventoryone.png" class="img-fluid" alt="Logo Inventory One">
+                        </div>
+                        <p class="text-body-tertiary fw-semibold text-center">Insira os dados abaixo, para solicitar seu login de acesso</p>
+                    </div>
+                    <form action="">
+                        <div class="mb-3">
+                            <label for="campoNome" class="form-label">Nome Completo</label>
+                            <input type="text" class="form-control formColor" id="campoNome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="campoEmail" class="form-label">E-mail</label>
+                            <input type="email" class="form-control formColor" id="campoEmail">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label for="campoSenha" class="form-label">Senha</label>
+                                <input type="password" class="form-control formColor" id="campoSenha">
+                            </div>
+                            <div class="col-6">
+                                <label for="confirmaSenha" class="form-label">Confirmar Senha</label>
+                                <input type="password" class="form-control formColor" id="confirmaSenha">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="campoTelefone" class="form-label">Telefone</label>
+                            <input type="text" class="form-control formColor" id="campoTelefone">
+                        </div>
+                        <div class="text-center">
+                            <button class="botao-cadastro mb-3">Cadastrar</button>
+                        </div>
+                        <div class="text-center mb-3">
+                            <a class="text-decoration-none text-dark" href="http://127.0.0.1:5500/telalogin.html">já tem
+                                conta?
+                                <span class="text-azul-petroleo fw-bold">Login aqui.</span></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

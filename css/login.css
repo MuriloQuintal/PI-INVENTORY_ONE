@@ -1,0 +1,35 @@
+.text-azul-petroleo{
+    color: #2F4E7C;
+}
+.text-azul-petroleo:hover{
+    color: #4b7cc7;
+}
+
+.botao-cadastro{
+    background-color: #2F4E7C;
+    width: 100%;
+    color:white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.botao-cadastro:hover{
+    background-color: #4b7cc7;
+    transition: 0.3s;
+}
+
+.formulario{
+    padding: 33px;
+    max-width: 1000px;
+    border-radius: 50px;
+    width: 100%;
+}
+
+.formColor{
+    /* background-color: #2f4e7c21 !important; */
+    border-color: #2F4E7C !important;
+    color: #2F4E7C !important;
+}
