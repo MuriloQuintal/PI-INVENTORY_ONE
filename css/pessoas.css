@@ -1,0 +1,14 @@
+.btn-action-icon {
+    padding: .3rem .5rem; 
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.25rem !important; 
+    border-radius: 50%;
+    width: 30px; 
+    height: 30px; 
+    justify-content: center;
+}
+
+.btn-action-icon span {
+    display: none;
+}
