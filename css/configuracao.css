@@ -12,5 +12,28 @@
 
 .font-subtitulo-2{
     font-size: 16px;
-    font-size: 500;
+    font-weight: 500;
+}
+
+.font-body-3{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.sombra{
+     box-shadow: 0px 0px 12px -7px #000000;
+}
+
+.btn-inventory-primario{
+    background-color: #2F4E7C;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-inventory-primario:hover{
+    background-color: #243b5e;
+    transition: 0.3s;
 }

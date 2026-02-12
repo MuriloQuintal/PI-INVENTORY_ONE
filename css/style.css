@@ -1,13 +1,20 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.ttf');
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
 .menu {
     background-color: #2F4E7C;
-    /* height: 100vh; */
 }
 
 .conteudo_principal {
-    background-color: #E9E9E9;
+    background-color: #FAF9F9;
     min-height: 100vh;
     padding: 15px !important;
-    width: 100%;
 }
 
 .container_pesquisa {
@@ -29,24 +36,20 @@
 
 }
 
-
 .input_pesquisar::placeholder {
     color: #CCCCCC !important;
-    /* padding-left: 20px; */
     font-size: 14px;
     font-weight: bold;
 }
 
 .conteudo_usuario {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 0px;
+    justify-content: center;
 }
 
 .nome_usuario {
     margin-bottom: 0px;
-    /* font-family: "Poppins"; */
     font-size: 14px;
     font-weight: bold;
     font-style: italic;
@@ -54,20 +57,10 @@
 
 .email_usuario {
     margin-top: 0px;
-    /* font-family: "Poppins"; */
     font-size: 14px;
     font-weight: bold;
     font-style: italic;
     color: #b1b0b0;
-}
-
-.conteudo_identificacao {
-    padding-left: 5px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .container_valores {
@@ -100,13 +93,11 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    /* align-items: center; */
 }
 
 .valor_total {
     font-size: 32px;
     margin-left: 15px;
-    /* font-family: "Poppins"; */
     font-weight: bold;
     color: green !important;
 }
@@ -114,7 +105,6 @@
 .valor_depreciacao {
     font-size: 32px;
     margin-left: 15px;
-    /* font-family: "Poppins"; */
     font-weight: bold;
     color: red !important;
 }
@@ -122,7 +112,6 @@
 .valor_atual {
     font-size: 32px;
     margin-left: 15px;
-    /* font-family: "Poppins"; */
     font-weight: bold;
     color: #2F4E7C !important;
 }
@@ -131,7 +120,6 @@
     font-size: 20px;
     margin-left: 15px;
 
-    /* font-family: "Poppins"; */
     font-weight: bold;
     color: #9F9F9F;
 }
@@ -248,3 +236,13 @@
     background-color: #2F4E7C !important;
     color: white !important;
 }
+
+.tabela {
+    width: 100%;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+
