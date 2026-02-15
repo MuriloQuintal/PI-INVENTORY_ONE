@@ -110,19 +110,16 @@
                                     </td>
                                     <td>
                                         <div class="d-flex gap-2 justify-content-center">
-                                            <button 
-                                                class="btn btn-primary btn-sm" 
-                                                data-bs-toggle="modal"
+                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#modalDetalhesProduto">
                                                 <i class="bi bi-eye"></i>
                                             </button>
-                                            <button
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modalEditarProduto" 
+                                            <button data-bs-toggle="modal" data-bs-target="#modalEditarProduto"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm">
+                                            <button data-bs-toggle="modal" data-bs-target="#modalDesativarProduto"
+                                                class="btn btn-danger btn-sm">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                             <button class="btn btn-secondary btn-sm">
@@ -132,7 +129,7 @@
                                     </td>
                                 </tr>
 
-                               
+
                             </tbody>
                         </table>
                     </div>
@@ -229,9 +226,6 @@
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                     <input type="date" class="form-control">
                                 </div>
-
-                                
-                                
 
                                 <div class="col-md-4">
                                     <label class="form-label">Documento NF <i
@@ -431,7 +425,7 @@
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                     <input type="date" class="form-control" id="editarDataCompra">
                                 </div>
-                                 <div class="col-md-4">
+                                <div class="col-md-4">
                                     <label class="form-label">Documento NF <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                     <input type="text" class="form-control" id="editarNF">
@@ -450,7 +444,7 @@
                                 Cancelar
                             </button>
                             <button type="button" class="btn btn-warning px-4" id="btnEditarAlteracao">
-                                Editar Alterações  <i class="bi bi-pencil-square me-2"></i>
+                                Editar Alterações <i class="bi bi-pencil-square me-2"></i>
                             </button>
                         </div>
 
@@ -458,6 +452,7 @@
                 </div>
             </div>
 
+        
 
         </main>
     </div>
