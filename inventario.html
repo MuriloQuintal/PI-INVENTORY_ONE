@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventoryOne</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="stylesheet" href="./css/configuracao.css">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <main class="row">
+            <section class="container menu col-2 text-center">
+                <div class="container_imagem_menu text-center mt-3">
+                    <img class="img-fluid imagem_logo"
+                        src="./img/Gemini_Generated_Image_wguaigwguaigwgua-removebg-preview 1@2x.png"
+                        alt="Logo Sistema">
+                    <hr>
+                </div>
+                <div class="text-start w-100 botoes_navegacao">
+                    <div class="text-start w-75">
+                        <a class="botao_navegar botao_dashboard" href="./cadastro_pessoas.html"><i
+                                class="bi bi-clipboard-data icone_navegacao"></i>
+                            Dashboard</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href=""><i class="bi bi-inbox icone_navegacao"></i> Inventário</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href=""><i class="bi bi-phone icone_navegacao"></i> Produto</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href=""><i class="bi bi-person icone_navegacao"></i> Vendedores</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conteudo_principal col-10">
+                <div class="row px-3 ">
+                    <div class="container_pesquisa sombra">
+                        <div class="input-group espaco_pesquisar">
+                            <input class="form-control input_pesquisar" type="text" placeholder="PESQUISAR">
+                            <button class="btn botao_pesquisar" type="submit"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="conteudo_usuario d-flex align-items-center gap-3">
+                            <i class="bi bi-person-fill fs-1"></i>
+
+                            <div class="conteudo_identificacao">
+                                <p class="nome_usuario mb-0">MURILO BREVI</p>
+                                <p class="email_usuario mb-0">murilo@admin.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <section class="area-inventario mt-4 p-3 bg-white rounded-4 sombra">
+
+                    <div class="apresentacao-textos">
+                        <h1 class="font-header-4 fw-semibold">Inventario</h1>
+                        <p class="font-body-3 text-body-tertiary">
+                            Gerencie seus produtos com rapidez e organização.
+                        </p>
+                    </div>
+
+                    <h5 class="fs-6 mb-3">Tipo do produto: <span class="fw-semibold">Notebook</span></h5>
+
+                    <div class="conteiner-fluid">
+                        <form action="">
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    <label for="txtCodigoPessoa" class="form-label">Código Pessoa</label>
+                                    <input type="text" class="form-control" id="txtCodigoPessoa"
+                                        placeholder="Ex: 10254">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="txtNomePessoa" class="form-label">Nome Completo</label>
+                                    <input type="text" class="form-control" id="txtNomePessoa"
+                                        placeholder="Ex: João da Silva Santos">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="txtFilial" class="form-label">Filial</label>
+                                    <input type="text" class="form-control" id="txtFilial"
+                                        placeholder="Ex: Matriz - SP">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="txtDepartamento" class="form-label">Departamento</label>
+                                    <input type="text" class="form-control" id="txtDepartamento"
+                                        placeholder="Ex: Tecnologia da Informação">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="txtCargo" class="form-label">Cargo</label>
+                                    <input type="text" class="form-control" id="txtCargo"
+                                        placeholder="Ex: Analista de Sistemas">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="txtEquipamento" class="form-label">Equipamento</label>
+                                    <input type="text" class="form-control" id="txtEquipamento"
+                                        placeholder="Ex: Smartphone Corporativo">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="txtMarca" class="form-label">Marca</label>
+                                    <input type="text" class="form-control" id="txtMarca"
+                                        placeholder="Ex: Samsung, Apple, Dell">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="txtModelo" class="form-label">Modelo</label>
+                                    <input type="text" class="form-control" id="txtModelo" placeholder="Ex: Galaxy S23">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="txtImei" class="form-label">IMEI</label>
+                                    <input type="text" class="form-control" id="txtImei"
+                                        placeholder="Ex: 356789012345678">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="txtSerie" class="form-label">Série</label>
+                                    <input type="text" class="form-control" id="txtSerie"
+                                        placeholder="Ex: SN123456789BR">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <label for="txtDescricao" class="form-label">Descrição</label>
+                                    <input type="text" class="form-control" id="txtDescricao"
+                                        placeholder="Ex: Aparelho destinado ao uso corporativo com plano empresarial">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="txtNumeroLinha" class="form-label">Número da Linha</label>
+                                    <input type="text" class="form-control" id="txtNumeroLinha"
+                                        placeholder="Ex: (11) 91234-5678">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="txtCodigoChip" class="form-label">Código do Chip (ICCID)</label>
+                                    <input type="text" class="form-control" id="txtCodigoChip"
+                                        placeholder="Ex: 8955001234567890123">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="txtOperadora" class="form-label">Operadora</label>
+                                    <input type="text" class="form-control" id="txtOperadora"
+                                        placeholder="Ex: Vivo, Claro, TIM">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="txtPinOperadora" class="form-label">PIN da Operadora</label>
+                                    <input type="text" class="form-control" id="txtPinOperadora" placeholder="Ex: 1234">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="txtHistorico" class="form-label">Histórico</label>
+                                    <textarea id="txtHistorico" class="form-control"
+                                        placeholder="Descreva ocorrências, trocas de aparelho, manutenção, bloqueios, etc."></textarea>
+                                </div>
+                                <div class="col-md-12 text-end">
+                                    <button class="btn btn-success w-25"><i class="bi bi-plus"></i> Incluir</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </section>
+
+
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="./js/produto.js"></script>
+</body>
+
+</html>

@@ -246,3 +246,7 @@ body {
 }
 
 
+
+.form-control::-webkit-input-placeholder{
+    color: rgb(211, 210, 210);
+}
