@@ -1,0 +1,32 @@
+# Comentário: Ignorar arquivos de sistema e temporários
+.DS_Store
+*.tmp
+*.log
+
+# Ignorar pastas
+node_modules/
+dist/
+build/
+
+# Ignorar arquivos específicos em subdiretórios
+/config/credentials.json
+
+# Exceção: incluir um arquivo específico dentro de uma pasta ignorada
+!/dist/config.json
+
+# Arquivos de Variáveis de Ambiente (Segredo)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Se tiver arquivos específicos de secrets
+# secrets.json
+
+# Opcional: Ignorar modelos de .env que podem conter senhas por engano
+# .env.template
+
+# O que PODE ser versionado (recomendado):
+# .env.example
+# .env.sample
