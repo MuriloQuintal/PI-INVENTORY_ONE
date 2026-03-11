@@ -1,0 +1,63 @@
+CREATE DATABASE inventoryone
+DEFAULT CHARACTER SET utf8
+DEFAULT COLLATE utf8_general_ci;
+
+CREATE or replace TABLE pessoas (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(30) NOT NULL,
+    nascimento DATE,
+    sexo ENUM('M','F'),
+    nacionalidade VARCHAR(20) DEFAULT 'Brasil',
+    cargo varchar(30),
+    departamento varchar (30),
+    filial varchar(30),
+    telefone int(12),
+    email varchar(100),  
+    endereco varchar (512),
+    cep int(8),
+    dtacadastro DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY(id)
+) DEFAULT CHARSET = utf8;
+
+
+
+
+
+
+create or replace TABLE usuarios (
+ 	id INT NOT NULL AUTO_INCREMENT,    
+	nome VARCHAR(100) NOT NULL,
+    email VARCHAR (100),
+    senha VARCHAR(255),
+    telefone varchar(15),
+    dtacadastro DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY(id)
+    ) DEFAULT CHARSET = utf8
+    
+    
+create or replace TABLE produtos (
+	id INT NOT NULL AUTO_INCREMENT, 
+    equipamento VARCHAR(100)default 'chip',
+    modelo VARCHAR (100),
+    marca VARCHAR(100),
+    configuracao TEXT,
+    serie varchar (100),
+    imei int(15),
+    dtacompra DATE NOT null,
+    dtacadastro DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    valor decimal(10,2),
+    nrodocumento int(44),
+    nroddd int(2),
+    nrolinha int(9),
+    codchip int (25),
+    operadora varchar (30),
+    pinoperadora int (6),
+    localestoque varchar (30),
+    responsavelestoque varchar (100),
+    historico longtext,
+    ean int(14),
+    alugado ENUM('S','N'),
+    disponivel enum ('S','N'),
+    PRIMARY KEY(id)
+    ) DEFAULT CHARSET = utf8
+        
