@@ -1,0 +1,16 @@
+# Arquivos de Variáveis de Ambiente (Segredo)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Se tiver arquivos específicos de secrets
+# secrets.json
+
+# Opcional: Ignorar modelos de .env que podem conter senhas por engano
+# .env.template
+
+# O que PODE ser versionado (recomendado):
+# .env.example
+# .env.sample
