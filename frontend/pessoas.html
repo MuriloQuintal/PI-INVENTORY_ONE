@@ -27,21 +27,22 @@
                 </div>
                 <div class="text-start w-100 botoes_navegacao">
                     <div class="text-start w-75">
-                        <a class="botao_navegar botao_dashboard" href="./dashboard.html"><i
+                        <a class="botao_navegar" href="./dashboard.html"><i
                                 class="bi bi-clipboard-data icone_navegacao"></i>
                             Dashboard</a>
                     </div>
                     <div class="text-start w-75">
-                        <a class="botao_navegar" href="inventario.html"><i class="bi bi-inbox icone_navegacao"></i>
-                            Inventário</a>
+                        <a class="botao_navegar" href="inventariar.html"><i class="bi bi-inbox icone_navegacao"></i>
+                            Inventariar</a>
                     </div>
                     <div class="text-start w-75">
                         <a class="botao_navegar" href="produtos.html"><i class="bi bi-phone icone_navegacao"></i>
                             Produto</a>
                     </div>
                     <div class="text-start w-75">
-                        <a class="botao_navegar" href="funcionarios.html"><i class="bi bi-person icone_navegacao"></i>
-                            Funcionários</a>
+                        <a class="botao_navegar botao_selecionado" href="./pessoas.html"><i
+                                class="bi bi-person icone_navegacao"></i>
+                            Pessoas</a>
                     </div>
                 </div>
             </section>
@@ -68,10 +69,10 @@
                         <nav class="navbar">
                             <div class="container-fluid">
                                 <a class="navbar-brand"><i class="bi bi-person-raised-hand"></i> Cadastro de
-                                    Funcionarios</a>
+                                    Pessoas</a>
                                 <button class="btn btn-warning w-sm-100" type="submit" data-bs-toggle="modal"
-                                    data-bs-target="#modalCadFuncionario"> <i class="bi bi-person-plus"></i>
-                                    Cadastrar Funcionario</button>
+                                    data-bs-target="#modalCadPessoa"> <i class="bi bi-person-plus"></i>
+                                    Cadastrar Pessoa</button>
                             </div>
                         </nav>
                     </header>
@@ -103,14 +104,14 @@
                                 </td>
                                 <td>
                                     <button class="btn btn-sm btn-outline-primary btn-action-icon" title="Ver Detalhes"
-                                        data-bs-toggle="modal" data-bs-target="#modalDetalhesFuncionario">
+                                        data-bs-toggle="modal" data-bs-target="#modalDetalhesPessoa">
                                         <i class="bi bi-eye"></i>
                                     </button>
                                     <button class="btn btn-sm btn-outline-danger btn-action-icon" title="Excluir">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                     <button class="btn btn-sm btn-outline-warning btn-action-icon" title="Editar"
-                                        data-bs-toggle="modal" data-bs-target="#modalEditarFuncionario">
+                                        data-bs-toggle="modal" data-bs-target="#modalEditarPessoa">
                                         <i class="bi bi-pen"></i>
                                     </button>
                                 </td>
@@ -122,7 +123,7 @@
         </div>
     </main>
 
-    <div class="modal fade" id="modalCadFuncionario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="modalCadPessoa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="modalProdutoLabel" aria-hidden="true">
 
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -132,10 +133,10 @@
                     <div>
                         <h5 class="modal-title fw-bold" id="modalProdutoLabel">
                             <i class="bi bi-person-fill me-2"></i>
-                            Cadastro de Funcionário
+                            Cadastro de Pessoa
                         </h5>
                         <small class="text-muted">
-                            Preencha os dados para cadastrar um novo funcionário
+                            Preencha os dados para cadastrar uma nova pessoa
                         </small>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -144,36 +145,79 @@
 
                 <div class="modal-body px-4">
 
-                    <h6 class="fw-semibold text-primary mb-3">Informações do Vendedor</h6>
+                    <h6 class="fw-semibold text-primary mb-3">Informações da Pessoa</h6>
 
                     <div class="row g-3 mb-4">
                         <div class="col-md-6">
-                            <label class="form-label">Nome do Funcionario <i
+                            <label class="form-label">Nome da Pessoa <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                             <input type="text" class="form-control" id="nomeFuncionario">
                         </div>
+
                         <div class="col-md-6">
                             <label class="form-label">Endereço <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                             <input type="text" class="form-control" id="endereco">
                         </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Cep <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="cep">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
                             <label class="form-label">Setor <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                             <input type="text" class="form-control" id="setor">
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-4">
                             <label class="form-label">Empresa <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                             <input type="text" class="form-control" id="empresa">
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-4">
                             <label class="form-label">Status <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                             <input type="text" class="form-control" id="status">
                         </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Data de Nascimento <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="date" class="form-control" id="nascimento">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Sexo <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <select class="form-select" id="selectSexo">
+                                <option selected disabled>Selecione</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Cargo <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="cargo">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Telefone <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="number" class="form-control" id="telefone">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Email<i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+
                     </div>
 
                 </div>
@@ -183,7 +227,7 @@
                         Cancelar
                     </button>
                     <button type="button" class="btn-inventory-primario px-4">
-                        Salvar Vendedor <i class="bi bi-floppy2-fill ms-1"></i>
+                        Salvar Pessoa <i class="bi bi-floppy2-fill ms-1"></i>
                     </button>
                 </div>
 
@@ -191,7 +235,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalDetalhesFuncionario" data-bs-backdrop="static" data-bs-keyboard="false"
+    <div class="modal fade" id="modalDetalhesPessoa" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="modalDetalhesProdutoLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content rounded-4 shadow">
@@ -200,26 +244,28 @@
                     <div>
                         <h5 class="modal-title fw-bold" id="modalDetalhesProdutoLabel">
                             <i class="bi bi-info-circle me-2"></i>
-                            Detalhes do Funcionário
+                            Detalhes da Pessoa
                         </h5>
-                        <small class="text-muted">Visualize todas as informações do funcionário</small>
+                        <small class="text-muted">Visualize todas as informações da Pessoa</small>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
                 <div class="modal-body px-4">
 
-                    <h6 class="fw-semibold text-primary mb-3">Informações do Funcionário</h6>
+                    <h6 class="fw-semibold text-primary mb-3">Informações da Pessoa</h6>
                     <div class="row g-3 mb-4">
                         <div class="col-md-6">
-                            <label class="form-label">Nome do Funcionario <i
+                            <label class="form-label">Nome da Pessoa <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                            <input type="text" class="form-control" id="nomeFuncionario" value="Paulo Wesley Henrique" disabled>
+                            <input type="text" class="form-control" id="nomeFuncionario" value="Paulo Wesley Henrique"
+                                disabled>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Endereço <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                            <input type="text" class="form-control" id="endereco" value="Rua palmiro francisco moraes" disabled>
+                            <input type="text" class="form-control" id="endereco" value="Rua palmiro francisco moraes"
+                                disabled>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Setor <i
@@ -252,7 +298,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalEditarFuncionario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="modalEditarPessoa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="modalProdutoLabel" aria-hidden="true">
 
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -262,10 +308,10 @@
                     <div>
                         <h5 class="modal-title fw-bold" id="modalProdutoLabel">
                             <i class="bi bi-person-fill me-2"></i>
-                            Editar Funcionário
+                            Editar Pessoa
                         </h5>
                         <small class="text-muted">
-                            Preencha os dados para editar o funcionário
+                            Preencha os dados para editar a Pessoa
                         </small>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -274,35 +320,77 @@
 
                 <div class="modal-body px-4">
 
-                    <h6 class="fw-semibold text-primary mb-3">Informações do Funcionário</h6>
+                    <h6 class="fw-semibold text-primary mb-3">Informações da Pessoa</h6>
 
                     <div class="row g-3 mb-4">
                         <div class="col-md-6">
-                            <label class="form-label">Nome do Funcionário <i
+                            <label class="form-label">Nome da Pessoa <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                            <input type="text" class="form-control" id="editarNomeFuncionario">
+                            <input type="text" class="form-control" id="editNomePessoa">
                         </div>
+
                         <div class="col-md-6">
                             <label class="form-label">Endereço <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                            <input type="text" class="form-control" id="editarEnderecoFuncionario">
+                            <input type="text" class="form-control" id="editEnderecoPessoa">
                         </div>
-                        <div class="col-md-4">
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Cep <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editCepPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
                             <label class="form-label">Setor <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                            <input type="text" class="form-control" id="editarSetorFuncionario">
+                            <input type="text" class="form-control" id="editSetorPessoa">
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-4">
                             <label class="form-label">Empresa <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                            <input type="text" class="form-control" id="editarEmpresaFuncionario">
+                            <input type="text" class="form-control" id="editEmpresaPessoa">
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 mt-4">
                             <label class="form-label">Status <i
                                     class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                            <input type="text" class="form-control" id="editarStatusFuncionario">
+                            <input type="text" class="form-control" id="status">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Data de Nascimento <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="date" class="form-control" id="editNascimentoPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Sexo <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <select class="form-select" id="editSexoPesso">
+                                <option selected disabled>Selecione</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Cargo <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editCargoPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Telefone <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="number" class="form-control" id="editTelefonePessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Email<i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="email" class="form-control" id="editEmailPessoa">
                         </div>
                     </div>
 
@@ -313,7 +401,7 @@
                         Cancelar
                     </button>
                     <button type="button" class="btn-inventory-primario px-4">
-                        Editar Funcionário <i class="bi bi-pencil ms-1"></i>
+                        Editar Pessoa <i class="bi bi-pencil ms-1"></i>
                     </button>
                 </div>
 

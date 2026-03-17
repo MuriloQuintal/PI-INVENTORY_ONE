@@ -156,7 +156,7 @@ body {
     transition: 0.5s;
 }
 
-.botao_dashboard {
+.botao_selecionado {
     padding: 8px;
     border-radius: 7px; 
     background-color: #20385c;

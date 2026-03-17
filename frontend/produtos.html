@@ -27,20 +27,22 @@
                 </div>
                 <div class="text-start w-100 botoes_navegacao">
                     <div class="text-start w-75">
-                        <a class="botao_navegar botao_dashboard" href="./dashboard.html"><i
+                        <a class="botao_navegar" href="./dashboard.html"><i
                                 class="bi bi-clipboard-data icone_navegacao"></i>
                             Dashboard</a>
                     </div>
                     <div class="text-start w-75">
-                        <a class="botao_navegar" href="./inventario.html"><i class="bi bi-inbox icone_navegacao"></i>
-                            Inventário</a>
+                        <a class="botao_navegar" href="inventariar.html"><i class="bi bi-inbox icone_navegacao"></i>
+                            Inventariar</a>
                     </div>
                     <div class="text-start w-75">
-                        <a class="botao_navegar" href="#"><i class="bi bi-phone icone_navegacao"></i> Produto</a>
+                        <a class="botao_navegar botao_selecionado" href="produtos.html"><i
+                                class="bi bi-phone icone_navegacao"></i>
+                            Produto</a>
                     </div>
                     <div class="text-start w-75">
-                        <a class="botao_navegar" href="./funcionarios.html"><i class="bi bi-person icone_navegacao"></i>
-                            Funcionários</a>
+                        <a class="botao_navegar" href="./pessoas.html"><i class="bi bi-person icone_navegacao"></i>
+                            Pessoas</a>
                     </div>
                 </div>
             </section>
@@ -76,7 +78,7 @@
                             </div>
 
                             <div class="apresentacao-botoes">
-                                <button id="btnNovoProduto" class="btn-inventory-primario" data-bs-toggle="modal"
+                                <button id="btnNovoProduto" class="btn-inventory-primario p-2" data-bs-toggle="modal"
                                     data-bs-target="#modalProduto">
                                     <i class="bi bi-plus"></i> Novo Produto
                                 </button>
@@ -167,19 +169,20 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Produto <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" placeholder="Notebook, Celular...">
+                                    <input type="text" class="form-control" placeholder="Notebook, Celular..."
+                                        id="cadProduto">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label">IMEI <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="cadImeiProduto">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label">Número de Série <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="cadNumeroSerieProduto">
                                 </div>
                             </div>
 
@@ -189,18 +192,18 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Modelo <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="cadModeloProduto">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label">EAN ou Nº de Fábrica <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="cadEanProduto">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label">Marca</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="cadMarcaProduto">
                                 </div>
                             </div>
 
@@ -210,12 +213,13 @@
                                 <div class="col-md-6">
                                     <label class="form-label">TI / Supervisor <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="cadResponsavelProduto">
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label">Configuração</label>
-                                    <input type="text" class="form-control" placeholder="Ex: 8GB RAM / SSD 256GB">
+                                    <input type="text" class="form-control" id="cadConfiguracaoProduto"
+                                        placeholder="Ex: 8GB RAM / SSD 256GB">
                                 </div>
                             </div>
 
@@ -225,22 +229,47 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Data da Compra <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="date" class="form-control">
+                                    <input type="date" class="form-control" id="cadDataCompraProduto">
                                 </div>
-
-
-
 
                                 <div class="col-md-4">
                                     <label class="form-label">Documento NF <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="cadDocumentNfProduto">
                                 </div>
 
                                 <div class="col-md-4">
                                     <label class="form-label">Valor da Compra <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="number" step="0.01" class="form-control" placeholder="R$ 0,00">
+                                    <input type="number" step="0.01" class="form-control" id="cadValorCompraProduto"
+                                        placeholder="R$ 0,00">
+                                </div>
+
+                                <h6 class="fw-semibold text-primary mb-3">Disponibilidade</h6>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Alugado <i
+                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                    <select class="form-select" id="cadAlugadoProduto"
+                                        aria-label="Default select example">
+                                        <option selected>Selecione</option>
+                                        <option value="1">Sim</option>
+                                        <option value="2">Não (Própio da empresa)</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Descrição <i
+                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                    <input type="text" class="form-control" id="cadDescricaoProduto"
+                                        placeholder="Equipamento novo na caixa">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Local de Estoque <i
+                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                    <input type="text" class="form-control" id="cadLocalidadeEstoqueProduto"
+                                        placeholder="Equipamento novo na caixa">
                                 </div>
                             </div>
 
@@ -281,15 +310,18 @@
                             <div class="row g-3 mb-4">
                                 <div class="col-md-4">
                                     <label class="form-label">Produto</label>
-                                    <input type="text" class="form-control" value="Smartphone Samsung" disabled>
+                                    <input type="text" class="form-control" value="Smartphone Samsung"
+                                        id="detalheProduto" disabled>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">IMEI</label>
-                                    <input type="text" class="form-control" value="356789012345678" disabled>
+                                    <input type="text" class="form-control" value="356789012345678"
+                                        id="detalheImeiProduto" disabled>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Documento NF</label>
-                                    <input type="text" class="form-control" value="000123" disabled>
+                                    <input type="text" class="form-control" value="000123"
+                                        id="detalheDocumentoNfProduto" disabled>
                                 </div>
                             </div>
 
@@ -297,15 +329,18 @@
                             <div class="row g-3 mb-4">
                                 <div class="col-md-4">
                                     <label class="form-label">Modelo</label>
-                                    <input type="text" class="form-control" value="Galaxy S23" disabled>
+                                    <input type="text" class="form-control" value="Galaxy S23" id="detalheModeloProduto"
+                                        disabled>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">EAN ou Nº de Fábrica</label>
-                                    <input type="text" class="form-control" value="FAB-00123" disabled>
+                                    <input type="text" class="form-control" value="FAB-00123" id="detalheEanProduto"
+                                        disabled>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Marca</label>
-                                    <input type="text" class="form-control" value="Samsung" disabled>
+                                    <input type="text" class="form-control" value="Samsung" id="detalheMarcaProduto"
+                                        disabled>
                                 </div>
                             </div>
 
@@ -313,11 +348,13 @@
                             <div class="row g-3 mb-4">
                                 <div class="col-md-6">
                                     <label class="form-label">TI / Supervisor</label>
-                                    <input type="text" class="form-control" value="João Silva" disabled>
+                                    <input type="text" class="form-control" value="João Silva"
+                                        id="detalheResponsavelProduto" disabled>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Configuração</label>
-                                    <input type="text" class="form-control" value="8GB RAM / SSD 256GB" disabled>
+                                    <input type="text" class="form-control" value="8GB RAM / SSD 256GB"
+                                        id="detalheConfiguracaoProduto" disabled>
                                 </div>
                             </div>
 
@@ -325,20 +362,36 @@
                             <div class="row g-3 mb-3">
                                 <div class="col-md-4">
                                     <label class="form-label">Data da Compra</label>
-                                    <input type="text" class="form-control" value="10/01/2026" disabled>
+                                    <input type="text" class="form-control" value="10/01/2026"
+                                        id="detalheDataCompraProduto" disabled>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Número de Série</label>
-                                    <input type="text" class="form-control" value="SN-987654321" disabled>
+                                    <input type="text" class="form-control" value="SN-987654321"
+                                        id="detalheNumeroSerieProduto" disabled>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">Valor da Compra</label>
-                                    <input type="text" class="form-control" value="R$ 3.500,00" disabled>
+                                    <input type="text" class="form-control" value="R$ 3.500,00"
+                                        id="detalheValorCompraProduto" disabled>
+                                </div>
+
+                                <h6 class="fw-semibold text-primary ">Localidade</h6>
+                                <div class="col-md-3 mb-3">
+                                    <label class="form-label">Local de Estoque</label>
+                                    <input type="text" class="form-control" value="Ribeirão - Logística"
+                                        id="detalheLocalEstoque" disabled>
                                 </div>
                             </div>
 
-                            <h6 class="fw-semibold text-primary mb-3">Status do Produto</h6>
-                            <span class="badge bg-success fs-6">Disponível</span>
+
+
+                            <h6 class="fw-semibold text-primary mb-3">Disponibilidade do Produto</h6>
+
+                            <span class="badge bg-success fs-6" id="detalheAluguelProduto">Alugado</span>
+
+
+                            <span class="badge bg-success fs-6" id="detalheDisponibilidadeProduto">Disponível</span>
 
                         </div>
 
@@ -377,86 +430,123 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Produto <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editarProduto">
+                                    <input type="text" class="form-control" placeholder="Notebook, Celular..."
+                                        id="editProduto">
                                 </div>
+
                                 <div class="col-md-4">
                                     <label class="form-label">IMEI <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editarIMEI">
+                                    <input type="text" class="form-control" id="editImeiProduto">
                                 </div>
+
                                 <div class="col-md-4">
                                     <label class="form-label">Número de Série <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editarNumeroSerie">
+                                    <input type="text" class="form-control" id="editNumSerieProduto">
                                 </div>
                             </div>
 
                             <h6 class="fw-semibold text-primary mb-3">Detalhes Técnicos</h6>
+
                             <div class="row g-3 mb-4">
                                 <div class="col-md-4">
                                     <label class="form-label">Modelo <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editarModelo">
+                                    <input type="text" class="form-control" id="editModeloProduto">
                                 </div>
+
                                 <div class="col-md-4">
                                     <label class="form-label">EAN ou Nº de Fábrica <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editarFab">
+                                    <input type="text" class="form-control" id="editEanProduto">
                                 </div>
+
                                 <div class="col-md-4">
                                     <label class="form-label">Marca</label>
-                                    <input type="text" class="form-control" id="editarMarca">
+                                    <input type="text" class="form-control" id="editMarcaProduto">
                                 </div>
                             </div>
 
                             <h6 class="fw-semibold text-primary mb-3">Responsável</h6>
+
                             <div class="row g-3 mb-4">
                                 <div class="col-md-6">
                                     <label class="form-label">TI / Supervisor <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editarResponsavel">
+                                    <input type="text" class="form-control" id="editResponsavelProduto">
                                 </div>
+
                                 <div class="col-md-6">
                                     <label class="form-label">Configuração</label>
-                                    <input type="text" class="form-control" id="editarConfiguracao">
+                                    <input type="text" class="form-control" id="editConfiguracaoProduto"
+                                        placeholder="Ex: 8GB RAM / SSD 256GB">
                                 </div>
                             </div>
 
                             <h6 class="fw-semibold text-primary mb-3">Dados da Compra</h6>
+
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <label class="form-label">Data da Compra <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="date" class="form-control" id="editarDataCompra">
+                                    <input type="date" class="form-control" id="editDataCompraProduto">
                                 </div>
+
                                 <div class="col-md-4">
                                     <label class="form-label">Documento NF <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editarNF">
+                                    <input type="text" class="form-control" id="editDocumentoNfProduto">
                                 </div>
+
                                 <div class="col-md-4">
                                     <label class="form-label">Valor da Compra <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="number" step="0.01" class="form-control" id="editarValorCompra">
+                                    <input type="number" step="0.01" class="form-control" id="editValorProduto"
+                                        placeholder="R$ 0,00">
+                                </div>
+
+                                <h6 class="fw-semibold text-primary mb-3">Disponibilidade</h6>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Alugado <i
+                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                    <select class="form-select" id="editAlugadoProduto"
+                                        aria-label="Default select example">
+                                        <option selected>Selecione</option>
+                                        <option value="1">Sim</option>
+                                        <option value="2">Não (Própio da empresa)</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Descrição <i
+                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                    <input type="text" class="form-control" id="editDescricaoProduto"
+                                        placeholder="Equipamento novo na caixa">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Local de Estoque <i
+                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                    <input type="text" class="form-control" id="editLocalidadeEstoqueProduto"
+                                        placeholder="Equipamento novo na caixa">
                                 </div>
                             </div>
 
-                        </div>
+                            <div class="modal-footer border-0 mt-3">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                    Cancelar
+                                </button>
+                                <button type="button" class="btn btn-warning px-4" id="btnEditarAlteracao">
+                                    Editar Alterações <i class="bi bi-pencil-square me-2"></i>
+                                </button>
+                            </div>
 
-                        <div class="modal-footer border-0">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-                                Cancelar
-                            </button>
-                            <button type="button" class="btn btn-warning px-4" id="btnEditarAlteracao">
-                                Editar Alterações <i class="bi bi-pencil-square me-2"></i>
-                            </button>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
         </main>
     </div>
 
