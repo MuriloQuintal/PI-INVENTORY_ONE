@@ -68,4 +68,6 @@ function fnEditarProduto(){
         alugado: document.getElementById("").value,
         disponivel: document.getElementById("").value
     }
+
+    console.dir(formEditProduto)
 }
