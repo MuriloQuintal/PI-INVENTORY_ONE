@@ -21,7 +21,7 @@
         <div class="bg-white formulario shadow ">
             <div class="row">
                 <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
-                    <form class="formulario-login" action="">
+                    <form class="formulario-login" id="login" action="">
                         <div class="d-flex justify-content-start w-100">
                             <img class="img-fluid" width="100px" src="./img/logo-inventoryone.png"
                                 alt="imagem da logo Inventory-One">
@@ -42,7 +42,7 @@
                             <input type="password" class="form-control formColor" id="campoSenha">
                         </div>
                         <div class="text-center">
-                            <button class="botao-cadastro mb-3">Entrar</button>
+                            <button type="button" class="botao-cadastro mb-3" onclick="fnLoginUsuario()">Entrar</button>
                         </div>
                         <div class="text-center mb-3">
                             <a class="text-decoration-none text-dark" href="cadastro-usuario.html">Não tem
@@ -61,6 +61,10 @@
             </div>
         </div>
     </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="../js/index.js"></script>
 </body>
 
 
