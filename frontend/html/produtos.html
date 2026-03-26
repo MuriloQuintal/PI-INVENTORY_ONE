@@ -104,7 +104,7 @@
                                 </tr>
                             </thead>
 
-                            <tbody class="corpo_tabProdutos">
+                            <tbody id="corpo_tabProdutos">
                                 <tr>
                                     <td>Smartphone Samsung</td>
                                     <td>356789012345678</td>
@@ -184,7 +184,7 @@
                                     <div class="col-md-4">
                                         <label class="form-label">IMEI <i
                                                 class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                        <input type="text" class="form-control" id="cadImeiProduto" required>
+                                        <input type="number" class="form-control" id="cadImeiProduto" required>
                                         <div class="invalid-feedback">
                                             Por Favor, Preencha este campo
                                         </div>
@@ -215,9 +215,10 @@
                                     <div class="col-md-4">
                                         <label class="form-label">EAN ou Nº de Fábrica <i
                                                 class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                        <input type="text" class="form-control" id="cadEanProduto" required>
+                                        <input type="number" class="form-control" id="cadEanProduto" required
+                                            max="99999999999999">
                                         <div class="invalid-feedback">
-                                            Por Favor, Preencha este campo
+                                            Máximo de 14 caracteres, não pode ser vazio
                                         </div>
                                     </div>
 
@@ -267,7 +268,7 @@
                                     <div class="col-md-4">
                                         <label class="form-label">Documento NF <i
                                                 class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                        <input type="text" class="form-control" id="cadDocumentNfProduto" required>
+                                        <input type="number" class="form-control" id="cadDocumentNfProduto" required>
                                         <div class="invalid-feedback">
                                             Por Favor, Preencha este campo
                                         </div>
@@ -285,14 +286,14 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                                data-bs-toggle="collapse" data-bs-target="#acordion-cadProduto"
                                                 aria-expanded="false" aria-controls="flush-collapseOne">
                                                 <h6 class="fw-semibold text-primary mb-3">Chip <i
                                                         class="bi bi-caret-down-fill"></i></i></h6>
                                             </button>
                                         </h2>
 
-                                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                        <div id="acordion-cadProduto" class="accordion-collapse collapse"
                                             data-bs-parent="#accordionFlushExample">
 
                                             <div class="row g-3 mb-4">
@@ -300,26 +301,42 @@
                                                     <label class="form-label">Numero do DDD <i
                                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                                     <input type="number" class="form-control" id="cadDddProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label class="form-label">Numero da Linha <i
                                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                                     <input type="number" class="form-control" id="cadLinhaProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label class="form-label">Código do CHIP <i
                                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                                    <input type="text" class="form-control" id="cadCodChipProduto">
+                                                    <input type="number" class="form-control" id="cadCodChipProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Operadora<i
                                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                                     <input type="text" class="form-control" id="cadOperadoraProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="form-label">Pin Operadora<i
                                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                                    <input type="text" class="form-control" id="cadPinOperadoraProduto">
+                                                    <input type="number" class="form-control"
+                                                        id="cadPinOperadoraProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -332,9 +349,9 @@
                                                 class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                         <select class="form-select" id="cadAlugadoProduto"
                                             aria-label="Default select example" required>
-                                            <option selected disabled>Selecione</option>
-                                            <option value="sim">Sim</option>
-                                            <option value="nao">Não (Própio da empresa)</option>
+                                            <option value="" selected disabled>Selecione</option>
+                                            <option value="S">Sim</option>
+                                            <option value="N">Não (Própio da empresa)</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Por Favor, Selecione algum valor
@@ -346,9 +363,9 @@
                                                 class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                         <select class="form-select" id="cadDisponibilidadeProduto"
                                             aria-label="Default select example" required>
-                                            <option selected disabled>Selecione</option>
-                                            <option value="sim">Sim</option>
-                                            <option value="nao">Não</option>
+                                            <option value="" selected disabled>Selecione</option>
+                                            <option value="S">Sim</option>
+                                            <option value="N">Não</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Por Favor, Selecione algum valor
@@ -517,125 +534,236 @@
                         </div>
 
                         <div class="modal-body px-4">
+                            <form class="validarForms" id="form_editarProduto" novalidate>
+                                <h6 class="fw-semibold text-primary mb-3">Informações do Produto</h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Produto <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="text" class="form-control" placeholder="Notebook, Celular..."
+                                            id="editProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
 
-                            <h6 class="fw-semibold text-primary mb-3">Informações do Produto</h6>
-                            <div class="row g-3 mb-4">
-                                <div class="col-md-4">
-                                    <label class="form-label">Produto <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" placeholder="Notebook, Celular..."
-                                        id="editProduto">
+                                    <div class="col-md-4">
+                                        <label class="form-label">IMEI <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="text" class="form-control" id="editImeiProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Número de Série <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="text" class="form-control" id="editNumSerieProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <label class="form-label">IMEI <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editImeiProduto">
+                                <h6 class="fw-semibold text-primary mb-3">Detalhes Técnicos</h6>
+
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Modelo <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="text" class="form-control" id="editModeloProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">EAN ou Nº de Fábrica <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="text" class="form-control" id="editEanProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Marca</label>
+                                        <input type="text" class="form-control" id="editMarcaProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <label class="form-label">Número de Série <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editNumSerieProduto">
-                                </div>
-                            </div>
+                                <h6 class="fw-semibold text-primary mb-3">Responsável</h6>
 
-                            <h6 class="fw-semibold text-primary mb-3">Detalhes Técnicos</h6>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label">TI / Supervisor <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="text" class="form-control" id="editResponsavelProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
 
-                            <div class="row g-3 mb-4">
-                                <div class="col-md-4">
-                                    <label class="form-label">Modelo <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editModeloProduto">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">EAN ou Nº de Fábrica <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editEanProduto">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Marca</label>
-                                    <input type="text" class="form-control" id="editMarcaProduto">
-                                </div>
-                            </div>
-
-                            <h6 class="fw-semibold text-primary mb-3">Responsável</h6>
-
-                            <div class="row g-3 mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label">TI / Supervisor <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editResponsavelProduto">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Configuração</label>
+                                        <input type="text" class="form-control" id="editConfiguracaoProduto"
+                                            placeholder="Ex: 8GB RAM / SSD 256GB" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label class="form-label">Configuração</label>
-                                    <input type="text" class="form-control" id="editConfiguracaoProduto"
-                                        placeholder="Ex: 8GB RAM / SSD 256GB">
+                                <h6 class="fw-semibold text-primary mb-3">Dados da Compra</h6>
+
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Data da Compra <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="date" class="form-control" id="editDataCompraProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Documento NF <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="number" class="form-control" id="editDocumentoNfProduto" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Valor da Compra <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="number" step="0.01" class="form-control" id="editValorProduto"
+                                            placeholder="R$ 0,00" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <h6 class="fw-semibold text-primary mb-3">Dados da Compra</h6>
+                                <div class="row g-3 mt-1">
+                                    <div class="accordion-item ">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#acordion-editarProduto"
+                                                aria-expanded="false" aria-controls="flush-collapseOne">
+                                                <h6 class="fw-semibold text-primary mb-3">Chip <i
+                                                        class="bi bi-caret-down-fill"></i></i></h6>
+                                            </button>
+                                        </h2>
 
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label class="form-label">Data da Compra <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="date" class="form-control" id="editDataCompraProduto">
+                                        <div id="acordion-editarProduto" class="accordion-collapse collapse"
+                                            data-bs-parent="#accordionFlushExample">
+
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Numero do DDD <i
+                                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                                    <input type="number" class="form-control" id="editDddProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Numero da Linha <i
+                                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                                    <input type="number" class="form-control" id="editLinhaProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Código do CHIP <i
+                                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                                    <input type="number" class="form-control" id="editCodChipProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Operadora<i
+                                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                                    <input type="text" class="form-control" id="editOperadoraProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="form-label">Pin Operadora<i
+                                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                                    <input type="number" class="form-control"
+                                                        id="editPinOperadoraProduto">
+                                                    <div class="invalid-feedback">
+                                                        Por Favor, Preencha este campo
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Documento NF <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editDocumentoNfProduto">
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Valor da Compra <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="number" step="0.01" class="form-control" id="editValorProduto"
-                                        placeholder="R$ 0,00">
-                                </div>
-
                                 <h6 class="fw-semibold text-primary mb-3">Disponibilidade</h6>
+                                <div class="row g-3">
 
-                                <div class="col-md-4">
-                                    <label class="form-label">Alugado <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <select class="form-select" id="editAlugadoProduto"
-                                        aria-label="Default select example">
-                                        <option selected>Selecione</option>
-                                        <option value="1">Sim</option>
-                                        <option value="2">Não (Própio da empresa)</option>
-                                    </select>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Alugado <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <select class="form-select" id="editAlugadoProduto"
+                                            aria-label="Default select example" required>
+                                            <option value="" disabled>Selecione</option>
+                                            <option value="S">Sim</option>
+                                            <option value="N">Não (Própio da empresa)</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Selecione Algum Valor
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Disponivel <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <select class="form-select" id="editDisponivelProduto"
+                                            aria-label="Default select example" required>
+                                            <option value="" disabled>Selecione</option>
+                                            <option value="S">Sim</option>
+                                            <option value="N">Não</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Selecione Algum Valor
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Local de Estoque <i
+                                                class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                        <input type="text" class="form-control" id="editLocalidadeEstoqueProduto"
+                                            placeholder="Equipamento novo na caixa" required>
+                                        <div class="invalid-feedback">
+                                            Por Favor, Preencha este campo
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <label class="form-label">Descrição <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editDescricaoProduto"
-                                        placeholder="Equipamento novo na caixa">
-                                </div>
 
-                                <div class="col-md-4">
-                                    <label class="form-label">Local de Estoque <i
-                                            class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editLocalidadeEstoqueProduto"
-                                        placeholder="Equipamento novo na caixa">
-                                </div>
-                            </div>
+                            </form>
+                        </div>
 
-                            <div class="modal-footer border-0 mt-3">
-                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-                                    Cancelar
-                                </button>
-                                <button type="button" class="btn btn-warning px-4" id="btnEditarAlteracao">
-                                    Editar Alterações <i class="bi bi-pencil-square me-2"></i>
-                                </button>
-                            </div>
-
+                        <div class="modal-footer border-0 mt-3">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="button" class="btn btn-warning px-4" id="btnEditarAlteracao">
+                                Editar Alterações <i class="bi bi-pencil-square me-2"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -647,6 +775,7 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script src="../js/produto.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

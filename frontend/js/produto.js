@@ -24,6 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formulario_cadProduto");
 
     btnSalvar.addEventListener("click", () => {
+        const ddd = document.getElementById('cadDddProduto');
+        const linha = document.getElementById('cadLinhaProduto');
+        const chip = document.getElementById('cadCodChipProduto');
+        const operadora = document.getElementById('cadOperadoraProduto');
+        const pin = document.getElementById('cadPinOperadoraProduto');
+        const inputsChip = [ddd, linha, chip, operadora, pin]
+
+        fnValidarCamposChip(inputsChip)
+
 
         if (!form.checkValidity()) {
             form.classList.add("was-validated");
@@ -48,9 +57,41 @@ modalDetalhes.addEventListener('show.bs.modal', () => {
     console.log('ola')
 })
 
+const bntEditarProduto = document.getElementById("btnEditarAlteracao")
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form_editarProduto");
+
+    const ddd = document.getElementById('editDddProduto');
+    const linha = document.getElementById('editLinhaProduto');
+    const chip = document.getElementById('editCodChipProduto');
+    const operadora = document.getElementById('editOperadoraProduto');
+    const pin = document.getElementById('editPinOperadoraProduto');
+    const inputsEditarChip = [ddd, linha, chip, operadora, pin]
+
+    fnValidarCamposChip(inputsEditarChip)
+
+    bntEditarProduto.addEventListener("click", () => {
+        if (!form.checkValidity()) {
+            form.classList.add("was-validated");
+            return;
+        } else {
+            fnEditarProduto()
+            // window.location.reload()
+        }
+
+    });
+
+})
+
 const modalEditar = document.getElementById('modalEditarProduto')
 modalEditar.addEventListener('show.bs.modal', () => {
-    console.log('oii')
+    const botao = event.relatedTarget;
+
+    const idProduto = botao.getAttribute('data-id-editar');
+
+    console.log(idProduto)
+
+    fnConsultarProdutoEditar(idProduto)
 })
 
 function fnCadastrarProduto() {
@@ -77,33 +118,77 @@ function fnCadastrarProduto() {
     }
 
     console.dir(formProduto)
+
+    fetch(`http://localhost:3000/produtos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formProduto)
+    })
+        .then(resposta => resposta.status)
+        .then((dados) => {
+            if (dados = 201) {
+                console.log("Deu Certo")
+            } else if (dados == 400) {
+                console.log("Deu errado")
+            }
+        })
+        .catch(erro => console.log(erro.message))
 }
 
-function fnEditarProduto() {
+function fnValidarCamposChip(inputs) {
+    const algumPreenchido = inputs.some(input => input.value.trim() !== "")
+
+    if (algumPreenchido) {
+        inputs.forEach(campo => {
+            if (campo.value.trim() === "") {
+                campo.setCustomValidity("Preencha todos os campos do chip")
+            } else {
+                campo.setCustomValidity("")
+            }
+        })
+    } else {
+        inputs.forEach(input => input.setCustomValidity(""))
+    }
+}
+
+// Editar Incompleto
+
+function fnEditarProduto(id) {
     let formEditProduto = {
-        equipamento: document.getElementById("").value,
-        modelo: document.getElementById("").value,
-        marca: document.getElementById("").value,
-        configuracao: document.getElementById("").value,
-        serie: document.getElementById("").value,
-        imei: document.getElementById("").value,
-        dtacompra: document.getElementById("").value,
-        dtacadastro: document.getElementById("").value,
-        valor: document.getElementById("").value,
-        nrodocument: document.getElementById("").value,
-        nroddd: document.getElementById("").value,
-        nrolinha: document.getElementById("").value,
-        codchip: document.getElementById("").value,
-        operadora: document.getElementById("").value,
-        pinoperadora: document.getElementById("").value,
-        localestoque: document.getElementById("").value,
-        responsavelestoque: document.getElementById("").value,
-        ean: document.getElementById("").value,
-        alugado: document.getElementById("").value,
-        disponivel: document.getElementById("").value
+        equipamento: document.getElementById("editProduto").value,
+        modelo: document.getElementById("editModeloProduto").value,
+        marca: document.getElementById("editMarcaProduto").value,
+        configuracao: document.getElementById("editConfiguracaoProduto").value,
+        serie: document.getElementById("editNumSerieProduto").value,
+        imei: document.getElementById("editImeiProduto").value,
+        dtacompra: document.getElementById("editDataCompraProduto").value,
+        valor: document.getElementById("editValorProduto").value,
+        nrodocument: document.getElementById("editDocumentoNfProduto").value,
+        nroddd: document.getElementById("editDddProduto").value,
+        nrolinha: document.getElementById("editLinhaProduto").value,
+        codchip: document.getElementById("editCodChipProduto").value,
+        operadora: document.getElementById("editOperadoraProduto").value,
+        pinoperadora: document.getElementById("editPinOperadoraProduto").value,
+        localestoque: document.getElementById("editLocalidadeEstoqueProduto").value,
+        responsavelestoque: document.getElementById("editResponsavelProduto").value,
+        ean: document.getElementById("editEanProduto").value,
+        alugado: document.getElementById("editAlugadoProduto").value,
+        disponivel: document.getElementById("editDisponivelProduto").value
     }
 
     console.dir(formEditProduto)
+
+    const idProduto = document.querySelector(".idProdutoTabela")
+
+    fetch(`http://localhost:3000/produtos/${idProduto}`, {
+        method: "PUT",
+        heades: { "Content-Type": "application/json" },
+        body: JSON.stringify(formEditProduto)
+    })
+        .then(resultado => resultado.status)
+        .then((dados) => {
+            console.log("Edição Executada")
+        })
 }
 
 function fnListarProdutos() {
@@ -111,6 +196,7 @@ function fnListarProdutos() {
         .then(resultado => resultado.json())
         .then((produtos) => {
             produtos.forEach(produto => {
+                console.log(produto)
                 fnMontarTabelaProdutos(produto)
             })
         })
@@ -118,41 +204,140 @@ function fnListarProdutos() {
 
 fnListarProdutos()
 
-// Preciso do Acesso no banco para fazer esse GET
+function fnMontarTabelaProdutos(produto) {
+    const tabela = document.getElementById("corpo_tabProdutos")
 
-// function fnMontarTabelaProdutos(produto) {
-//     const tabela = ("corpo_tabProdutos")
+    console.dir(produto)
 
-//     let linhaTabela =  `
-//     <tr>
-//         <td>${produto.equipamento}</td>
-//         <td>356789012345678</td>
-//         <td>000123</td>
-//         <td>Galaxy S23</td>
-//         <td>FAB-00123</td>
-//         <td>SN-987654321</td>
-//         <td>10/01/2026</td>
-//         <td>
-//         <span class="badge bg-success">Disponível</span>
-//         </td>
-//         <td>
-//         <div class="d-flex gap-2 justify-content-center">
-//         <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-//         data-bs-target="#modalDetalhesProduto">
-//         <i class="bi bi-eye"></i>
-//         </button>
-//         <button data-bs-toggle="modal" data-bs-target="#modalEditarProduto"
-//         class="btn btn-warning btn-sm">
-//         <i class="bi bi-pencil-square"></i>
-//         </button>
-//         <button class="btn btn-danger btn-sm">
-//         <i class="bi bi-trash"></i>
-//         </button>
-//         <button class="btn btn-secondary btn-sm">
-//         <i class="bi bi-box-seam"></i>
-//         </button>
-//         </div>
-//         </td>
-//     </tr>
-//     `
-// }
+    const disponibilidade = produto.disponivel
+    let estaDisponivel = ""
+    const linhaDisponibilidade = document.querySelectorAll(".badge")
+
+    if (disponibilidade == "S") {
+        estaDisponivel = "Disponível"
+    } else {
+        estaDisponivel = "Indisponível"
+    }
+
+    let linhaTabela = `
+    <tr>
+        <input class="idProdutoTabela" type="hidden" value="${produto.id}">
+        <td>${produto.equipamento}</td>
+        <td>${produto.imei}</td>
+        <td>${produto.nrodocumento}</td>
+        <td>${produto.modelo}</td>
+        <td>${produto.ean}</td>
+        <td>${produto.serie}</td>
+        <td>${produto.dtacompra.split("T")[0].split("-").reverse().join("/")}</td>
+        <td>
+        <span class="badge bg-success">${estaDisponivel}</span>
+        </td>
+        <td>
+        <div class="d-flex gap-2 justify-content-center">
+        <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+        data-bs-target="#modalDetalhesProduto" data-id-detalhes="${produto.id}">
+        <i class="bi bi-eye"></i>
+        </button>
+        <button data-bs-toggle="modal" data-bs-target="#modalEditarProduto"
+        class="btn btn-warning btn-sm" data-id-editar="${produto.id}">
+        <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn btn-danger btn-sm botao_deletarProduto" data-idDeletar="${produto.id}">
+        <i class="bi bi-trash"></i>
+        </button>
+        <button class="btn btn-secondary btn-sm" data-id-inventariar="${produto.id}">
+        <i class="bi bi-box-seam"></i>
+        </button>
+        </div>
+        </td>
+    </tr>
+    `
+    // Ainda Não Está Funcionando
+
+    if (estaDisponivel == "Disponível") {
+
+        linhaDisponibilidade.forEach(linha => {
+            linha.classList.remove("bg-danger")
+            linha.classList.add("bg-success")
+        })
+    } else {
+
+        linhaDisponibilidade.forEach(linha => {
+            linha.classList.add("bg-danger")
+            linha.classList.remove("bg-success")
+        })
+
+    }
+
+    tabela.innerHTML += linhaTabela
+}
+
+function fnConsultarProdutoEditar(id) {
+    fetch(`http://localhost:3000/produtos/${id}`, { method: "GET" })
+        .then(resultado => resultado.json())
+        .then(produto => {
+            console.log(produto)
+            fnPreencherEditarProduto(produto)
+        })
+}
+
+function fnPreencherEditarProduto(produto) {
+    document.getElementById("editProduto").value = produto[0].equipamento
+    document.getElementById("editModeloProduto").value = produto[0].modelo
+    document.getElementById("editMarcaProduto").value = produto[0].marca
+    document.getElementById("editConfiguracaoProduto").value = produto[0].configuracao
+    document.getElementById("editNumSerieProduto").value = produto[0].serie
+    document.getElementById("editImeiProduto").value = produto[0].imei
+    document.getElementById("editDataCompraProduto").value = produto[0].dtacompra.split("T")[0]
+    document.getElementById("editValorProduto").value = produto[0].valor
+    document.getElementById("editDocumentoNfProduto").value = produto[0].nrodocumento
+    document.getElementById("editDddProduto").value = produto[0].nroddd
+    document.getElementById("editLinhaProduto").value = produto[0].nrolinha
+    document.getElementById("editCodChipProduto").value = produto[0].codchip
+    document.getElementById("editOperadoraProduto").value = produto[0].operadora
+    document.getElementById("editPinOperadoraProduto").value = produto[0].pinoperadora
+    document.getElementById("editLocalidadeEstoqueProduto").value = produto[0].localestoque
+    document.getElementById("editResponsavelProduto").value = produto[0].responsavelestoque
+    document.getElementById("editEanProduto").value = produto[0].ean
+    document.getElementById("editAlugadoProduto").value = produto[0].alugado
+    document.getElementById("editDisponivelProduto").value = produto[0].disponivel
+}
+
+document.addEventListener("click", (e) => {
+    const botao = e.target.closest(".botao_deletarProduto");
+
+    if (botao) {
+        console.log(botao.dataset);
+        Swal.fire({
+            title: "Realmente deseja deletar este produto?",
+            icon: "warning",
+            iconColor: "#3085d6",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim, Deletar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const id = botao.dataset.iddeletar;
+                fnDeletarProduto(id);
+                Swal.fire({
+                    title: "Deletado!",
+                    text: "Produto deletado com sucesso!!.",
+                    icon: "success"
+                }).then(() => {
+                    window.location.reload()
+                })
+            }
+        });
+    }
+})
+
+function fnDeletarProduto(idProduto) {
+    fetch(`http://localhost:3000/produtos/${idProduto}`, { method: "DELETE" })
+        .then(resposta => resposta.json)
+        .then(dados => {
+            console.log(dados)
+        })
+        .catch(erro => console.log(erro))
+}

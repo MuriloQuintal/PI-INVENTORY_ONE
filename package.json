@@ -2,7 +2,7 @@
   "name": "pi-inventory_one",
   "version": "1.0.0",
   "description": "Projeto integrador SENAC Sistema DE gestão de itens e Iventário",
-  "main": "./BACKEND/index.js",
+  "main": "./BACKEND/indexTeste",
   "scripts": {
     "start": "node  ./BACKEND/indexTeste",
     "dev": "nodemon ./BACKEND/indexTeste"
