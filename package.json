@@ -4,8 +4,8 @@
   "description": "Projeto integrador SENAC Sistema DE gestão de itens e Iventário",
   "main": "./BACKEND/index.js",
   "scripts": {
-    "start": "node  ./BACKEND/index",
-    "dev": "nodemon ./BACKEND/index"
+    "start": "node  ./BACKEND/indexTeste",
+    "dev": "nodemon ./BACKEND/indexTeste"
   },
   "repository": {
     "type": "git",

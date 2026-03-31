@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="../css/configuracao.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <main class="container-fluid">
+        <div class="row">
+            <section class="container menu col-2 text-center">
+                <div class="container_imagem_menu text-center mt-3">
+                    <img class="img-fluid imagem_logo"
+                        src="../img/Gemini_Generated_Image_wguaigwguaigwgua-removebg-preview 1@2x.png"
+                        alt="Logo Sistema">
+                    <hr>
+                </div>
+                <div class="text-start w-100 botoes_navegacao">
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href="./dashboard.html"><i
+                                class="bi bi-clipboard-data icone_navegacao"></i>
+                            Dashboard</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href="./inventariar.html"><i class="bi bi-inbox icone_navegacao"></i>
+                            Inventariar</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href="./produtos.html"><i class="bi bi-phone icone_navegacao"></i>
+                            Produto</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar botao_selecionado" href="./pessoas.html"><i
+                                class="bi bi-person icone_navegacao"></i>
+                            Pessoas</a>
+                    </div>
+                    <div class="text-start w-75">
+                        <a class="botao_navegar" href="./inventario.html"><i class="bi bi-table icone_navegacao"></i>
+                            Inventário</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="conteudo_principal col-10 d-flex flex-column gap-3">
+                <div class="row px-3 ">
+                    <div class="container_pesquisa sombra">
+                        <div class="input-group espaco_pesquisar">
+                            <input class="form-control input_pesquisar" type="text" placeholder="PESQUISAR">
+                            <button class="btn botao_pesquisar" type="submit"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="conteudo_usuario d-flex align-items-center gap-3">
+                            <i class="bi bi-person-fill fs-1"></i>
+
+                            <div class="conteudo_identificacao">
+                                <p class="nome_usuario mb-0">MURILO BREVI</p>
+                                <p class="email_usuario mb-0">murilo@admin.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="bg-white border p-2 rounded">
+                    <header>
+                        <nav class="navbar">
+                            <div class="container-fluid">
+                                <a class="navbar-brand"><i class="bi bi-person-raised-hand"></i> Cadastro de
+                                    Pessoas</a>
+                                <button class="btn btn-warning w-sm-100" type="submit" data-bs-toggle="modal"
+                                    data-bs-target="#modalCadPessoa"> <i class="bi bi-person-plus"></i>
+                                    Cadastrar Pessoa</button>
+                            </div>
+                        </nav>
+                    </header>
+                </section>
+
+                <section class="sessao-tabela-cliente bg-white rounded p-2">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"><i class="bi bi-123 text-muted"></i> Cód. Func</th>
+                                <th scope="col"><i class="bi bi-people-fill text-muted"></i> Nome</th>
+                                <th scope="col"><i class="bi bi-people-fill text-muted"></i> Endereço</th>
+                                <th scope="col"><i class="bi bi-person-vcard-fill text-muted"></i> Departamento</th>
+                                <th scope="col"><i class="bi bi-building-fill text-muted"></i> Empresa</th>
+                                <th scope="col"><i class="bi bi-graph-up-arrow text-muted"></i> Status</th>
+                                <th scope="col"><i class="bi bi-gear-fill text-muted"></i>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <td>101</td>
+                                <td>Ana Silva</td>
+                                <td>Rua Pal. Fran.</td>
+                                <td>Vendas Internas</td>
+                                <td>Alpha Tech</td>
+                                <td>
+                                    <span class="badge bg-success-subtle text-success fw-semibold">Ativo</span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary btn-action-icon" title="Ver Detalhes"
+                                        data-bs-toggle="modal" data-bs-target="#modalDetalhesPessoa">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger btn-action-icon" title="Excluir">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-warning btn-action-icon" title="Editar"
+                                        data-bs-toggle="modal" data-bs-target="#modalEditarPessoa">
+                                        <i class="bi bi-pen"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal fade" id="modalCadPessoa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modalProdutoLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content rounded-4 shadow">
+
+                <div class="modal-header border-0 pb-0 px-4">
+                    <div>
+                        <h5 class="modal-title fw-bold" id="modalProdutoLabel">
+                            <i class="bi bi-person-fill me-2"></i>
+                            Cadastro de Pessoa
+                        </h5>
+                        <small class="text-muted">
+                            Preencha os dados para cadastrar uma nova pessoa
+                        </small>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body px-4">
+
+                    <h6 class="fw-semibold text-primary mb-3">Informações da Pessoa</h6>
+                    <form action="" id="formCadPessoa">
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Nome da Pessoa <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="text" class="form-control" id="cadNomePessoa">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Endereço <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="text" class="form-control" id="cadEnderecoPessoa">
+                            </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Cep <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="text" class="form-control" id="cadCepPessoa">
+                            </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Departamento <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="text" class="form-control" id="cadDepartamentoPessoa">
+                            </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Empresa <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="text" class="form-control" id="cadFilialPessoa">
+                            </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Data de Nascimento <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="date" class="form-control" id="cadNascimentoPessoa">
+                            </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Sexo <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <select class="form-select" id="cadSelectSexoPessoa">
+                                    <option selected disabled>Selecione</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Cargo <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="text" class="form-control" id="cadCargoPessoa">
+                            </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Telefone <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="number" class="form-control" id="cadTelefonePessoa">
+                            </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Email<i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="email" class="form-control" id="cadEmailPessoa">
+                            </div>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-inventory-primario px-4" id="salvarPessoa">
+                        Salvar Pessoa <i class="bi bi-floppy2-fill ms-1"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDetalhesPessoa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modalDetalhesProdutoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content rounded-4 shadow">
+
+                <div class="modal-header border-0 pb-0 px-4">
+                    <div>
+                        <h5 class="modal-title fw-bold" id="modalDetalhesProdutoLabel">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Detalhes da Pessoa
+                        </h5>
+                        <small class="text-muted">Visualize todas as informações da Pessoa</small>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body px-4">
+
+                    <h6 class="fw-semibold text-primary mb-3">Informações da Pessoa</h6>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Nome da Pessoa <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="detalhesNomePesso" disabled
+                                value="Murilo Brevagneli">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Endereço <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="detalhesEnderecoPessoa" disabled
+                                value="Rua São João Gonçalo, 192, Jd das Orquídeas">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Cep <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="detalhesCepPessoa" disabled value="18297362">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Departamento <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="detalhesDepartamentoPessoa" disabled value="TI">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Empresa <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="detalhesFilialPessoa" disabled value="Pulmer">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Status <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="detalhesStatusPessoa" disabled
+                                value="Na empresa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Data de Nascimento <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="detalhesNascimentoPessoa" disabled
+                                value="23/02/2000">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Sexo <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input class="form-control" id="detalhesSelectSexoPessoa" disabled value="Masculino">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Cargo <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="detalhesCargoPessoa" disabled value="Gerente">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Telefone <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="number" class="form-control" id="detalhesTelefonePessoa" disabled
+                                value="19998472372">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Email<i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="email" class="form-control" id="detalhesEmailPessoa" disabled
+                                value="murilo@gmail.com">
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                        Fechar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalEditarPessoa" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="modalProdutoLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content rounded-4 shadow">
+
+                <div class="modal-header border-0 pb-0 px-4">
+                    <div>
+                        <h5 class="modal-title fw-bold" id="modalProdutoLabel">
+                            <i class="bi bi-person-fill me-2"></i>
+                            Editar Pessoa
+                        </h5>
+                        <small class="text-muted">
+                            Preencha os dados para editar a Pessoa
+                        </small>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body px-4">
+
+                    <h6 class="fw-semibold text-primary mb-3">Informações da Pessoa</h6>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Nome da Pessoa <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editNomePessoa">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Endereço <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editEnderecoPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Cep <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editCepPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Departamento <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editDepartamentoPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Empresa <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editEmpresaPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Status <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editStatus">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Data de Nascimento <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="date" class="form-control" id="editNascimentoPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Sexo <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <select class="form-select" id="editSexoPesso">
+                                <option selected disabled>Selecione</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Feminino</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Cargo <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="text" class="form-control" id="editCargoPessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Telefone <i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="number" class="form-control" id="editTelefonePessoa">
+                        </div>
+
+                        <div class="col-md-4 mt-4">
+                            <label class="form-label">Email<i
+                                    class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                            <input type="email" class="form-control" id="editEmailPessoa">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-inventory-primario px-4">
+                        Editar Pessoa <i class="bi bi-pencil ms-1"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+        <script src="../js/pessoas.js"></script>
+</body>
+
+</html>
