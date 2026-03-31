@@ -360,7 +360,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">EAN ou Nº de Fábrica</label>
-                                    <input type="text" class="form-control" value="FAB-00123" id="detalheEanProduto"
+                                    <input type="number" class="form-control" id="detalheEanProduto"
                                         disabled>
                                 </div>
                                 <div class="col-md-4">
@@ -411,11 +411,9 @@
                             </div>
 
 
-
                             <h6 class="fw-semibold text-primary mb-3">Disponibilidade do Produto</h6>
 
                             <span class="badge bg-success fs-6" id="detalheAluguelProduto">Alugado</span>
-
 
                             <span class="badge bg-success fs-6" id="detalheDisponibilidadeProduto">Disponível</span>
 
@@ -484,7 +482,7 @@
                                 <div class="col-md-4">
                                     <label class="form-label">EAN ou Nº de Fábrica <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editEanProduto">
+                                    <input type="number" class="form-control" id="editEanProduto">
                                 </div>
 
                                 <div class="col-md-4">
@@ -521,7 +519,7 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Documento NF <i
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                    <input type="text" class="form-control" id="editDocumentoNfProduto">
+                                    <input type="number" class="form-control" id="editDocumentoNfProduto">
                                 </div>
 
                                 <div class="col-md-4">
@@ -560,7 +558,7 @@
                                             <div class="col-md-4">
                                                 <label class="form-label">Código do CHIP <i
                                                         class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                                <input type="text" class="form-control" id="editCodChipProduto">
+                                                <input type="number" class="form-control" id="editCodChipProduto">
                                             </div>
 
                                             <div class="col-md-6">
@@ -572,7 +570,7 @@
                                             <div class="col-md-6">
                                                 <label class="form-label">Pin Operadora<i
                                                         class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                                <input type="text" class="form-control" id="editPinOperadoraProduto">
+                                                <input type="number" class="form-control" id="editPinOperadoraProduto">
                                             </div>
                                         </div>
 
@@ -586,9 +584,9 @@
                                             class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                     <select class="form-select" id="editAlugadoProduto"
                                         aria-label="Default select example">
-                                        <option selected>Selecione</option>
-                                        <option value="1">Sim</option>
-                                        <option value="2">Não (Própio da empresa)</option>
+                                        <option disabled>Selecione</option>
+                                        <option value="S">Sim</option>
+                                        <option value="N">Não (Própio da empresa)</option>
                                     </select>
                                 </div>
 
@@ -598,8 +596,8 @@
                                     <select class="form-select" id="editDisponibilidadeProduto"
                                         aria-label="Default select example">
                                         <option selected disabled>Selecione</option>
-                                        <option value="sim">Sim</option>
-                                        <option value="nao">Não</option>
+                                        <option value="S">Sim</option>
+                                        <option value="N">Não</option>
                                     </select>
                                 </div>
 

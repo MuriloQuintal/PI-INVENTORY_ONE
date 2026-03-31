@@ -10,7 +10,6 @@ modalDetalhes.addEventListener('show.bs.modal', () => {
 
 const modalEditar = document.getElementById('modalEditarProduto')
 modalEditar.addEventListener('show.bs.modal', () => {
-    console.log('oii')
 })
 
 function fnListarProdutos() {
@@ -31,7 +30,7 @@ function fnMontarLinhaProduto(produto) {
     } else {
         produtoDisponivel = "Indisponivel"
     }
-    
+
     console.log(produto.dtaCompra)
 
     let linhaProduto = `
@@ -46,12 +45,12 @@ function fnMontarLinhaProduto(produto) {
     <td><span class="badge bg-success">${produtoDisponivel}</span></td>
     <td>
                                         <div class="d-flex gap-2 justify-content-center">
-                                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#modalDetalhesProduto">
+                                            <button class="btn btn-primary btn-sm botaoDetalhesProduto" data-bs-toggle="modal"
+                                                data-bs-target="#modalDetalhesProduto" data-id="${produto.id}">
                                                 <i class="bi bi-eye"></i>
                                             </button>
-                                            <button data-bs-toggle="modal" data-bs-target="#modalEditarProduto"
-                                                class="btn btn-warning btn-sm">
+                                            <button data-bs-toggle="modal" data-bs-target="#modalEditarProduto" data-id="${produto.id}"
+                                                class="btn btn-warning btn-sm botaoEditarProduto">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
                                             <button class="btn btn-danger btn-sm">
@@ -116,26 +115,29 @@ btnSalvar.addEventListener('click', () => {
 })
 
 function fnPreencherModalEditProdutos(produto) {
-    const equipamento = document.getElementById("editProduto").value
-    const modelo = document.getElementById("editModeloProduto").value
-    const marca = document.getElementById("editMarcaProduto").value
-    const configuracao = document.getElementById("editConfiguracaoProduto").value
-    const serie = document.getElementById("editNumSerieProduto").value
-    const imei = document.getElementById("editImeiProduto").value
-    const dtaCompra = document.getElementById("editDataCompraProduto").value
-    const dtacadastro = ""
-    const valor = document.getElementById("editValorProduto").value
-    const nrodocumento = document.getElementById("editDocumentoNfProduto").value
-    const nroddd = document.getElementById("editDddProduto").value
-    const nrolinha = document.getElementById("editLinhaProduto").value
-    const codchip = document.getElementById("editCodChipProduto").value
-    const operadora = document.getElementById("editOperadoraProduto").value
-    const pinoperadora = document.getElementById("editPinOperadoraProduto").value
-    const localestoque = document.getElementById("editLocalidadeEstoqueProduto").value
-    const responsavelestoque = document.getElementById("editResponsavelProduto").value
-    const ean = document.getElementById("editEanProduto").value
-    const alugado = document.getElementById("editAlugadoProduto").value
-    const disponivel = document.getElementById("editDisponibilidadeProduto").value
+    const arrayProduto = produto[0]
+
+    console.log(arrayProduto.dtacompra)
+
+    const equipamento = document.getElementById("editProduto").value = arrayProduto.equipamento
+    const modelo = document.getElementById("editModeloProduto").value = arrayProduto.modelo
+    const marca = document.getElementById("editMarcaProduto").value = arrayProduto.marca
+    const configuracao = document.getElementById("editConfiguracaoProduto").value = arrayProduto.configuracao
+    const serie = document.getElementById("editNumSerieProduto").value = arrayProduto.serie
+    const imei = document.getElementById("editImeiProduto").value = arrayProduto.imei
+    const dtaCompra = document.getElementById("editDataCompraProduto").value = arrayProduto.dtacompra.split("T")[0]
+    const valor = document.getElementById("editValorProduto").value = arrayProduto.valor
+    const nrodocumento = document.getElementById("editDocumentoNfProduto").value = arrayProduto.nrodocumento
+    const nroddd = document.getElementById("editDddProduto").value = arrayProduto.nroddd
+    const nrolinha = document.getElementById("editLinhaProduto").value = arrayProduto.nrolinha
+    const codchip = document.getElementById("editCodChipProduto").value = arrayProduto.codchip
+    const operadora = document.getElementById("editOperadoraProduto").value = arrayProduto.operadora
+    const pinoperadora = document.getElementById("editPinOperadoraProduto").value = arrayProduto.pinoperadora
+    const localestoque = document.getElementById("editLocalidadeEstoqueProduto").value = arrayProduto.localestoque
+    const responsavelestoque = document.getElementById("editResponsavelProduto").value = arrayProduto.responsavelestoque
+    const ean = document.getElementById("editEanProduto").value = arrayProduto.ean
+    const alugado = document.getElementById("editAlugadoProduto").value = arrayProduto.alugado
+    const disponivel = document.getElementById("editDisponibilidadeProduto").value = arrayProduto.disponivel
 }
 
 function fnEditarProduto() {
@@ -181,4 +183,64 @@ btnSalvarEditProduto.addEventListener('click', () => {
 
 function fnDetalhesProduto() {
 
+}
+
+function fnListarProduto(id) {
+    fetch(`http://localhost:3000/produtos/${id}`, { method: "GET" })
+        .then(resposta => resposta.json())
+        .then(dados => {
+            console.log(dados)
+            fnPreencherModalEditProdutos(dados)
+            fnPreencherModalDetalhes(dados)
+        })
+}
+
+function fnPreencherModalDetalhes(produto) {
+    let arrayProduto = produto[0]
+    console.log(arrayProduto)
+
+    document.getElementById("detalheProduto").value = arrayProduto.equipamento
+    document.getElementById("detalheModeloProduto").value = arrayProduto.modelo
+    document.getElementById("detalheMarcaProduto").value = arrayProduto.marca
+    document.getElementById("detalheConfiguracaoProduto").value = arrayProduto.configuracao
+    document.getElementById("detalheNumeroSerieProduto").value = arrayProduto.serie
+    document.getElementById("detalheImeiProduto").value = arrayProduto.imei
+    document.getElementById("detalheDataCompraProduto").value = arrayProduto.dtacompra.split("T")[0]
+    document.getElementById("detalheValorCompraProduto").value = arrayProduto.valor
+    document.getElementById("detalheDocumentoNfProduto").value = arrayProduto.nrodocumento
+    // document.getElementById("").value = arrayProduto.nroddd
+    // document.getElementById("").value = arrayProduto.nrolinha
+    // document.getElementById("").value = arrayProduto.codchip
+    // document.getElementById("").value = arrayProduto.operadora
+    // document.getElementById("").value = arrayProduto.pinoperadora
+    document.getElementById("detalheLocalEstoque").value = arrayProduto.localestoque
+    document.getElementById("detalheResponsavelProduto").value = arrayProduto.responsavelestoque
+    document.getElementById("detalheEanProduto").value = 176
+    // document.getElementById("").value = arrayProduto.alugado
+    document.getElementById("editDisponibilidadeProduto").value = arrayProduto.disponivel
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // const btnAbrirEditProdutos = document.querySelector(".botaoEditarProduto");
+
+    document.addEventListener("click", (e) => {
+        const btnEditar = e.target.closest(".botaoEditarProduto");
+        const btnDetalhes = e.target.closest(".botaoDetalhesProduto")
+
+        if (btnEditar) {
+            fnListarProduto(btnEditar.dataset.id)
+        }
+
+        if (btnDetalhes) {
+            fnListarProduto(btnDetalhes.dataset.id)
+        }
+    });
+
+});
+
+function fnDeletarProduto(id){
+    fetch(`http://localhost:3000/produtos/${id}`, {
+        method: "DELETE",
+        
+    })
 }

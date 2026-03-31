@@ -46,4 +46,16 @@ app.get("/produtos", (req, res) => {
     })
 })
 
+app.get("/produtos/:id", (req, res) => {
+    const id = req.params.id
+    conexao.query(`SELECT * FROM produtos WHERE id = ?`, [id], (erro, produto) => {
+        if(erro){
+            console.error(erro)
+            return
+        }
+
+        res.send(produto)
+    })
+})
+
 app.listen(3000)
