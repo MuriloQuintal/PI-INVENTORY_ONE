@@ -4,8 +4,8 @@
   "description": "Projeto integrador SENAC Sistema DE gestão de itens e Iventário",
   "main": "./BACKEND/index.js",
   "scripts": {
-    "start": "node  ./BACKEND/indexTeste",
-    "dev": "nodemon ./BACKEND/indexTeste"
+    "start": "node  ./BACKEND/index",
+    "dev": "nodemon ./BACKEND/index"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/MuriloQuintal/PI-INVENTORY_ONE#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
