@@ -13,7 +13,7 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 
-const conexao = require("../banco dados/db") 
+const conexao = require("../banco_dados/db") 
 
 app.post("/pessoa/", function (req, res) {
     const data = req.body;
@@ -57,6 +57,43 @@ app.get("/produtos/:id", (req, res) => {
         }
 
         res.send(produto)
+    })
+})
+
+app.delete("/produtos/:id", (req, res) => {
+    const idProduto = req.params.id
+    conexao.query(`DELETE FROM produtos WHERE id = ${idProduto}`, (erro, resultado) => {
+        if(erro){
+            console.error("ERRO AQUI:::::" + erro)
+            return
+        }
+
+        res.send(resultado)
+    })
+})
+
+app.put("/produtos/:id", (req, res) => {
+    const idProduto = req.params.id
+    const dados = req.body
+
+    conexao.query(`UPDATE produtos SET ? WHERE id = ${idProduto}`, [dados], (erro, resultado) => {
+        if(erro){
+            console.error("ERRO AQUI::::::" + erro)
+            return
+        }
+
+        console.log(resultado)
+    })
+})
+
+app.get("/produtos/precificacao", (req, res) => {
+    conexao.query(`SELECT SUM(valor) AS soma FROM produtos`, (erro, resultado) => {
+        if(erro){
+            console.error("Erro Aqui::::" + erro)
+            return
+        }
+
+        res.json(resultado)
     })
 })
 

@@ -34,8 +34,6 @@ function fnCadastrarPessoa() {
         .catch(erro => console.log(erro.message))
 }
 
-
-
 let btn_salvar = document.getElementById("salvarPessoa")
 btn_salvar.addEventListener("click", function () {
     fnCadastrarPessoa()

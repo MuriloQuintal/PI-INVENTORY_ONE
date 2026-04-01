@@ -9,3 +9,18 @@ function fnListarProdutoDisponibilidade(){
         })
     })
 }
+
+function fnSomarTotalInventario(){
+    fetch("http://localhost:3000/produtos/precificacao", { method: "GET" })
+    .then(resposta => resposta.json())
+    .then((dados) => {
+        console.log(dados)
+        fnPreencherValoresPreco(dados)
+    })
+}
+
+fnSomarTotalInventario()
+
+function fnPreencherValoresPreco(totalPreco){
+    console.log(totalPreco)
+}
