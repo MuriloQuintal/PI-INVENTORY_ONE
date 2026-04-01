@@ -12,8 +12,7 @@ app.use(cors())
 app.use(express.json())
 
 
-const conexao = require('../banco_dados/conexaoBanco')
-
+const conexao = require('../banco_dados/db')
 
 app.post("/cadastrousuarios/", function (req, res) {
     const data = req.body;
