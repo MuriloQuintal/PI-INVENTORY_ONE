@@ -18,7 +18,7 @@ async function geraHash(senha) {
     return senhaHash;
     
 }
-const conexao = require('../banco_dados/conexaoBanco')
+const conexao = require('../banco_dados/db.js')
 
 
 app.post("/cadastrousuarios/", async function (req, res) {

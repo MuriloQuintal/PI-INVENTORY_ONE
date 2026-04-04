@@ -1,4 +1,7 @@
-
+@font-face {
+    font-family: 'Poppins';
+    src: url('../../fonts/Poppins-Regular.ttf');
+}
 
 .font-header-3{
     font-size: 32px;

@@ -1,4 +1,9 @@
-.btn-action-icon {
+@font-face {
+    font-family: 'Poppins';
+    src: url('../../fonts/Poppins-Regular.ttf');
+}
+
+btn-action-icon {
     padding: .3rem .5rem; 
     display: inline-flex;
     align-items: center;
