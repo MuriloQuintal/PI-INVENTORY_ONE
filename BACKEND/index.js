@@ -36,6 +36,27 @@ app.post("/cadastrousuarios/", async function (req, res) {
         });
 })
 
+app.post("/login/", function (req, res) {
+    const email = req.body.email
+    const senha = req.body.senha
+
+    conexao.query(`select * from usuarios where email = '${email}'`, function (erro, resultado, campos) {
+        if (erro) {
+            res.send(erro)
+        } else {
+            if (resultado.length > 0) {
+                const senhaCorreta = bcrypt.compareSync(senha, resultado[0].senha)
+                if (senhaCorreta) {
+                    res.sendStatus(200)
+                } else {
+                    res.sendStatus(401)
+                }
+            } else {
+                res.sendStatus(401)
+            }
+        }
+    })
+})
 
 // ia
 // app.post("/cadastrousuarios/", async function (req, res) {
