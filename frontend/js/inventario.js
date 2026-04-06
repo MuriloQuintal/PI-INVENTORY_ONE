@@ -1,3 +1,7 @@
+if (localStorage.getItem("logado") != "true") {
+    window.location.href = "login.html"
+}
+
 function fnListarInventarios() {
     fetch(`http://localhost:3000/inventarios`, { method: "GET" })
         .then(resultado => resultado.json())
