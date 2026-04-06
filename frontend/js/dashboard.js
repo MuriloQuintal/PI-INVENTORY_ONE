@@ -1,3 +1,9 @@
+console.log(localStorage.getItem("logado"))
+
+if (localStorage.getItem("logado") != "true") {
+    window.location.href = "login.html"
+}
+
 function fnListarProdutoDisponibilidade() {
     const categoria = "" // Falta puxar a categoria
     const disponibilidade = "" // Falta pegar a disponibilidade
