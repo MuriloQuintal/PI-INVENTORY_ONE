@@ -154,7 +154,9 @@ app.get("/produtos-precificacao", (req, res) => {
 })
 
 app.get("/inventarios", (req, res) => {
-    conexao.query(`SELECT pessoas.id,
+    conexao.query(`SELECT 
+        produtoDisponivel.id as idDisponivel
+        pessoas.id,
         pessoas.nome,
         pessoas.telefone,
         pessoas.filial,
@@ -173,6 +175,30 @@ app.get("/inventarios", (req, res) => {
         }
 
         res.send(lista_inventarios)
+    })
+})
+
+app.post("/inventariar", (req, res) => {
+    const dados = req.body
+    conexao.query(`INSERT INTO produtoDisponivel set ?`, [dados], (erro, resultado) => {
+        if(erro){
+            console.error("Erro Aqui:::::" + erro)
+            return
+        }
+
+        res.send(resultado)
+    })
+})
+
+app.get("/pessoas/:codigo", (req, res) => {
+    const codigoPessoa = req.params.codigo
+    conexao.query(`SELECT * FROM pessoas where codPessoa = ${codigoPessoa}`, (erro, resultadoPessoa) => {
+        if(erro){
+            console.error("Erro Aqui::::" + erro)
+            return
+        }
+
+        res.send(resultadoPessoa)
     })
 })
 

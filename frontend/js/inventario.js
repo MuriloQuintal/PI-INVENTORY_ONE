@@ -28,8 +28,8 @@ function fnCriarLinhasInventario(inventario) {
             <td>${inventario.nrolinha}</td>
             <td>
                 <div class="d-flex gap-2 justify-content-center">
-                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#modalDetalhesProduto" data-id="${inventario.id}">
+                    <button class="btn btn-primary btn-sm botaoDetalhesInventario" data-bs-toggle="modal"
+                    data-bs-target="#modalDetalhesProduto" data-id="${inventario.idDisponivel}">
                     <i class="bi bi-eye"></i>
                     </button>
                 </div>
@@ -39,3 +39,28 @@ function fnCriarLinhasInventario(inventario) {
 
     document.querySelector(".corpo_tabelaInventarios") += linhaInventario
 }
+
+
+// Finalizar daqui para baixo
+function fnDetalhesInventario(idInventario) {
+    fetch(`http://localhost:3000/inventario/${idInventario}`, { method: "GET" })
+        .then(resultado => resultado.status)
+        .then((dados) => {
+            fnPreencherCamposDetalhesInventario(dados)
+        })
+}
+
+function fnPreencherCamposDetalhesInventario(inventario) {
+    document.getElementById("")
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("click", (e) => {
+        const btnDetalhes = e.target.closest(".botaoDetalhesInventario")
+
+        if (btnDetalhes) {
+            fnDetalhesInventario(btnDetalhes.dataset.id)
+        }
+    });
+
+});
