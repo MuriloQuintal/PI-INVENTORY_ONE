@@ -81,8 +81,6 @@
                                 Gerencie seus produtos com rapidez e organização.
                             </p>
                         </div>
-
-                        <h5 class="fs-6 mb-3">Tipo do produto: <span class="fw-semibold">Notebook</span></h5>
                         <div class="conteiner-fluid">
                             <form class="validarForms" novalidate>
                                 <div class="row mb-3">
@@ -106,6 +104,7 @@
                                         <label for="txtFilial" class="form-label">Filial</label>
                                         <input type="text" class="form-control" id="txtFilial"
                                             placeholder="Ex: Matriz - SP" required>
+                                        <input type="hidden" id="idPessoa">
                                         <div class="invalid-feedback">
                                             Por favor, preencha este campo.
                                         </div>
@@ -133,6 +132,7 @@
                                         <label for="txtEquipamento" class="form-label">Equipamento</label>
                                         <input type="text" class="form-control" id="txtEquipamento"
                                             placeholder="Ex: Smartphone Corporativo" required>
+                                        <input type="hidden" id="idProduto">
                                         <div class="invalid-feedback">
                                             Por favor, preencha este campo.
                                         </div>
@@ -165,18 +165,6 @@
                                         <label for="txtSerie" class="form-label">Série</label>
                                         <input type="text" class="form-control" id="txtSerie"
                                             placeholder="Ex: SN123456789BR" required>
-                                        <div class="invalid-feedback">
-                                            Por favor, preencha este campo.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="txtDescricao" class="form-label">Descrição</label>
-                                        <input type="text" class="form-control" id="txtDescricao"
-                                            placeholder="Ex: Aparelho destinado ao uso corporativo com plano empresarial"
-                                            required>
                                         <div class="invalid-feedback">
                                             Por favor, preencha este campo.
                                         </div>
@@ -220,12 +208,13 @@
 
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <label for="txtHistorico" class="form-label">Histórico</label>
-                                        <textarea id="txtHistorico" class="form-control"
+                                        <label for="txtHistorico" class="form-label">Configuração</label>
+                                        <textarea id="txtConfiguracao" class="form-control"
                                             placeholder="Descreva ocorrências, trocas de aparelho, manutenção, bloqueios, etc."></textarea>
                                     </div>
                                     <div class="col-md-12 text-end">
-                                        <button type="submit" class="btn btn-success w-25"><i class="bi bi-plus"></i> Salvar</button>
+                                        <button type="submit" class="btn btn-success w-25"><i class="bi bi-plus"></i>
+                                            Salvar</button>
                                     </div>
                                 </div>
 

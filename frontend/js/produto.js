@@ -15,7 +15,6 @@ function fnValidacaoBootstrap() {
                 form.classList.add('was-validated')
                 return
             }
-
             else {
                 fnCadastrarProduto()
             }
@@ -108,16 +107,20 @@ function fnCadastrarProduto() {
         dtaCompra: document.getElementById("cadDataCompraProduto").value,
         valor: document.getElementById("cadValorCompraProduto").value,
         nroDocumento: document.getElementById("cadDocumentNfProduto").value,
-        nroddd: document.getElementById("cadDddProduto").value,
-        nrolinha: document.getElementById("cadLinhaProduto").value,
-        codchip: document.getElementById("cadCodChipProduto").value,
-        operadora: document.getElementById("cadOperadoraProduto").value,
-        pinoperadora: document.getElementById("cadPinOperadoraProduto").value,
         localestoque: document.getElementById("cadLocalidadeEstoqueProduto").value,
         responsavelestoque: document.getElementById("cadResponsavelProduto").value,
         ean: document.getElementById("cadEanProduto").value,
         alugado: document.getElementById("cadAlugadoProduto").value,
         disponivel: document.getElementById("cadDisponibilidadeProduto").value
+    }
+
+    const ddd = document.getElementById("cadDddProduto").value
+    if (ddd != "") {
+        formProduto.nroddd = document.getElementById("cadDddProduto").value
+        formProduto.nrolinha = document.getElementById("cadLinhaProduto").value
+        formProduto.codchip = document.getElementById("cadCodChipProduto").value
+        formProduto.operadora = document.getElementById("cadOperadoraProduto").value
+        formProduto.pinoperadora = document.getElementById("cadPinOperadoraProduto").value
     }
 
     console.dir(formProduto)
