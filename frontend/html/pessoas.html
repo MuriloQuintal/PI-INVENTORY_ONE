@@ -153,7 +153,16 @@
 
                         <h6 class="fw-semibold text-primary mb-3">Informações da Pessoa</h6>
                         <div class="row g-3 mb-4">
-                            <div class="col-md-6">
+                             <div class="col-md-2">
+                                <label class="form-label">Cod Pessoa <i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="text" class="form-control" id="cadCodPessoa" required>
+                                <div class="invalid-feedback">
+                                    Por favor, preencha este campo.
+                                </div>
+                            </div>
+
+                            <div class="col-md-10">
                                 <label class="form-label">Nome da Pessoa <i
                                         class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                 <input type="text" class="form-control" id="cadNomePessoa" required>
@@ -162,7 +171,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <label class="form-label">Endereço <i
                                         class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                 <input type="text" class="form-control" id="cadEnderecoPessoa" required>
@@ -171,10 +180,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 mt-4">
+                            <div class="col-md-4">
                                 <label class="form-label">Cep <i
                                         class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                <input type="text" class="form-control" id="cadCepPessoa" required>
+                                <input type="text" class="form-control" id="cadCep" required>
                                 <div class="invalid-feedback">
                                     Por favor, preencha este campo.
                                 </div>
@@ -257,7 +266,7 @@
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">
                             Cancelar
                         </button>
-                        <button type="submit" class="btn-inventory-primario px-4" id="salvarPessoa">
+                        <button type="button" class="btn-inventory-primario px-4" id="salvarPessoa">
                             Salvar Pessoa <i class="bi bi-floppy2-fill ms-1"></i>
                         </button>
                     </div>
