@@ -75,3 +75,250 @@ Inventario_Empresarial/
 ├── 📦 node_modules/                # Dependências instaladas (gerado automaticamente)
 
 ├── ⚙️ .vscode/                     # Configurações do ambiente de desenvolvimento
+
+
+# UML(Caso de Uso)
+
+`
+[Usuário]
+   |
+   |----> (Buscar Produto)
+   |----> (Buscar Pessoa)
+   |----> (Inventariar Produto)
+   |----> (Atualizar Status Produto)
+
+`
+
+`
+[Login]
+   |
+   |----> (Acessar Tela de Login)
+   |----> (Inserir Email e Senha)
+   |----> (Validar Credenciais)
+   |----> (Autenticar Usuário)
+   |----> (Acessar Sistema)
+
+`
+
+`
+[CadastroUsuario]
+   |
+   |----> (Acessar Cadastro de Funcionários)
+   |----> (Preencher Dados da Pessoa)
+   |----> (Validar Dados)
+   |----> (Cadastrar Pessoa)
+   |----> (Listar Pessoas)
+
+`
+
+`
+[CadastroProduto]
+   |
+   |----> (Acessar Cadastro de Produtos)
+   |----> (Preencher Dados do Produto)
+   |----> (Validar Dados)
+   |----> (Cadastrar Produto)
+   |----> (Definir Disponibilidade)
+   |----> (Listar Produtos)
+
+`
+
+`
+[Inventario]
+   |
+   |----> (Acessar Tela de Inventário)
+   |----> (Solicitar Lista)
+   |----> (Visualizar Produtos Vinculados)
+   |----> (Ver Detalhes do Produto)
+
+`
+
+`
+[Inventariar]
+   |
+   |----> (Buscar Produto por IMEI)
+   |----> (Buscar Pessoa por Código)
+   |----> (Validar Disponibilidade do Produto)
+   |----> (Vincular Produto à Pessoa)
+   |----> (Atualizar Status do Produto)
+   |----> (Confirmar Operação)
+
+`
+
+`
+[DeletarProduto]
+   |
+   |----> (Acessar Inventário)
+   |----> (Selecionar Produto Vinculado)
+   |----> (Remover Vínculo)
+   |----> (Atualizar Disponibilidade do Produto)
+   |----> (Confirmar Remoção)
+
+`
+
+`
+[Dashboard]
+   |
+   |----> (Acessar Dashboard)
+   |----> (Visualizar Total de Produtos)
+   |----> (Visualizar Produtos Disponíveis)
+   |----> (Visualizar Produtos em Uso)
+   |----> (Visualizar Funcionários)
+   
+`
+
+# UML(Classes)
+Classe Pessoa
+-----------------------------
+- id: int (PK)
+- nome: varchar
+- telefone: varchar
+- filial: varchar
+- sexo: Enum
+- nacionalidade: varchar
+- nascimento: date
+- departamento: varchar
+- cargo: varchar
+- endereço: varchar
+- cep: varchar
+- codigoPessoa: int
+-----------------------------
++ cadastrar()
++ atualizar()
++ excluir()
++ buscarPorId()
+`
+
+Classe Produto
+-----------------------------
+- id: int (PK)
+- equipamento: varchar
+- responsavel: varchar
+- localestoque: varchar
+- marca: varchar
+- modelo: varchar
+- imei: varchar
+- serie: varchar
+- nrolinha: varchar
+- codchip: varchar
+- operadora: varchar
+- pinoperadora: varchar
+- configuracao: varchar
+- disponivel: Enum  // "S" ou "N"
+-----------------------------
++ cadastrar()
++ atualizar()
++ excluir()
++ buscarPorId()
+`
+
+
+Classe ProdutoDisponivel
+-------------------------------------
+- id: int (PK)
+- id_pessoa: int (FK)
+- id_produto: int (FK)
+-------------------------------------
++ vincularProduto()
++ desvincularProduto()
++ listarInventario()
+
+Classe Usuario
+-----------------------------
+- id: int (PK)
+- nome: varchar
+- telefone: varchar
+- email: varchar
+- senha: varchar (hash)
+- dataCadastro: DateTime
+-----------------------------
++ autenticar()
++ logout()
+
+# Fluxogramas
+## Cadastrar Usuário
+Início
+  ↓
+Usuário preenche formulário
+  ↓
+Validação no Frontend (campos obrigatórios)
+  ↓
+Campos válidos?
+ ├── Não → Exibir mensagens de erro
+ └── Sim
+        ↓
+Enviar requisição POST /usuarios
+        ↓
+Backend recebe dados
+        ↓
+Validação no Backend
+        ↓
+Dados válidos?
+ ├── Não → Retornar erro
+ └── Sim
+        ↓
+Inserir no banco (usuarios)
+        ↓
+Retornar sucesso (200)
+        ↓
+Frontend exibe mensagem de sucesso
+        ↓
+Fim
+
+## Cadastrar Produtos
+Início
+  ↓
+Usuário preenche formulário
+  ↓
+Validação no Frontend
+  ↓
+Campos válidos?
+ ├── Não → Exibir erro
+ └── Sim
+        ↓
+Enviar requisição POST /produtos
+        ↓
+Backend valida dados
+        ↓
+Dados válidos?
+ ├── Não → Retornar erro
+ └── Sim
+        ↓
+Inserir no banco (produtos)
+        ↓
+Atualizar disponibilidade = "S"
+        ↓
+Retornar sucesso
+        ↓
+Frontend atualiza lista de produtos
+        ↓
+Fim
+
+## Cadastrar Pessoas
+Início
+  ↓
+Usuário preenche formulário
+  ↓
+Validação no Frontend
+  ↓
+Campos válidos?
+ ├── Não → Exibir erro
+ └── Sim
+        ↓
+Enviar requisição POST /pessoas
+        ↓
+Backend recebe dados
+        ↓
+Validação no Backend
+        ↓
+Dados válidos?
+ ├── Não → Retornar erro
+ └── Sim
+        ↓
+Inserir no banco (pessoas)
+        ↓
+Retornar sucesso
+        ↓
+Frontend exibe confirmação
+        ↓
+Fim

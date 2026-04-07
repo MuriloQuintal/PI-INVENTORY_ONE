@@ -72,7 +72,7 @@ app.post("/cadastropessoas/", function (req, res) {
 app.post("/pessoas/", function (req, res) {
 
     const data = req.body;
-   
+
     conexao.query(`INSERT INTO pessoas set ?`, [data],
         function (erro, resultado) {
             if (erro) {
@@ -110,6 +110,19 @@ app.get("/produtos", (req, res) => {
 app.get("/produtos/:id", (req, res) => {
     const id = req.params.id
     conexao.query(`SELECT * FROM produtos WHERE id = ?`, [id], (erro, produto) => {
+        if (erro) {
+            console.error(erro)
+            return
+        }
+
+        res.send(produto)
+    })
+})
+
+app.get("/produtos/imei/:imeiProduto", (req, res) => {
+    const imei = req.params.imeiProduto
+
+    conexao.query(`SELECT * FROM produtos WHERE imei = ${imei}`, (erro, produto) => {
         if (erro) {
             console.error(erro)
             return
@@ -160,7 +173,7 @@ app.get("/produtos-precificacao", (req, res) => {
 
 app.get("/inventarios", (req, res) => {
     conexao.query(`SELECT 
-        produtoDisponivel.id as idDisponivel
+        produtoDisponivel.id as idDisponivel,
         pessoas.id,
         pessoas.nome,
         pessoas.telefone,
@@ -186,11 +199,12 @@ app.get("/inventarios", (req, res) => {
 app.post("/inventariar", (req, res) => {
     const dados = req.body
     conexao.query(`INSERT INTO produtoDisponivel set ?`, [dados], (erro, resultado) => {
-        if(erro){
+        if (erro) {
             console.error("Erro Aqui:::::" + erro)
             return
         }
 
+        conexao.query(`UPDATE produtos SET disponivel = ? WHERE id = ?`, ["N", dados.id_produto])
         res.send(resultado)
     })
 })
@@ -198,12 +212,39 @@ app.post("/inventariar", (req, res) => {
 app.get("/pessoas/:codigo", (req, res) => {
     const codigoPessoa = req.params.codigo
     conexao.query(`SELECT * FROM pessoas where codPessoa = ${codigoPessoa}`, (erro, resultadoPessoa) => {
-        if(erro){
+        if (erro) {
             console.error("Erro Aqui::::" + erro)
             return
         }
 
         res.send(resultadoPessoa)
+    })
+})
+
+app.get("/inventario/:id", (req, res) => {
+    const id = req.params.id
+    conexao.query(`SELECT 
+        produtoDisponivel.id as idDisponivel,
+        pessoas.id,
+        pessoas.nome,
+        pessoas.telefone,
+        pessoas.filial,
+        produtos.id,
+        produtos.equipamento,
+        produtos.modelo,
+        produtos.serie,
+        produtos.nrolinha
+        FROM produtoDisponivel 
+        INNER JOIN pessoas ON produtoDisponivel.id_pessoa = pessoas.id 
+        INNER JOIN produtos ON produtoDisponivel.id_produto = produtos.id
+        WHERE idDisponivel = ${id}
+        `, (erro, lista_inventarios) => {
+        if (erro) {
+            console.error("Erro Aqui:::::" + erro)
+            return
+        }
+
+        res.send(lista_inventarios)
     })
 })
 

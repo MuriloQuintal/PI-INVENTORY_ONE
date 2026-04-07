@@ -37,9 +37,8 @@ function fnCriarLinhasInventario(inventario) {
         </tr>
     `
 
-    document.querySelector(".corpo_tabelaInventarios") += linhaInventario
+    document.querySelector(".corpo_tabelaInventarios").innerHTML += linhaInventario
 }
-
 
 // Finalizar daqui para baixo
 function fnDetalhesInventario(idInventario) {
@@ -51,7 +50,24 @@ function fnDetalhesInventario(idInventario) {
 }
 
 function fnPreencherCamposDetalhesInventario(inventario) {
-    document.getElementById("")
+    console.dir(inventario)
+    document.getElementById("nomeInventario").value = "inventario.nome"
+    // document.getElementById("telefoneInventario").value = 
+    // document.getElementById("empresaInventario").value = 
+    // document.getElementById("emailInventario").value = 
+    // document.getElementById("departamentoInventario").value = 
+    // document.getElementById("produtoInventario").value = 
+    // document.getElementById("imeiInventario").value = 
+    // document.getElementById("documentoNfInventario").value = 
+    // document.getElementById("nomeInventario").value = 
+    // document.getElementById("detalhesTecnicosInventario").value = 
+    // document.getElementById("eanInventario").value = 
+    // document.getElementById("marcaInventario").value = 
+    // document.getElementById("responsavelInventario").value = 
+    // document.getElementById("configuracaoInventario").value = 
+    // document.getElementById("dataCompraInventario").value = 
+    // document.getElementById("numeroSerieInventario").value = 
+    // document.getElementById("valorCompraInventario").value = 
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -22,50 +22,30 @@ function fnValidacaoBootstrap() {
 
 }
 
-const btnInventariar = document.getElementById("botaoInventariar")
-document.addEventListener("DOMContentLoaded", () => {
-    fnValidacaoBootstrap()
-});
 
 function fnInventariar() {
-    // Terminar o cadastro de inventariar um produto em especifico
     const idPessoa = document.getElementById("idPessoa").value
     const idProduto = document.getElementById("idProduto").value
 
-    // let formInventariar = {
-    //     codigoPessoa: document.getElementById("txtCodigoPessoa").value,
-    //     nomePessoa: document.getElementById("txtNomePessoa").value,
-    //     filialPessoa: document.getElementById("txtFilial").value,
-    //     departamentoPessoa: document.getElementById("txtDepartamento").value,
-    //     cargoPessoa: document.getElementById("txtCargo").value,
-    //     equipamento: document.getElementById("txtEquipamento").value,
-    //     marca: document.getElementById("txtMarca").value,
-    //     modelo: document.getElementById("txtModelo").value,
-    //     imei: document.getElementById("txtImei").value,
-    //     serie: document.getElementById("txtSerie").value,
-    //     descricao: document.getElementById("txtDescricao").value,
-    //     numeroLinha: document.getElementById("txtNumeroLinha").value,
-    //     codigoChip: document.getElementById("txtCodigoChip").value,
-    //     operadora: document.getElementById("txtOperadora").value,
-    //     pinOpeardora: document.getElementById("txtPinOperadora").value,
-    //     historico: document.getElementById("txtHistorico").value
-    // }
-    // console.dir(formInventariar)
+    let formInventariar = {
+        id_pessoa: idPessoa,
+        id_produto: idProduto
+    }
 
-    // fetch(`http://localhost:3000/inventariar`, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringfy(formInventariar)
-    // })
-    //     .then(resposta => resposta.status)
-    //     .then((dados) => {
-    //         fnLimparCampos()
-    //         if (dados == 200) {
-    //             window.location.href = "inventario.html"
-    //         }else{
-    //             alert("Deu errado")
-    //         }
-    //     })
+    fetch(`http://localhost:3000/inventariar`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formInventariar)
+    })
+        .then(resposta => resposta.status)
+        .then((dados) => {
+            fnLimparCampos()
+            if (dados == 200) {
+                window.location.href = "inventario.html"
+            } else {
+                alert("Deu errado")
+            }
+        })
 
 
 }
@@ -77,7 +57,9 @@ function fnListarProduto() {
     fetch(`http://localhost:3000/produtos/${id}`, { method: "GET" })
         .then(resultado => resultado.json())
         .then((dados) => {
-            fnPreencherCamposInventariar(dados)
+            if (dados.length > 0) {
+                fnPreencherCamposInventariar(dados)
+            }
         })
 }
 
@@ -109,6 +91,19 @@ document.getElementById("txtCodigoPessoa").addEventListener("blur", () => {
         })
 })
 
+// Finalizar preencher produto pelo imei
+
+document.getElementById("txtImei").addEventListener("blur", () => {
+    const imeiProduto = document.getElementById("txtImei").value
+
+    fetch(`http://localhost:3000/produtos/${imeiProduto}`, { method: "GET" })
+        .then(resultado => resultado.json())
+        .then((dados) => {
+            console.log("imeiProduto" + dados)
+            fnPreencherCamposInventariar(dados)
+        })
+})
+
 function fnPreencherCamposPessoaInventariar(pessoa) {
     document.getElementById("idPessoa").value = pessoa.id
     document.getElementById("txtNomePessoa").value = pessoa.nome
@@ -117,6 +112,13 @@ function fnPreencherCamposPessoaInventariar(pessoa) {
     document.getElementById("txtCargo").value = pessoa.cargo
 }
 
-// const btnInventariar = document.getElementById("botaoInventariar")
-// btnInventariar.addEventListener("click", () => {
-// })
+document.addEventListener("DOMContentLoaded", () => {
+    fnValidacaoBootstrap()
+    const btnInventariar = document.getElementById("botaoInventariar")
+
+    if (btnInventariar) {
+        btnInventariar.addEventListener("click", () => {
+            fnInventariar()
+        })
+    }
+})
