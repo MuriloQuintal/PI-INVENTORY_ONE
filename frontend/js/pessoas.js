@@ -52,7 +52,7 @@ function fnCadastrarPessoa() {
         })
             .then(resposta => resposta.status)
             .then((dados) => {
-                // fnLimparCampos()
+                fnLimparCampos()
 
                 console.log(dados)
 
