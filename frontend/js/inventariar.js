@@ -83,7 +83,7 @@ function fnPreencherCamposInventariar(produto) {
 document.getElementById("txtCodigoPessoa").addEventListener("blur", () => {
     const codigoPessoa = document.getElementById("txtCodigoPessoa").value
 
-    fetch(`http://localhost:3000/pessoas/${codigoPessoa}`, { method: "GET" })
+    fetch(`http://localhost:3000/pessoas-codigo/${codigoPessoa}`, { method: "GET" })
         .then(resultado => resultado.json())
         .then((dados) => {
             console.dir(dados)
@@ -105,6 +105,7 @@ document.getElementById("txtImei").addEventListener("blur", () => {
 })
 
 function fnPreencherCamposPessoaInventariar(pessoa) {
+    console.log(pessoa)
     document.getElementById("idPessoa").value = pessoa.id
     document.getElementById("txtNomePessoa").value = pessoa.nome
     document.getElementById("txtFilial").value = pessoa.filial

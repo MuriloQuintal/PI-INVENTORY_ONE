@@ -221,6 +221,25 @@ function fnDeletarPessoa(id) {
     fetch(`http://localhost:3000/pessoas/${id}`, { method: "DELETE" })
         .then(resposta => resposta.json())
         .then(dados => {
+            console.dir(dados)
+            if (dados.valorResultado == "Errado") {
+                Swal.fire({
+                    title: "Para excluir pessoa, desvincule os itens no inventario",
+                    text: "Deseja ir ao inventario?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ir ao inventario",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "inventario.html"
+                    }
+                })
+                return
+            }
+
             Swal.fire({
                 title: "Deletado",
                 text: "Pessoa Deletada Com Sucesso!",

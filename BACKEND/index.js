@@ -104,6 +104,8 @@ app.delete("/pessoas/:id", (req, res) => {
     conexao.query(`DELETE FROM pessoas WHERE id = ${idPessoa}`, (erro, resultado) => {
         if (erro) {
             console.error("ERRO AQUI:::::" + erro)
+            resultado = { valorResultado: "Errado" }
+            res.send(resultado)
             return
         }
 
@@ -227,7 +229,6 @@ app.post("/inventariar", (req, res) => {
     const dados = req.body
     conexao.query(`INSERT INTO produtoDisponivel set ?`, [dados], (erro, resultado) => {
         if (erro) {
-            console.error("Erro Aqui:::::" + erro)
             return
         }
 
@@ -236,7 +237,7 @@ app.post("/inventariar", (req, res) => {
     })
 })
 
-app.get("/pessoas/:codigo", (req, res) => {
+app.get("/pessoas-codigo/:codigo", (req, res) => {
     const codigoPessoa = req.params.codigo
     conexao.query(`SELECT * FROM pessoas where codPessoa = ${codigoPessoa}`, (erro, resultadoPessoa) => {
         if (erro) {
