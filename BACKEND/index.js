@@ -69,16 +69,21 @@ app.post("/cadastropessoas/", function (req, res) {
         });
 })
 
-app.post("/pessoa/", function (req, res) {
+app.post("/pessoas/", function (req, res) {
+
     const data = req.body;
+   
     conexao.query(`INSERT INTO pessoas set ?`, [data],
         function (erro, resultado) {
             if (erro) {
-                res.json(erro);
+                return res.send(erro);
             }
-            res.send(resultado.insertId());
+            console.log(resultado)
+            res.json({ sucesso: true });
+
         });
 })
+
 
 app.post("/produtos/", (req, res) => {
     const dados = req.body

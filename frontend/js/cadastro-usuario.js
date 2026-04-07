@@ -1,20 +1,20 @@
-function fnValidacaoBootstrap() {
-    'use strict'
+// function fnValidacaoBootstrap() {
+//     'use strict'
 
-    const forms = document.querySelectorAll('.validarForms')
+//     const forms = document.querySelectorAll('.validarForms')
 
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
+//     Array.from(forms).forEach(form => {
+//         form.addEventListener('submit', event => {
+//             if (!form.checkValidity()) {
+//                 event.preventDefault()
+//                 event.stopPropagation()
+//             }
 
-            form.classList.add('was-validated')
-        }, false)
-    })
+//             form.classList.add('was-validated')
+//         }, false)
+//     })
 
-}
+// }
 
 
 function fnLimparCampos() {
