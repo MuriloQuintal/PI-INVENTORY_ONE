@@ -62,15 +62,13 @@ create or replace TABLE produtos (
     ) DEFAULT CHARSET = utf8
         
     
-    Create or replace TABLE historico (
-    id INT not null auto_increment PRIMARY KEY,
-    id_pessoa int not null,
-    id_produto int not null,
-    descricao longtext,
-    datamovimentacao date,
-    movimentacao enum('entrega','devolucao'),
-    foreign key (id_pessoa) references pessoas(id),
-    foreign key (id_produto) references produtos(id)
-    ) DEFAULT CHARSET = utf8
-    
-    
+create or replace TABLE produtoDisponivel (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    id_pessoa INT(11) NOT NULL,
+    id_produto INT(11) NOT NULL,
+    PRIMARY KEY (id),
+    KEY id_pessoa (id_pessoa),
+    KEY id_produto (id_produto),
+    CONSTRAINT produtoDisponivel_ibfk_1 FOREIGN KEY (id_pessoa) REFERENCES pessoas(id),
+    CONSTRAINT produtoDisponivel_ibfk_2 FOREIGN KEY (id_produto) REFERENCES produtos(id)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;

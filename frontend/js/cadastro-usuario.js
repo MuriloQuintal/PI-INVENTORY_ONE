@@ -70,7 +70,7 @@ function fnCadastrarUsuario() {
 let btn_salvar = document.getElementById("cadastrar")
 
 btn_salvar.addEventListener("click", function () {
-    fnValidacaoBootstrap()
+    // fnValidacaoBootstrap()
     fnCadastrarUsuario()
 
 })

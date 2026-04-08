@@ -131,6 +131,7 @@ function fnCadastrarProduto() {
             console.log("Estou aqui em produtos")
             if (dados == 200) {
                 console.log("Produto Cadastrado Com Sucesso!!!")
+                    window.location.reload()
             } else if (dados == 401) {
                 console.log("Deu Errado")
             } else {
@@ -142,7 +143,6 @@ function fnCadastrarProduto() {
 const btnSalvar = document.getElementById("btnSalvarProduto")
 btnSalvar.addEventListener('click', () => {
     fnCadastrarProduto()
-    window.location.reload()
 
 })
 

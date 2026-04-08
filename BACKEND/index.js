@@ -130,10 +130,16 @@ app.post("/produtos/", (req, res) => {
     const dados = req.body
     conexao.query("INSERT INTO produtos SET ?", [dados], (erro, resultado) => {
         if (erro) {
-            res.json(erro)
+        //     res.json(erro)
+        // }
+        // console.log("Deu Certo")
+        //  res.send(resultado.insertId())
+
+              return res.json(erro)
         }
+
         console.log("Deu Certo")
-        // res.send(resultado.insertId())
+        return res.json({ sucesso: true })
     })
 })
 

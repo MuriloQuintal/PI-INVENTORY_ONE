@@ -53,7 +53,7 @@ function fnCadastrarPessoa() {
         .then(resposta => resposta.status)
         .then((dados) => {
             fnLimparCampos()
-
+           window.location.href = "pessoas.html"
             console.log(dados)
 
         })
