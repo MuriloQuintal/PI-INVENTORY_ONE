@@ -71,7 +71,6 @@ function fnListarPessoas() {
         .then((pessoas) => {
             if (pessoas.length <= 0) {
                 console.log("Não Tem Nada Aqui")
-                // Criar Função Para exibir imagem no lugar da tabela
             }
 
             pessoas.forEach(pessoa => {
@@ -81,10 +80,6 @@ function fnListarPessoas() {
 }
 
 fnListarPessoas()
-
-
-
-
 
 function fnMontarLinhaPessoa(pessoa) {
 
@@ -124,7 +119,7 @@ function fnListarPessoa(id) {
         .then(resposta => resposta.json())
         .then(dados => {
             console.log(dados)
-            // fnPreencherModalEditPessoa(dados)
+            fnPreencherModalEditPessoa(dados[0])
             fnPreencherModalDetalhesPessoa(dados)
         })
 }
@@ -134,46 +129,18 @@ function fnPreencherModalDetalhesPessoa(pessoa) {
     let arrayPessoa = pessoa[0]
     console.log(arrayPessoa)
 
-    // const disponivelDetalhePessoa = document.getElementById("detalheDisponibilidadePessoa")
-    // let tipoDisponibilidade = "bg-success"
-    // let produtoDisponivel = "Disponivel"
-    // if (arrayProduto.disponivel != "S") {
-    //     produtoDisponivel = "Indisponivel"
-    //     tipoDisponibilidade = "bg-danger"
-    //     disponivelDetalheProduto.classList.add(`${tipoDisponibilidade}`)
-    // }
-
-    // disponivelDetalheProduto.innerText = produtoDisponivel
-
-
-    // console.log(produtoDisponivel)
-
     document.getElementById("detalhesNomePessoa").value = arrayPessoa.nome
     document.getElementById("detalhesEnderecoPessoa").value = arrayPessoa.endereco
     document.getElementById("detalhesCepPessoa").value = arrayPessoa.cep
     document.getElementById("detalhesDepartamentoPessoa").value = arrayPessoa.departamento
     document.getElementById("detalhesFilialPessoa").value = arrayPessoa.filial
-    // document.getElementById("detalheImeiProduto").value = arrayProduto.imei
     document.getElementById("detalhesNascimentoPessoa").value = arrayPessoa.nascimento.split("T")[0]
-    document.getElementById("detalhesSelectSexoPessoa").value =
-        arrayPessoa.sexo === "M" ? "Masculino" :
-            arrayPessoa.sexo === "F" ? "Feminino" : "Não declarar"
+    document.getElementById("detalhesSelectSexoPessoa").value = arrayPessoa.sexo === "M" ? "Masculino" : "Feminino"
     document.getElementById("detalhesCargoPessoa").value = arrayPessoa.cargo
-    // document.getElementById("").value = arrayProduto.nroddd
-    // document.getElementById("").value = arrayProduto.nrolinha
-    // document.getElementById("").value = arrayProduto.codchip
-    // document.getElementById("").value = arrayProduto.operadora
-    // document.getElementById("").value = arrayProduto.pinoperadora
     document.getElementById("detalhesTelefonePessoa").value = arrayPessoa.telefone
     document.getElementById("detalhesEmailPessoa").value = arrayPessoa.email
     document.getElementById("detalhescodPessoa").value = arrayPessoa.codPessoa
-    // document.getElementById("").value = arrayProduto.alugado
-    //     document.getElementById("editDisponibilidadePessoa").value = arrayPessoa.disponivel
 }
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -183,9 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const btnDeletar = e.target.closest(".botaoDeletarPessoa")
         const btnSalvarEdit = e.target.closest(".botaoSalvarEdicaoPessoa")
 
-        // if (btnEditar) {
-        //     fnListarPessoa(btnEditar.dataset.id)
-        // }
+        if (btnEditar) {
+            fnListarPessoa(btnEditar.dataset.id)
+        }
 
         if (btnDetalhes) {
             fnListarPessoa(btnDetalhes.dataset.id)
@@ -208,14 +175,13 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         }
 
-        // if (btnSalvarEdit) {
-        //     fnEditarPessoa(btnSalvarEdit.dataset.id)
-        //     window.location.reload()
-        // }
+        if (btnSalvarEdit) {
+            console.log(btnSalvarEdit.dataset.id)
+            fnEditarPessoa(btnSalvarEdit.dataset.id)
+        }
     })
 
 })
-
 
 function fnDeletarPessoa(id) {
     fetch(`http://localhost:3000/pessoas/${id}`, { method: "DELETE" })
@@ -224,7 +190,7 @@ function fnDeletarPessoa(id) {
             console.dir(dados)
             if (dados.valorResultado == "Errado") {
                 Swal.fire({
-                    title: "Para excluir pessoa, desvincule os itens no inventario",
+                    title: "Para excluir essa pessoa, desvincule os itens no inventario",
                     text: "Deseja ir ao inventario?",
                     icon: "question",
                     showCancelButton: true,
@@ -245,8 +211,65 @@ function fnDeletarPessoa(id) {
                 text: "Pessoa Deletada Com Sucesso!",
                 icon: "success"
             }).then(() => {
-                window.location.reload() // recarrega só após fechar o Swal
+                window.location.reload()
             })
         })
         .catch(erro => console.log(erro.message))
+}
+
+function fnPreencherModalEditPessoa(pessoa) {
+    document.getElementById("editNomePessoa").value = pessoa.nome
+    document.getElementById("editEnderecoPessoa").value = pessoa.endereco
+    document.getElementById("editCepPessoa").value = pessoa.cep
+    document.getElementById("editDepartamentoPessoa").value = pessoa.departamento
+    document.getElementById("editEmpresaPessoa").value = pessoa.filial
+    document.getElementById("editNascimentoPessoa").value = pessoa.nascimento.split("T")[0]
+    document.getElementById("editSexoPessoa").value = pessoa.sexo
+    document.getElementById("editCargoPessoa").value = pessoa.cargo
+    document.getElementById("editTelefonePessoa").value = pessoa.telefone
+    document.getElementById("editEmailPessoa").value = pessoa.email
+    document.getElementById("editCodPessoa").value = pessoa.codPessoa
+
+    document.getElementById("btnSalvarEditPessoa").dataset.id = pessoa.id
+}
+
+function fnEditarPessoa(id) {
+    let formDados = {
+        codPessoa: document.getElementById("editCodPessoa").value,
+        nome: document.getElementById("editNomePessoa").value,
+        nascimento: document.getElementById("editNascimentoPessoa").value,
+        sexo: document.getElementById("editSexoPessoa").value,
+        cargo: document.getElementById("editCargoPessoa").value,
+        departamento: document.getElementById("editDepartamentoPessoa").value,
+        filial: document.getElementById("editEmpresaPessoa").value,
+        telefone: document.getElementById("editTelefonePessoa").value,
+        email: document.getElementById("editEmailPessoa").value,
+        endereco: document.getElementById("editEnderecoPessoa").value,
+        cep: document.getElementById("editCepPessoa").value
+    }
+
+    console.log(formDados)
+
+    fetch(`http://localhost:3000/pessoas/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formDados)
+    })
+        .then(resultado => resultado.status)
+        .then((dados) => {
+            if (dados != 200) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Deu Errado ao Editar a Pessoa",
+                });
+                return
+            }
+
+            Swal.fire({
+                title: `Pessoa Editada`,
+                icon: "success",
+                confirmButtonText: "OK!!"
+            })
+            console.log("Deu Certo")
+        })
 }

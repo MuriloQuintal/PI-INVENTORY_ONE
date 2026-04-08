@@ -105,28 +105,7 @@
                             </tr>
                         </thead>
                         <tbody class="corpo_tabelaPessoas">
-                            <!-- Exemplo de linha — replique via JS ao popular a tabela -->
-                            <!-- <tr>
-                <td>001</td>
-                <td>João Silva</td>
-                <td>Rua X, 123</td>
-                <td>TI</td>
-                <td>Empresa Y</td>
-                <td>Ativo</td>
-                <td class="text-end">
-                    <button class="btn btn-sm btn-outline-primary btn-action-icon" title="Ver Detalhes"
-                        data-bs-toggle="modal" data-bs-target="#modalDetalhesPessoa">
-                        <i class="bi bi-eye"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-warning btn-action-icon" title="Editar"
-                        data-bs-toggle="modal" data-bs-target="#modalEditarPessoa">
-                        <i class="bi bi-pen"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger btn-action-icon" title="Excluir">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </td>
-            </tr> -->
+
                         </tbody>
                     </table>
                 </section>
@@ -463,15 +442,6 @@
                             </div>
 
                             <div class="col-md-4 mt-4">
-                                <label class="form-label">Status <i
-                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                <input type="text" class="form-control" id="editStatus" required>
-                                <div class="invalid-feedback">
-                                    Por favor, preencha este campo.
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 mt-4">
                                 <label class="form-label">Data de Nascimento <i
                                         class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
                                 <input type="date" class="form-control" id="editNascimentoPessoa" required>
@@ -483,10 +453,10 @@
                             <div class="col-md-4 mt-4">
                                 <label class="form-label">Sexo <i
                                         class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
-                                <select class="form-select" id="editSexoPesso" required>
+                                <select class="form-select" id="editSexoPessoa" required>
                                     <option selected disabled value="">Selecione</option>
-                                    <option value="1">Masculino</option>
-                                    <option value="2">Feminino</option>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Por favor, preencha este campo.
@@ -519,6 +489,15 @@
                                     Por favor, preencha este campo.
                                 </div>
                             </div>
+
+                            <div class="col-md-4 mt-4">
+                                <label class="form-label">Cod. Pessoa<i
+                                        class="bi bi-exclamation-circle text-secondary ms-1"></i></label>
+                                <input type="number" class="form-control" id="editCodPessoa" required>
+                                <div class="invalid-feedback">
+                                    Por favor, preencha este campo.
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -527,7 +506,7 @@
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">
                             Cancelar
                         </button>
-                        <button type="submit" class="btn-inventory-primario px-4">
+                        <button type="button" class="btn-inventory-primario px-4 botaoSalvarEdicaoPessoa" id="btnSalvarEditPessoa" data-id="">
                             Editar Pessoa <i class="bi bi-pencil ms-1"></i>
                         </button>
                     </div>

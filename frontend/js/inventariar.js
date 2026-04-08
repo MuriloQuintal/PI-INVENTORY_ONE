@@ -22,7 +22,6 @@ function fnValidacaoBootstrap() {
 
 }
 
-
 function fnInventariar() {
     const idPessoa = document.getElementById("idPessoa").value
     const idProduto = document.getElementById("idProduto").value
@@ -39,7 +38,7 @@ function fnInventariar() {
     })
         .then(resposta => resposta.status)
         .then((dados) => {
-            fnLimparCampos()
+            console.log(dados)
             if (dados == 200) {
                 window.location.href = "inventario.html"
             } else {
@@ -66,7 +65,29 @@ function fnListarProduto() {
 fnListarProduto()
 
 function fnPreencherCamposInventariar(produto) {
-    console.log(produto)
+    if (produto.length == 0) {
+        return
+    }
+
+
+    if (produto[0].disponivel != "S") {
+        Swal.fire({
+            title: "Produto Indisponível",
+            text: "Delete o inventario que contém esse produto",
+            icon: "error",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ir para inventario",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "inventario.html"
+            }
+        })
+        return
+    }
+
     document.getElementById("txtEquipamento").value = produto[0].equipamento
     document.getElementById("txtMarca").value = produto[0].marca
     document.getElementById("txtModelo").value = produto[0].modelo
@@ -91,12 +112,10 @@ document.getElementById("txtCodigoPessoa").addEventListener("blur", () => {
         })
 })
 
-// Finalizar preencher produto pelo imei
-
 document.getElementById("txtImei").addEventListener("blur", () => {
     const imeiProduto = document.getElementById("txtImei").value
 
-    fetch(`http://localhost:3000/produtos/${imeiProduto}`, { method: "GET" })
+    fetch(`http://localhost:3000/produtos/imei/${imeiProduto}`, { method: "GET" })
         .then(resultado => resultado.json())
         .then((dados) => {
             console.log("imeiProduto" + dados)

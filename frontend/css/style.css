@@ -216,8 +216,7 @@ body {
 }
 
 .container_cards{
-    /* gap: 30px; */
-    justify-content: space-between;
+    gap: 120px;
 }
 
 .espaco_pesquisar{

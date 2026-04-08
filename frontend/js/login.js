@@ -26,14 +26,6 @@ function fnLoginUsuario() {
             body: JSON.stringify(formLoginUsuario)
         })
             .then(resposta => resposta.status)
-            // .then((dados) => {
-            //     fnLimparCampos()
-            //     if (dados == 200) {
-            //         window.location.href = "dashboard.html"
-            //     } else {
-            //         console.log("Email ou senha inválidos")
-            //     }
-            // })
             .then((dados) => {
                 fnLimparCampos()
                 if (dados == 200) {
@@ -54,7 +46,6 @@ function fnLoginUsuario() {
 let btn_login = document.getElementById("entrar")
 
 btn_login.addEventListener("click", function () {
-    // fnValidacaoBootstrap()
     fnLoginUsuario()
 
 })

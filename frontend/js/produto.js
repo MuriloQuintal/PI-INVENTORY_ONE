@@ -16,13 +16,11 @@ function fnValidacaoBootstrap() {
                 return
             }
             else {
-                fnCadastrarProduto()
             }
         }, false)
     })
 
 }
-
 
 const modal = document.getElementById('modalProduto')
 modal.addEventListener('show.bs.modal', () => {
@@ -44,7 +42,6 @@ function fnListarProdutos() {
         .then((produtos) => {
             if (produtos.length <= 0) {
                 console.log("Não Tem Nada Aqui")
-                // Criar Função Para exibir imagem no lugar da tabela
             }
 
             produtos.forEach(produto => {
@@ -52,14 +49,15 @@ function fnListarProdutos() {
             })
         })
 }
-fnListarProdutos()
 
 function fnMontarLinhaProduto(produto) {
     let tipoDisponibilidade = "bg-success"
     let produtoDisponivel = "Disponivel"
+    let botaoInventariar = `<a class="btn btn-secondary btn-sm botaoInventariarProduto" href="./inventariar.html?idProduto=${produto.id}"><i class="bi bi-box-seam"></i></a>`
     if (produto.disponivel != "S") {
         produtoDisponivel = "Indisponivel"
         tipoDisponibilidade = "bg-danger"
+        botaoInventariar = `<button class="btn btn-secondary btn-sm botaoInventariarProduto" disabled><i class="bi bi-box-seam"></i></button>`
     }
 
     let linhaProduto = `
@@ -82,12 +80,10 @@ function fnMontarLinhaProduto(produto) {
     class="btn btn-warning btn-sm botaoEditarProduto">
     <i class="bi bi-pencil-square"></i>
     </button>
-    <button class="btn btn-danger btn-sm botaoDeletarProduto" data-id="${produto.id}">
+    <button type="button" class="btn btn-danger btn-sm botaoDeletarProduto" data-id="${produto.id}">
     <i class="bi bi-trash"></i>
     </button>
-    <a class="btn btn-secondary btn-sm botaoInventariarProduto" href="./inventariar.html?idProduto=${produto.id}">
-    <i class="bi bi-box-seam"></i>
-    </a>
+    ${botaoInventariar}
     </div>
     </td>
     </tr>
@@ -111,7 +107,7 @@ function fnCadastrarProduto() {
         responsavelestoque: document.getElementById("cadResponsavelProduto").value,
         ean: document.getElementById("cadEanProduto").value,
         alugado: document.getElementById("cadAlugadoProduto").value,
-        disponivel: document.getElementById("cadDisponibilidadeProduto").value
+        // disponivel: document.getElementById("cadDisponibilidadeProduto").value
     }
 
     const ddd = document.getElementById("cadDddProduto").value
@@ -132,6 +128,7 @@ function fnCadastrarProduto() {
     })
         .then((resposta) => resposta.status)
         .then((dados) => {
+            console.log("Estou aqui em produtos")
             if (dados == 200) {
                 console.log("Produto Cadastrado Com Sucesso!!!")
             } else if (dados == 401) {
@@ -144,7 +141,9 @@ function fnCadastrarProduto() {
 
 const btnSalvar = document.getElementById("btnSalvarProduto")
 btnSalvar.addEventListener('click', () => {
-    fnValidacaoBootstrap()
+    fnCadastrarProduto()
+    window.location.reload()
+
 })
 
 function fnPreencherModalEditProdutos(produto) {
@@ -169,7 +168,7 @@ function fnPreencherModalEditProdutos(produto) {
     document.getElementById("editResponsavelProduto").value = arrayProduto.responsavelestoque
     document.getElementById("editEanProduto").value = arrayProduto.ean
     document.getElementById("editAlugadoProduto").value = arrayProduto.alugado
-    document.getElementById("editDisponibilidadeProduto").value = arrayProduto.disponivel
+    // document.getElementById("editDisponibilidadeProduto").value = arrayProduto.disponivel
 
     document.getElementById("btnSalvarEditProduto").dataset.id = arrayProduto.id
 }
@@ -185,16 +184,16 @@ function fnEditarProduto(id) {
         dtacompra: document.getElementById("editDataCompraProduto").value,
         valor: document.getElementById("editValorProduto").value,
         nrodocumento: document.getElementById("editDocumentoNfProduto").value,
-        nroddd: document.getElementById("editDddProduto").value,
-        nrolinha: document.getElementById("editLinhaProduto").value,
-        codchip: document.getElementById("editCodChipProduto").value,
+        nroddd: fnTransformarEmNumero(document.getElementById("editDddProduto").value),
+        nrolinha: fnTransformarEmNumero(document.getElementById("editLinhaProduto").value),
+        codchip: fnTransformarEmNumero(document.getElementById("editCodChipProduto").value),
         operadora: document.getElementById("editOperadoraProduto").value,
-        pinoperadora: document.getElementById("editPinOperadoraProduto").value,
+        pinoperadora: fnTransformarEmNumero(document.getElementById("editPinOperadoraProduto").value),
         localestoque: document.getElementById("editLocalidadeEstoqueProduto").value,
         responsavelestoque: document.getElementById("editResponsavelProduto").value,
         ean: document.getElementById("editEanProduto").value,
         alugado: document.getElementById("editAlugadoProduto").value,
-        disponivel: document.getElementById("editDisponibilidadeProduto").value
+        // disponivel: document.getElementById("editDisponibilidadeProduto").value
     }
 
     console.dir(formEditProduto)
@@ -204,11 +203,27 @@ function fnEditarProduto(id) {
         headers: { 'Content-Type': "application/json" },
         body: JSON.stringify(formEditProduto)
     })
-        .then((resposta) => resposta.json)
+        .then((resposta) => resposta.status)
         .then((dados) => {
             console.log(dados)
-            console.log("Deu Certo")
+            if (dados != 200) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Deu Errado ao Editar o Produto",
+                });
+                return
+            }
+
+            Swal.fire({
+                title: `Produto Editado`,
+                icon: "success",
+                confirmButtonText: "OK!!"
+            })
         })
+}
+
+function fnTransformarEmNumero(valor) {
+    return valor === "" ? null : Number(valor)
 }
 
 
@@ -246,28 +261,22 @@ function fnPreencherModalDetalhes(produto) {
     document.getElementById("detalheNumeroSerieProduto").value = arrayProduto.serie
     document.getElementById("detalheImeiProduto").value = arrayProduto.imei
     document.getElementById("detalheDataCompraProduto").value = arrayProduto.dtacompra.split("T")[0]
-    document.getElementById("detalheValorCompraProduto").value = arrayProduto.valor
+    document.getElementById("detalheValorCompraProduto").value = "R$ " + arrayProduto.valor
     document.getElementById("detalheDocumentoNfProduto").value = arrayProduto.nrodocumento
-    // document.getElementById("").value = arrayProduto.nroddd
-    // document.getElementById("").value = arrayProduto.nrolinha
-    // document.getElementById("").value = arrayProduto.codchip
-    // document.getElementById("").value = arrayProduto.operadora
-    // document.getElementById("").value = arrayProduto.pinoperadora
     document.getElementById("detalheLocalEstoque").value = arrayProduto.localestoque
     document.getElementById("detalheResponsavelProduto").value = arrayProduto.responsavelestoque
     document.getElementById("detalheEanProduto").value = arrayProduto.ean
-    // document.getElementById("").value = arrayProduto.alugado
     document.getElementById("editDisponibilidadeProduto").value = arrayProduto.disponivel
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // const btnAbrirEditProdutos = document.querySelector(".botaoEditarProduto");
 
     document.addEventListener("click", (e) => {
         const btnEditar = e.target.closest(".botaoEditarProduto");
         const btnDetalhes = e.target.closest(".botaoDetalhesProduto")
         const btnDeletar = e.target.closest(".botaoDeletarProduto")
         const btnSavarEditProduto = e.target.closest(".botaoSalvarEdicaoProduto")
+
 
         if (btnEditar) {
             fnListarProduto(btnEditar.dataset.id)
@@ -290,12 +299,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     fnDeletarProduto(btnDeletar.dataset.id)
-                    Swal.fire({
-                        title: "Deletado",
-                        text: "Produto Deletado Com Sucesso!!",
-                        icon: "success"
-                    });
-                    window.location.reload()
                 }
             });
         }
@@ -304,7 +307,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const idProduto = btnSavarEditProduto.dataset.id
 
             fnEditarProduto(idProduto)
-            window.location.reload()
         }
     });
 
@@ -314,10 +316,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function fnDeletarProduto(id) {
     fetch(`http://localhost:3000/produtos/${id}`, { method: "DELETE" })
-        .then(resposta => resposta.json)
+        .then(resposta => resposta.status)
         .then(dados => {
-            console.log(dados.message)
+            console.log("Cheguei aqui")
+            if (dados != 200) {
+                Swal.fire({
+                    title: "Produto vinculado ao inventário",
+                    text: "Deseja ir para o inventário?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Ir para inventário",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "inventario.html"
+                    }
+                })
+                return
+            }
 
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Produto deletado com sucesso",
+                icon: "success"
+            }).then(() => {
+                window.location.reload()
+            })
         })
         .catch(erro => console.log(erro.message))
+}
+
+const params = new URLSearchParams(window.location.search)
+
+const equipamentoUrl = params.get("equipamento")
+const disponibilidadeUrl = params.get("disponibilidade")
+
+if (equipamentoUrl && disponibilidadeUrl) {
+    fnListarProdutoFiltro(equipamentoUrl, disponibilidadeUrl)
+} else {
+    fnListarProdutos()
+}
+
+function fnListarProdutoFiltro(equipamento, disponibilidade) {
+    fetch(`http://localhost:3000/produtos/agrupamentos/${equipamento}/${disponibilidade}`)
+        .then(resposta => resposta.json())
+        .then((produtos) => {
+            produtos.forEach(produto => {
+                fnMontarLinhaProduto(produto)
+            })
+        })
 }

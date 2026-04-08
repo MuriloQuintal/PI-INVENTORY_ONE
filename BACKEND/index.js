@@ -58,8 +58,6 @@ app.post("/login/", function (req, res) {
     })
 })
 
-
-
 app.post("/pessoas/", function (req, res) {
 
     const data = req.body;
@@ -85,7 +83,6 @@ app.get("/pessoas", (req, res) => {
         console.log("Deu Certo Pessoas")
     })
 })
-
 
 app.get("/pessoas/:id", (req, res) => {
     const id = req.params.id
@@ -113,6 +110,21 @@ app.delete("/pessoas/:id", (req, res) => {
     })
 })
 
+app.put("/pessoas/:id", (req, res) => {
+    const idPessoa = req.params.id
+    const dados = req.body
+
+    conexao.query(`UPDATE pessoas SET ? WHERE id = ${idPessoa}`, [dados], (erro, resultado) => {
+        if (erro) {
+            console.error("ERRO AQUI::::::" + erro)
+            res.sendStatus(500)
+            return
+        }
+
+        res.sendStatus(200)
+        console.log(resultado)
+    })
+})
 
 app.post("/produtos/", (req, res) => {
     const dados = req.body
@@ -166,10 +178,11 @@ app.delete("/produtos/:id", (req, res) => {
     conexao.query(`DELETE FROM produtos WHERE id = ${idProduto}`, (erro, resultado) => {
         if (erro) {
             console.error("ERRO AQUI:::::" + erro)
+            res.sendStatus(500)
             return
         }
 
-        res.send(resultado)
+        res.sendStatus(200)
     })
 })
 
@@ -180,21 +193,34 @@ app.put("/produtos/:id", (req, res) => {
     conexao.query(`UPDATE produtos SET ? WHERE id = ${idProduto}`, [dados], (erro, resultado) => {
         if (erro) {
             console.error("ERRO AQUI::::::" + erro)
+            res.sendStatus(500)
             return
         }
 
+        res.sendStatus(200)
         console.log(resultado)
     })
 })
 
 app.get("/produtos-precificacao", (req, res) => {
-    console.log("Resultado")
     conexao.query(`SELECT SUM(valor) AS soma FROM produtos`, (erro, resultado) => {
         if (erro) {
             console.error("Erro Aqui::::" + erro)
             return
         }
         console.log("Resultado")
+        console.dir(resultado)
+        res.json(resultado)
+    })
+})
+
+app.get("/produtos/agrupamentos/:equipamento/:disponibilidade", (req, res) => {
+    const dados = req.params
+    conexao.query(`SELECT * FROM produtos WHERE LOWER(equipamento) = LOWER(?) AND disponivel = ?`, [dados.equipamento, dados.disponibilidade], (erro, resultado) => {
+        if (erro) {
+            console.error("Erro Aqui::::" + erro)
+            return
+        }
         console.dir(resultado)
         res.json(resultado)
     })
@@ -211,7 +237,7 @@ app.get("/inventarios", (req, res) => {
         produtos.equipamento,
         produtos.modelo,
         produtos.serie,
-        produtos.nrolinha
+        produtos.imei
         FROM produtoDisponivel 
         INNER JOIN pessoas ON produtoDisponivel.id_pessoa = pessoas.id 
         INNER JOIN produtos ON produtoDisponivel.id_produto = produtos.id
@@ -251,21 +277,30 @@ app.get("/pessoas-codigo/:codigo", (req, res) => {
 
 app.get("/inventario/:id", (req, res) => {
     const id = req.params.id
-    conexao.query(`SELECT 
-        produtoDisponivel.id as idDisponivel,
+    conexao.query(`SELECT
         pessoas.id,
         pessoas.nome,
         pessoas.telefone,
+        pessoas.email,
+        pessoas.departamento,
         pessoas.filial,
         produtos.id,
         produtos.equipamento,
         produtos.modelo,
+        produtos.configuracao,
+        produtos.responsavelestoque,
+        produtos.dtacompra,
+        produtos.valor,
         produtos.serie,
+        produtos.imei,
+        produtos.nrodocumento,
+        produtos.ean,
+        produtos.marca,
         produtos.nrolinha
         FROM produtoDisponivel 
         INNER JOIN pessoas ON produtoDisponivel.id_pessoa = pessoas.id 
         INNER JOIN produtos ON produtoDisponivel.id_produto = produtos.id
-        WHERE idDisponivel = ${id}
+        WHERE  produtoDisponivel.id = ${id}
         `, (erro, lista_inventarios) => {
         if (erro) {
             console.error("Erro Aqui:::::" + erro)
@@ -273,6 +308,59 @@ app.get("/inventario/:id", (req, res) => {
         }
 
         res.send(lista_inventarios)
+    })
+})
+
+app.delete("/inventario/:id", (req, res) => {
+    const idInventario = req.params.id
+
+    conexao.query(`SELECT id_produto FROM produtoDisponivel WHERE id = ?`, [idInventario], (erro, resultado) => {
+        if (erro) {
+            console.error("Erro Aqui::::", erro)
+            return
+        }
+        const idProduto = resultado[0].id_produto
+
+        conexao.query(`DELETE FROM produtoDisponivel WHERE id = ${idInventario}`, (erroDelete, resultadoDelete) => {
+            if (erroDelete) {
+                console.error("ERRO AQUI:::::" + erro)
+                resultadoDelete = { valorResultado: "Errado" }
+                res.send(resultadoDelete)
+                return
+            }
+
+
+            conexao.query(
+                `UPDATE produtos SET disponivel = 'S' WHERE id = ?`, [idProduto], (erroAtualizacao, resultado) => {
+                    if (erroAtualizacao) {
+                        console.error("ERRO AQUI::::" + erroAtualizacao)
+                        return
+                    }
+                })
+
+            res.sendStatus(200)
+        })
+
+    })
+})
+
+app.get("/produtos/agrupamentos/dashboard", (req, res) => {
+    console.log("ROTA /produtos/dashboard CHAMADA")
+
+    conexao.query(` SELECT 
+            LOWER(equipamento) AS nome,
+            COUNT(*) AS qtdTotal
+        FROM produtos
+        GROUP BY LOWER(equipamento)`, (erro, resultado) => {
+
+        if (erro) {
+            console.error("Erro Aqui::::" + erro)
+            res.sendStatus(500)
+            return
+        }
+
+        // console.log("RESULTADO QUERY:", resultado)
+        res.send(resultado)
     })
 })
 
