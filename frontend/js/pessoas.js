@@ -269,6 +269,8 @@ function fnEditarPessoa(id) {
                 title: `Pessoa Editada`,
                 icon: "success",
                 confirmButtonText: "OK!!"
+            }).then(() => {
+                window.location.reload()
             })
             console.log("Deu Certo")
         })
