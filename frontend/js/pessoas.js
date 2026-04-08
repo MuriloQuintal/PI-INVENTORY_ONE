@@ -172,9 +172,6 @@ function fnPreencherModalDetalhesPessoa(pessoa) {
 }
 
 
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("click", (e) => {
@@ -224,7 +221,7 @@ function fnDeletarPessoa(id) {
             console.dir(dados)
             if (dados.valorResultado == "Errado") {
                 Swal.fire({
-                    title: "Para excluir pessoa, desvincule os itens no inventario",
+                    title: "Para excluir o produto, desvincule os no inventario",
                     text: "Deseja ir ao inventario?",
                     icon: "question",
                     showCancelButton: true,

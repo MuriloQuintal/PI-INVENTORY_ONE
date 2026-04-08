@@ -31,6 +31,7 @@ function fnInventariar() {
         id_pessoa: idPessoa,
         id_produto: idProduto
     }
+    console.log("OIIIIII")
 
     fetch(`http://localhost:3000/inventariar`, {
         method: "POST",
@@ -39,7 +40,6 @@ function fnInventariar() {
     })
         .then(resposta => resposta.status)
         .then((dados) => {
-            fnLimparCampos()
             if (dados == 200) {
                 window.location.href = "inventario.html"
             } else {

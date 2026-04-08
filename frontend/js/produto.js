@@ -23,7 +23,6 @@ function fnValidacaoBootstrap() {
 
 }
 
-
 const modal = document.getElementById('modalProduto')
 modal.addEventListener('show.bs.modal', () => {
     console.log('ola')
@@ -57,9 +56,11 @@ fnListarProdutos()
 function fnMontarLinhaProduto(produto) {
     let tipoDisponibilidade = "bg-success"
     let produtoDisponivel = "Disponivel"
+    let botaoInventario = `<a class="btn btn-secondary btn-sm botaoInventariarProduto" href="./inventariar.html?idProduto=${produto.id}"><i class="bi bi-box-seam"></i>`
     if (produto.disponivel != "S") {
         produtoDisponivel = "Indisponivel"
         tipoDisponibilidade = "bg-danger"
+        botaoInventario = ''
     }
 
     let linhaProduto = `
@@ -85,8 +86,7 @@ function fnMontarLinhaProduto(produto) {
     <button class="btn btn-danger btn-sm botaoDeletarProduto" data-id="${produto.id}">
     <i class="bi bi-trash"></i>
     </button>
-    <a class="btn btn-secondary btn-sm botaoInventariarProduto" href="./inventariar.html?idProduto=${produto.id}">
-    <i class="bi bi-box-seam"></i>
+    ${botaoInventario}
     </a>
     </div>
     </td>
@@ -295,7 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         text: "Produto Deletado Com Sucesso!!",
                         icon: "success"
                     });
-                    window.location.reload()
                 }
             });
         }
@@ -314,10 +313,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function fnDeletarProduto(id) {
     fetch(`http://localhost:3000/produtos/${id}`, { method: "DELETE" })
-        .then(resposta => resposta.json)
+        .then(resposta => resposta.json())
         .then(dados => {
-            console.log(dados.message)
+            console.log("Passei Aquii")
+            if (dados.valorResultado == "Errado") {
+                Swal.fire({
+                    title: "Para excluir pessoa, desvincule os itens no inventario",
+                    text: "Deseja ir ao inventario?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ir ao inventario",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "inventario.html"
+                    }
+                })
+                return
+            }
 
+            window.location.reload()
         })
         .catch(erro => console.log(erro.message))
 }

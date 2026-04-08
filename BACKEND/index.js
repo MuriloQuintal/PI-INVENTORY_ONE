@@ -166,7 +166,7 @@ app.delete("/produtos/:id", (req, res) => {
     conexao.query(`DELETE FROM produtos WHERE id = ${idProduto}`, (erro, resultado) => {
         if (erro) {
             console.error("ERRO AQUI:::::" + erro)
-            return
+            resultado = { valorResultado: "Errado" }
         }
 
         res.send(resultado)
@@ -229,6 +229,7 @@ app.post("/inventariar", (req, res) => {
     const dados = req.body
     conexao.query(`INSERT INTO produtoDisponivel set ?`, [dados], (erro, resultado) => {
         if (erro) {
+            console.error("ERRO AQUI::::" + erro)
             return
         }
 
