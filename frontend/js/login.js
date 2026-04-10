@@ -8,8 +8,8 @@ if (logadoSistema == "true") {
 
 const campoEmail = document.getElementById("campoEmail");
 const camposSenha = document.getElementById("campoSenha");
-const labelsCampos = document.querySelectorAll(".form-label"); 
-
+const labelEmail = document.querySelector("label[for='campoEmail']");
+const labelSenha = document.querySelector("label[for='campoSenha']");
 
 function fnLimparCampos() {
     document.getElementById("login").reset()
@@ -25,10 +25,10 @@ function fnLoginUsuario() {
         document.getElementById("mensagemErro").innerHTML = "Campos vazios, preencha email e senha";
         campoEmail.classList.add("formColorError")
         camposSenha.classList.add("formColorError");
-        labelsCampos.forEach((label) => 
-        {
-            label.classList.add("labelColorErro");
-        })
+        labelEmail.classList.add("labelColorErro");
+        labelSenha.classList.add("labelColorErro");
+        
+        
     } else {
 
         fetch('http://localhost:3000/login/', {
@@ -60,19 +60,22 @@ btn_login.addEventListener("click", function () {
 })
 
 campoEmail.addEventListener("input", (e)=>{
-    if(e.target.value.length > 0)
+    if(e.target.value.length > 0 && e.target.value.includes("@"))
     {
         campoEmail.classList.remove("formColorError")
+        labelEmail.classList.remove("labelColorErro");
     }
 })
 
 camposSenha.addEventListener("input", (e)=>{
     if(e.target.value.length > 0)
     {
-        camposSenha.classList.remove("formColorError")
-        labelsCampos.forEach((label) => 
-        {
-            label.classList.add("labelColorErro");
-        })
+        camposSenha.classList.remove("formColorError");
+        labelSenha.classList.remove("labelColorErro");
     }
+})
+
+var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+  new bootstrap.Tooltip(tooltipTriggerEl)
 })
