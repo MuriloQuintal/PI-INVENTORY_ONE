@@ -48,3 +48,11 @@ body {
     max-width: 420px;
 }
 
+.formColorError{
+    border-color: #d11313 !important;
+    color: #d11313 !important;
+}
+
+.labelColorErro{
+    color: #d11313 !important;
+}

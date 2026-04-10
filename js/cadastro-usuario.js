@@ -2,7 +2,6 @@ function fnLimparCampos() {
     document.getElementById("cad-user").reset()
 }
 
-
 function fnCadastrarUsuario() {
     let formCadUsuario = {
         nome: document.getElementById("campoNome").value,

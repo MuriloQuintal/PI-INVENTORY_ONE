@@ -6,6 +6,11 @@ if (logadoSistema == "true") {
 }
 
 
+const campoEmail = document.getElementById("campoEmail");
+const camposSenha = document.getElementById("campoSenha");
+const labelsCampos = document.querySelectorAll(".form-label"); 
+
+
 function fnLimparCampos() {
     document.getElementById("login").reset()
 }
@@ -17,7 +22,13 @@ function fnLoginUsuario() {
     }
 
     if (formLoginUsuario.email == "" || formLoginUsuario.email == null || formLoginUsuario.senha == "" || formLoginUsuario.senha == null) {
-        document.getElementById("mensagemErro").innerHTML = "Campos vazios, preencha email e senha"
+        document.getElementById("mensagemErro").innerHTML = "Campos vazios, preencha email e senha";
+        campoEmail.classList.add("formColorError")
+        camposSenha.classList.add("formColorError");
+        labelsCampos.forEach((label) => 
+        {
+            label.classList.add("labelColorErro");
+        })
     } else {
 
         fetch('http://localhost:3000/login/', {
@@ -42,10 +53,26 @@ function fnLoginUsuario() {
 
 }
 
-
 let btn_login = document.getElementById("entrar")
 
 btn_login.addEventListener("click", function () {
     fnLoginUsuario()
+})
 
+campoEmail.addEventListener("input", (e)=>{
+    if(e.target.value.length > 0)
+    {
+        campoEmail.classList.remove("formColorError")
+    }
+})
+
+camposSenha.addEventListener("input", (e)=>{
+    if(e.target.value.length > 0)
+    {
+        camposSenha.classList.remove("formColorError")
+        labelsCampos.forEach((label) => 
+        {
+            label.classList.add("labelColorErro");
+        })
+    }
 })
