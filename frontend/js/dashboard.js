@@ -1,78 +1,91 @@
-console.log(localStorage.getItem("logado"))
-
 if (localStorage.getItem("logado") != "true") {
     window.location.href = "login.html"
 }
 
-function fnSomarTotalInventario() {
-    fetch("http://localhost:3000/produtos-precificacao", { method: "GET" })
-        .then(resposta => resposta.json())
-        .then((dados) => {
-            fnPreencherValoresPreco(dados[0].soma)
-        })
+async function fnBuscarValoresInventario() {
+  const resposta = await fetch("http://localhost:3000/produtos-precificacao");
+
+  if (!resposta.ok) { 
+    throw new Error("Erro ao listar precificação dos produtos");
+  }
+
+  const dados = await resposta.json(); 
+  return dados;
 }
 
-fnSomarTotalInventario()
+async function fnGerarCardsValoresInventario() {
 
-function fnPreencherValoresPreco(totalPreco) {
-    document.getElementById("valorTotal").innerHTML = totalPreco
+    try {
+        const valoresInventario = await fnBuscarValoresInventario();
+        
+        if (!valoresInventario || (Array.isArray(valoresInventario) && valoresInventario.length === 0)) 
+        {
+            throw new Error("Erro ao acessar valores inventário");
+        }
 
-    const calculoDepreciacao = totalPreco - (totalPreco * 0.4)
-    let arredondarDepreciacao = Math.round(calculoDepreciacao * 100) / 100
-
-    document.getElementById("depreciacaoTotal").innerHTML = arredondarDepreciacao
-
-    const calculoDepreciacaoTotal = totalPreco - arredondarDepreciacao
-    let arredondarDepreciacaoTotal = Math.round(calculoDepreciacaoTotal * 100) / 100
-
-
-    document.getElementById("valorAtualTotal").innerHTML = arredondarDepreciacaoTotal
+        document.getElementById("valorTotal").innerHTML = valoresInventario.valor_total;
+        document.getElementById("depreciacaoTotal").innerHTML = valoresInventario.depreciacao;
+        document.getElementById("valorAtualTotal").innerHTML = valoresInventario.valor_liquido;
+    
+    } catch (error) {
+        console.log(error)
+    }
+    
 }
+
+fnListarTodosProdutos()
 
 function fnListarTodosProdutos() {
     fetch(`http://localhost:3000/produtos/agrupamentos/dashboard`, { method: "GET" })
         .then(resposta => resposta.json())
         .then((produtos) => {
-            console.log("Chamou a função")
-            console.log(produtos)
             produtos.forEach(produto => {
                 fnMontarCardsProdutos(produto)
             })
         })
 }
 
-fnListarTodosProdutos()
 
 function fnMontarCardsProdutos(produto) {
     const containerCards = document.getElementById("containerCardsProdutos")
 
     containerCards.innerHTML += `   
-    <div class="card_inventario col-3" >
-        <div class="card-body conteudo_card_inventario">
-            <div class="espaco_icone_card row">
-                <i class="bi bi-laptop fs-3"></i>
-            </div>
-            <div class="dados_card row">
-                <label class="texto_linhas col-6 text-start">Equipamento</label>
-                <label class="texto_totais col-6 text-end">Totais</label>
-            </div>
-            <div class="row">
-                <label class="nome_item col-6 text-start">${produto.nome}</label>
-                <label class="qtd_item col-6 text-end">${produto.qtdTotal}</label>
-            </div>
-            <hr>
-            <div class="row mt-2 text-center">
-                <div class="col-6 text-start">
-                    <a class="btn btn-danger d-flex align-items-center p-2" href="./produtos.html?equipamento=${produto.nome}&disponibilidade=N">Indisponíveis<i
-                    class="bi bi-x-lg icone_x mx-1 mt-1"></i></a>
+        <div class="col-12 col-sm-3">
+            <div class="conteudo_card_inventario">
+
+                <div class="card_inv_header">
+                    <div class="card_inv_icone">
+                        <i class="bi bi-laptop"></i>
+                    </div>
                 </div>
-                <div class="col-6 text-end">
-                    <a class="w-100 btn btn-success align-items-center p-2" href="./produtos.html?equipamento=${produto.nome}&disponibilidade=S">Disponiveis<i
-                    class="bi bi-check-lg mx-1 mt-1"></i></a>
+
+                <div class="card_inv_dados">
+                    <div>
+                        <p class="card_inv_label">Equipamento</p>
+                        <p class="card_inv_valor">${produto.nome}</p>
+                    </div>
+                    <div class="text-end">
+                        <p class="card_inv_label">Totais</p>
+                        <p class="card_inv_valor">${produto.qtdTotal}</p>
+                    </div>
                 </div>
+
+                <hr class="card_inv_divider">
+
+                <div class="card_inv_acoes">
+                    <a class="card_inv_btn card_inv_btn_danger"
+                        href="./produtos.html?equipamento=${produto.nome}&disponibilidade=N">
+                        <i class="bi bi-x-lg"></i> Indisponíveis
+                    </a>
+                    <a class="card_inv_btn card_inv_btn_success"
+                        href="./produtos.html?equipamento=${produto.nome}&disponibilidade=S">
+                        <i class="bi bi-check-lg"></i> Disponíveis
+                    </a>
+                </div>
+
             </div>
         </div>
-    </div>
-
     `
 }
+
+fnGerarCardsValoresInventario();

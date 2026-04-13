@@ -5,106 +5,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InventoryOne</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/configuracao.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/configuracao.css">
 </head>
 
 <body>
-    <div class="container-fluid">
-        <main class="row">
-            <section class="container menu col-2 text-center">
-                <div class="container_imagem_menu text-center mt-3">
-                    <img class="img-fluid imagem_logo"
-                        src="../img/Gemini_Generated_Image_wguaigwguaigwgua-removebg-preview 1@2x.png"
-                        alt="Logo Sistema">
-                    <hr>
-                </div>
-                <div class="text-start w-100 botoes_navegacao">
-                    <div class="text-start w-75">
-                        <a class="botao_navegar botao_selecionado" href="./dashboard.html"><i
-                                class="bi bi-clipboard-data icone_navegacao"></i>
-                            Dashboard</a>
-                    </div>
-                    <div class="text-start w-75">
-                        <a class="botao_navegar" href="inventariar.html"><i class="bi bi-inbox icone_navegacao"></i>
-                            Inventáriar</a>
-                    </div>
-                    <div class="text-start w-75">
-                        <a class="botao_navegar" href="produtos.html"><i class="bi bi-phone icone_navegacao"></i>
-                            Produtos</a>
-                    </div>
-                    <div class="text-start w-75">
-                        <a class="botao_navegar" href="./pessoas.html"><i class="bi bi-person icone_navegacao"></i>
-                            Pessoas</a>
-                    </div>
-                    <div class="text-start w-75">
-                        <a class="botao_navegar" href="./inventario.html"><i class="bi bi-table icone_navegacao"></i>
-                            Inventário</a>
-                    </div>
-                </div>
-            </section>
+    <main class="container">
+        <section class="conteudo_principal">
+            <header class="cabecalho">
+                <nav>
+                    <img src="../img/logo-inventoryone.png" alt="">
 
-            <section class="conteudo_principal col-10">
-                <div class="row px-3 ">
-                    <div class="container_pesquisa sombra">
-                        <div class="input-group espaco_pesquisar">
-                            <input class="form-control input_pesquisar" type="text" placeholder="PESQUISAR">
-                            <button class="btn botao_pesquisar" type="submit"><i class="bi bi-search"></i></button>
+                    <ul>
+                        <li>
+                            <a href="">
+                                <i class="bi bi-speedometer2"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="bi bi-clipboard2-check"></i>
+                                Inventariar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="bi bi-box-seam"></i>
+                                Produtos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="bi bi-people"></i>
+                                Pessoas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="bi bi-archive"></i>
+                                Inventário
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="usuario_logado_header">
+                        <i class="bi bi-person-circle"></i>
+                        <div class="usuario_logado_header_informacoes">
+                            <span class="usuario_logado_header_nome">Victor Chinaglia</span>
+                            <span>chinagliavictor@gmail.com</span>
                         </div>
-                        <div class="conteudo_usuario d-flex align-items-center gap-3">
-                            <i class="bi bi-person-fill fs-1"></i>
+                    </div>
+                </nav>
+            </header>
 
-                            <div class="conteudo_identificacao">
-                                <p class="nome_usuario mb-0">MURILO BREVI</p>
-                                <p class="email_usuario mb-0">murilo@admin.com</p>
+
+            <div class="container">
+                <div class="row g-2">
+                    <div class="col-12 col-sm-4">
+                        <div class="card_dashboard">
+
+                            <div class="card_dashboard_header_sucesso">
+                                <i class="bi bi-phone"></i>
+                                Inventário
                             </div>
+
+                            <div class="card_dashboard_valor_success">
+                                <p id="valorTotal"></p>
+                            </div>
+
+                            <div class="card_dashboard_descricao">
+                                <p>Valor Total</p>
+                                <p class="card_descricao_subtitulo">Valor Total do Inventário</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="card_dashboard">
+
+                            <div class="card_dashboard_header_danger">
+                                <i class="bi bi-phone"></i>
+                                Depreciação
+                            </div>
+
+                            <div class="card_dashboard_valor_danger">
+                                <p id="depreciacaoTotal"></p>
+                            </div>
+
+                            <div class="card_dashboard_descricao">
+                                <p>Valor Total</p>
+                                <p class="card_descricao_subtitulo">Valor Total da Depreciação</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <div class="card_dashboard">
+
+                            <div class="card_dashboard_header_info">
+                                <i class="bi bi-phone"></i>
+                                Inventário
+                            </div>
+
+                            <div class="card_dashboard_valor_info">
+                                <p id="valorAtualTotal"></p>
+                            </div>
+
+                            <div class="card_dashboard_descricao">
+                                <p>Valor Total</p>
+                                <p class="card_descricao_subtitulo">Valor Liquído Total</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="container_valores row p-3">
-                    <div class="card col">
-                        <div class="card-body conteudo_card">
-                            <i class="bi bi-graph-up fs-3 icone_grafico"></i>
-                            <div class="total_inventario">
-                                <h1 class="valor_total card-subtitle">R$ <span id="valorTotal"></span></h1>
-                                <p class="texto_card card-text">Valor Total</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card col">
-                        <div class="card-body conteudo_card">
-                            <i class="bi bi-graph-down fs-3 icone_grafico"></i>
-                            <div class="total_inventario">
-                                <h1 class="valor_depreciacao card-subtitle">R$ <span id="depreciacaoTotal"></span></h1>
-                                <p class="texto_card card-text">Depreciação</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card col">
-                        <div class="card-body conteudo_card">
-                            <i class="bi bi-graph-down-arrow fs-3 icone_grafico"></i>
-                            <div class="total_inventario">
-                                <h1 class="valor_atual card-subtitle">R$ <span id="valorAtualTotal"> </span></h1>
-                                <p class="texto_card card-text">Valor Total - Depreciação</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container mt-3">
+                <div class="row" id="containerCardsProdutos">
+                   
                 </div>
-                <div class="container_cards row p-3" id="containerCardsProdutos">
 
+            </div>
+        </section>
 
-                </div>
-            </section>
-
-        </main>
-    </div>
-
+    </main>
     <script src="../js/dashboard.js"></script>
 
 </body>

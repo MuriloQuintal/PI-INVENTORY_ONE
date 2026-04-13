@@ -209,14 +209,19 @@ app.put("/produtos/:id", (req, res) => {
 })
 
 app.get("/produtos-precificacao", (req, res) => {
-    conexao.query(`SELECT SUM(valor) AS soma FROM produtos`, (erro, resultado) => {
-        if (erro) {
-            console.error("Erro Aqui::::" + erro)
-            return
+    conexao.query(` SELECT 
+                    SUM(valor) AS valor_total,
+                    ROUND(SUM(valor) * 0.6, 2) AS depreciacao,
+                    ROUND(SUM(valor) - (SUM(valor) * 0.6), 2) AS valor_liquido
+                    FROM produtos`, 
+    (erro, resultado) =>
+    {
+        if (erro) 
+        {
+            return res.status(500).json({ erro: "Ocorreu um imprevisto tentando fazer a precificação dos produtos" })
         }
-        console.log("Resultado")
-        console.dir(resultado)
-        res.json(resultado)
+
+        res.status(200).json(resultado[0])
     })
 })
 

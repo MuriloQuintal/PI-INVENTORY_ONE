@@ -5,6 +5,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: #FAF9F9;
 }
 
 .menu {
@@ -12,109 +13,147 @@ body {
 }
 
 .conteudo_principal {
-    background-color: #FAF9F9;
     min-height: 100vh;
-    padding: 15px !important;
 }
 
+.cabecalho {
+    padding: 16px;
+}
 
-.container_pesquisa {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    border-radius: 10px;
-
-    background-color: #FFFFFF;
-
+.cabecalho nav {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 8px;
+    border: 1px solid rgb(233, 233, 233);
 }
 
-.input_pesquisar {
-    width: 350px !important;
-
+.cabecalho nav img {
+    height: 50px;
+    object-fit: contain;
 }
 
-.input_pesquisar::placeholder {
-    color: #CCCCCC !important;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.conteudo_usuario {
+.cabecalho nav ul {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.nome_usuario {
-    margin-bottom: 0px;
-    font-size: 14px;
-    font-weight: bold;
-    font-style: italic;
-}
-
-.email_usuario {
-    margin-top: 0px;
-    font-size: 14px;
-    font-weight: bold;
-    font-style: italic;
-    color: #b1b0b0;
-}
-
-.container_valores {
-    min-height: 150px;
-    margin-top: 30px;
-    gap: 15px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.card {
-    width: 500px !important;
-    height: 130px !important;
-    border-radius: 10px !important;
-
-    display: flex;
-    align-items: start;
-}
-
-
-.conteudo_card {
+.cabecalho nav ul li a {
+    text-decoration: none;
+    color: rgb(66, 66, 66);
     display: flex;
     align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    padding: 8px;          
+    border-radius: 16px;   
 }
 
-.total_inventario {
+.cabecalho a:hover {
+    background-color: #E7EFFF;
+    color: #2F4E7C;
+    font-weight: bold
+}
+
+.usuario_logado_header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgb(0, 0, 0);
+    background-color: #E7EFFF;
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.usuario_logado_header i {
+    font-size: 32px;
+    color: black;
+}
+
+.usuario_logado_header_informacoes {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    font-size: 13px;
 }
 
-.valor_total {
-    font-size: 32px;
-    margin-left: 15px;
-    font-weight: bold;
-    color: green !important;
+.usuario_logado_header .usuario_logado_header_nome{
+    font-weight: 600;
+    color: #2F4E7C;
 }
 
-.valor_depreciacao {
-    font-size: 32px;
-    margin-left: 15px;
-    font-weight: bold;
-    color: red !important;
+.usuario_logado_header_informacoes span:last-child {
+    color: #2f4e7ca1;
 }
 
-.valor_atual {
-    font-size: 32px;
-    margin-left: 15px;
-    font-weight: bold;
-    color: #2F4E7C !important;
+.card_dashboard {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 175px;
+    border-radius: 8px;
+    padding: 12px;
+    border: 0.5px solid rgb(233, 233, 233);
+}
+
+.card_dashboard_header_sucesso,
+.card_dashboard_header_danger,
+.card_dashboard_header_info {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: clamp(11px, 0.9vw, 13px);
+    font-weight: 500;
+    width: 100%;
+}
+
+.card_dashboard_header_sucesso {
+    background-color: #88f3b8;
+    color: #023809;
+}
+
+.card_dashboard_header_danger {
+    background-color: #f5a3a3;
+    color: #4e0000;
+}
+
+.card_dashboard_header_info {
+    background-color: #4090db;
+    color: #fafafa;
+}
+
+.card_dashboard_valor_success,
+.card_dashboard_valor_danger,
+.card_dashboard_valor_info {
+    font-size: clamp(24px, 2.5vw, 40px);
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 4px 0;
+}
+
+.card_dashboard_valor_success { color: #3B6D11; }
+.card_dashboard_valor_danger  { color: #A32D2D; }
+.card_dashboard_valor_info    { color: #185FA5; }
+
+.card_dashboard_descricao {
+    display: flex;
+    flex-direction: column;
+}
+
+.card_dashboard_descricao p {
+    margin: 0;
+}
+
+.card_descricao_subtitulo {
+    color: #888;
+    font-size: clamp(10px, 0.8vw, 12px);
 }
 
 .texto_card {
@@ -178,54 +217,92 @@ body {
     color: white;
 }
 
-.card_inventario {
-    width: 300px !important;
-    height: 200px !important;
-    border-radius: 10px !important;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 10px;
-
-    display: flex;
-    align-items: start;
-
-    background-color: white;
-}
-
-.dados_card{
-    display: flex;
-    justify-content: space-between;
-}
-
-.conteudo_card_inventario{
+.conteudo_card_inventario {
+    background-color: #ffffff;
+    border-radius: 12px;
+    border: 0.5px solid rgb(233, 233, 233);
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    min-height: 175px;
 }
 
-.texto_linhas, .texto_totais{
-    font-size: 13px;
-    font-weight: bold;
-    color: #999898;
+.card_inv_icone {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #E6F1FB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #185FA5;
+    font-size: 18px;
 }
 
-.nome_item, .qtd_item{
-    font-size: 20px;
-    
-    font-weight: bold;
-    /* font-family: "poppins"; */
+.card_inv_dados {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
-.container_cards{
-    gap: 120px;
+.card_inv_label {
+    font-size: 11px;
+    color: #888;
+    margin: 0 0 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
-.espaco_pesquisar{
-    width: 400px !important;
+.card_inv_valor {
+    font-size: clamp(14px, 1.2vw, 16px);
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
 }
 
-.icone_x{
-    font-size: 14px;
+.card_inv_divider {
+    margin: 0;
+    border-color: rgb(233, 233, 233);
 }
+
+.card_inv_acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.card_inv_btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 0;
+    border-radius: 8px;
+    font-size: clamp(11px, 0.9vw, 13px);
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.card_inv_btn:hover {
+    opacity: 0.85;
+}
+
+.card_inv_btn_danger {
+    background-color: #df3d3d;
+    color: #fff6f6;
+}
+
+.card_inv_btn_success {
+    background-color: #017457;
+    color: #f5f5f5;
+}
+
 
 .botao_pesquisar{
     color: #2F4E7C !important;
