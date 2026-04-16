@@ -37,7 +37,7 @@ modalEditar.addEventListener('show.bs.modal', () => {
 })
 
 function fnListarProdutos() {
-    fetch(`http://localhost:3000/produtos`, { method: "GET" })
+    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos`, { method: "GET" })
         .then(resposta => resposta.json())
         .then((produtos) => {
             if (produtos.length <= 0) {
@@ -121,7 +121,7 @@ function fnCadastrarProduto() {
 
     console.dir(formProduto)
 
-    fetch(`http://localhost:3000/produtos/`, {
+    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos/`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formProduto)
@@ -198,7 +198,7 @@ function fnEditarProduto(id) {
 
     console.dir(formEditProduto)
 
-    fetch(`http://localhost:3000/produtos/${id}`, {
+    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos/${id}`, {
         method: "PUT",
         headers: { 'Content-Type': "application/json" },
         body: JSON.stringify(formEditProduto)
@@ -228,7 +228,7 @@ function fnTransformarEmNumero(valor) {
 
 
 function fnListarProduto(id) {
-    fetch(`http://localhost:3000/produtos/${id}`, { method: "GET" })
+    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos/${id}`, { method: "GET" })
         .then(resposta => resposta.json())
         .then(dados => {
             console.log(dados)
@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fnDeletarProduto(id) {
-    fetch(`http://localhost:3000/produtos/${id}`, { method: "DELETE" })
+    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos/${id}`, { method: "DELETE" })
         .then(resposta => resposta.status)
         .then(dados => {
             console.log("Cheguei aqui")
@@ -358,7 +358,7 @@ if (equipamentoUrl && disponibilidadeUrl) {
 }
 
 function fnListarProdutoFiltro(equipamento, disponibilidade) {
-    fetch(`http://localhost:3000/produtos/agrupamentos/${equipamento}/${disponibilidade}`)
+    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos/agrupamentos/${equipamento}/${disponibilidade}`)
         .then(resposta => resposta.json())
         .then((produtos) => {
             produtos.forEach(produto => {
