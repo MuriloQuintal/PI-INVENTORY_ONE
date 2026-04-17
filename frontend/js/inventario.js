@@ -3,7 +3,7 @@ if (localStorage.getItem("logado") != "true") {
 }
 
 function fnListarInventarios() {
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/inventarios`, { method: "GET" })
+    fetch(`http://localhost:3000/inventarios`, { method: "GET" })
         .then(resultado => resultado.json())
         .then((inventarios) => {
             inventarios.forEach(inventario => {
@@ -45,7 +45,7 @@ function fnCriarLinhasInventario(inventario) {
 }
 
 function fnDetalhesInventario(idInventario) {
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/inventario/${idInventario}`, { method: "GET" })
+    fetch(`http://localhost:3000/inventario/${idInventario}`, { method: "GET" })
         .then(resultado => resultado.json())
         .then((dados) => {
             console.log("Estou Aqui" + dados)
@@ -74,7 +74,7 @@ function fnPreencherCamposDetalhesInventario(inventario) {
 }
 
 function fnDeletarInventario(id) {
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/inventario/${id}`, { method: "DELETE" })
+    fetch(`http://localhost:3000/inventario/${id}`, { method: "DELETE" })
         .then(resultado => resultado.status)
         .then((dados) => {
             console.log("Estou Aquiii")

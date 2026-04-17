@@ -31,7 +31,7 @@ function fnInventariar() {
         id_produto: idProduto
     }
 
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/inventariar`, {
+    fetch(`http://localhost:3000/inventariar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formInventariar)
@@ -53,7 +53,7 @@ function fnListarProduto() {
     const params = new URLSearchParams(window.location.search)
     const id = params.get('idProduto')
 
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos/${id}`, { method: "GET" })
+    fetch(`http://localhost:3000/produtos/${id}`, { method: "GET" })
         .then(resultado => resultado.json())
         .then((dados) => {
             if (dados.length > 0) {
@@ -104,7 +104,7 @@ function fnPreencherCamposInventariar(produto) {
 document.getElementById("txtCodigoPessoa").addEventListener("blur", () => {
     const codigoPessoa = document.getElementById("txtCodigoPessoa").value
 
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/pessoas-codigo/${codigoPessoa}`, { method: "GET" })
+    fetch(`http://localhost:3000/pessoas-codigo/${codigoPessoa}`, { method: "GET" })
         .then(resultado => resultado.json())
         .then((dados) => {
             console.dir(dados)
@@ -115,7 +115,7 @@ document.getElementById("txtCodigoPessoa").addEventListener("blur", () => {
 document.getElementById("txtImei").addEventListener("blur", () => {
     const imeiProduto = document.getElementById("txtImei").value
 
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos/imei/${imeiProduto}`, { method: "GET" })
+    fetch(`http://localhost:3000/produtos/imei/${imeiProduto}`, { method: "GET" })
         .then(resultado => resultado.json())
         .then((dados) => {
             console.log("imeiProduto" + dados)

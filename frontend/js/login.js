@@ -20,7 +20,7 @@ function fnLoginUsuario() {
         document.getElementById("mensagemErro").innerHTML = "Campos vazios, preencha email e senha"
     } else {
 
-        fetch('https://pi-inventory-one-fvwa.onrender.com/login/', {
+        fetch('http://localhost:3000/login/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formLoginUsuario)

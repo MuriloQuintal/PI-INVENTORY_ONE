@@ -45,7 +45,7 @@ function fnCadastrarPessoa() {
     }
 
     console.dir(formDados)
-    fetch('https://pi-inventory-one-fvwa.onrender.com/pessoas/', {
+    fetch('http://localhost:3000/pessoas/', {
         method: 'POST',
         headers: { 'content-Type': 'application/json' },
         body: JSON.stringify(formDados)
@@ -66,7 +66,7 @@ btn_salvar.addEventListener("click", function () {
 })
 
 function fnListarPessoas() {
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/pessoas`, { method: "GET" })
+    fetch(`http://localhost:3000/pessoas`, { method: "GET" })
         .then(resposta => resposta.json())
         .then((pessoas) => {
             if (pessoas.length <= 0) {
@@ -115,7 +115,7 @@ function fnMontarLinhaPessoa(pessoa) {
 
 
 function fnListarPessoa(id) {
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/pessoas/${id}`, { method: "GET" })
+    fetch(`http://localhost:3000/pessoas/${id}`, { method: "GET" })
         .then(resposta => resposta.json())
         .then(dados => {
             console.log(dados)
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function fnDeletarPessoa(id) {
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/pessoas/${id}`, { method: "DELETE" })
+    fetch(`http://localhost:3000/pessoas/${id}`, { method: "DELETE" })
         .then(resposta => resposta.json())
         .then(dados => {
             console.dir(dados)
@@ -250,7 +250,7 @@ function fnEditarPessoa(id) {
 
     console.log(formDados)
 
-    fetch(`https://pi-inventory-one-fvwa.onrender.com/pessoas/${id}`, {
+    fetch(`http://localhost:3000/pessoas/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formDados)
