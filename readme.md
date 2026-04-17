@@ -1,203 +1,127 @@
 # Sistema Inventory One
-### Sobre o Projeto
-Este projeto foi desenvolvido com o objetivo de facilitar o controle e a organização dos recursos internos de uma empresa.
 
-A ideia surgiu da necessidade de ter uma visão clara sobre:
+## Visão geral
 
-Quais funcionários fazem parte da empresa
-Em quais filiais eles estão alocados
-Quais equipamentos estão em uso
-E quais itens ainda estão disponíveis em estoque
+Inventory One é um sistema integrador de inventário empresarial feito para controlar funcionários, produtos, equipamentos e o vínculo desses itens com pessoas. O projeto oferece um backend em Node.js/Express com uma interface frontend em HTML/CSS/JavaScript.
 
-Com isso, o sistema atua como um inventário inteligente, centralizando todas essas informações em um único lugar, tornando a gestão mais simples, rápida e eficiente.
+## Funcionalidades principais
 
-### Funcionalidades
-O sistema conta com diversas funcionalidades voltadas para o dia a dia de uma empresa:
-- Cadastro e gerenciamento de funcionários
-- Controle de filiais
-- Registro de equipamentos/componentes
-- Associação de equipamentos aos funcionários
-- Controle de itens disponíveis em estoque
-- Dashboard com visão geral da empresa
+- Cadastro de usuários e autenticação
+- Cadastro e gerenciamento de pessoas
+- Cadastro e gerenciamento de produtos/equipamentos
+- Inventário de produtos vinculados a pessoas
+- Consulta de produtos por IMEI
+- Dashboard e relatórios básicos
 
-### Objetivo
-O principal objetivo deste projeto é oferecer uma solução prática para o gerenciamento de ativos empresariais, evitando perdas, melhorando a organização e facilitando a tomada de decisões.
+## Tecnologias utilizadas
 
-Além disso, este projeto também faz parte de um projeto integrador acadêmico, com foco no desenvolvimento de habilidades práticas como:
+- Node.js
+- Express
+- MySQL / MariaDB
+- HTML, CSS, JavaScript
+- bcrypt
+- dotenv
+- cors
+- body-parser
+- nodemon (desenvolvimento)
 
-- Desenvolvimento Full Stack
-- Modelagem de banco de dados
-- Organização de sistemas reais
-- Boas práticas de programação
+## Estrutura do projeto
 
-### Tecnologias Utilizadas
-- BackEnd - Node.js com Express
-- FrontEnd - Html / Css / JavaScript / BootStrap
-- Banco de Dados: MySql (Maria DB)
-- Blibliotecas Como: DotEnv, Cors, Nodemon, body-parser, express, mysql
+- `BACKEND/` — servidor Express e rotas
+- `banco_dados/` — scripts e conexão com o banco de dados
+- `frontend/` — telas HTML, estilos CSS e scripts JavaScript
+- `routes/` — rotas da API (organização adicional)
+- `package.json` — dependências e comandos de execução
+- `env-exemplo` — modelo de variáveis de ambiente
 
+## Pré-requisitos
 
-## Estrutura Atual Do Projeto
+- Node.js instalado (recomenda-se versão 18+)
+- npm instalado
+- MySQL ou MariaDB funcionando
+- Editor ou navegador para abrir o frontend
 
-Inventario_Empresarial/
-├── 🔧 .env                          # Variáveis de ambiente (configuração do banco, portas, etc.)
-├── 📋 .env-exemplo                  # Modelo de configuração para novos ambientes
-├── 🚫 .gitignore                    # Arquivos ignorados pelo Git
-├── 📦 package.json                  # Configuração do projeto Node.js
-├── 📦 package-lock.json             # Controle de dependências
-├── 📖 README.md                     # Documentação do projeto
+## Configuração do banco de dados
 
-├── 🖥️ BACKEND/                     # Lógica principal da aplicação (Servidor)
-│   ├── index.js                    # Arquivo principal da aplicação (inicialização do servidor)
+1. Crie um banco de dados MySQL/MariaDB.
+2. Importe as tabelas e dados disponíveis em `banco_dados/dump-inventoryone-202604081814.sql` ou use seu próprio script de criação.
+3. Crie um arquivo `.env` na raiz do projeto copiando o arquivo `env-exemplo`:
 
-├── 🗄️ banco_dados/                 # Configuração e scripts do banco de dados
-│   ├── codigo_criacao_banco.sql    # Script de criação do banco e tabelas
-│   ├── conexaoBanco.js             # Configuração de conexão com o banco
-│   ├── dump-inventoryone.sql       # Backup/exportação do banco de dados
+```bash
+copy env-exemplo .env
+```
 
-├── 🔀 routes/                      # Rotas da aplicação (API)
-│   ├── cadastro-usuarioRoutes.js   # Rotas para cadastro de usuários
-│   ├── loginRoutes.js              # Rotas de autenticação/login
-│   ├── dashboardRoutes.js          # Rotas do dashboard
-│   ├── inventarioRoutes.js         # Rotas principais do inventário
-│   ├── inventarioRoutes.js         # Rotas relacionadas aos itens do inventário
-│   ├── pessoasRoutes.js            # Rotas de funcionários/pessoas
-│   ├── produtoRoutes.js            # Rotas de produtos/componentes
+4. Preencha as variáveis no `.env` com os valores do seu servidor MySQL:
 
-├── 🎨 frontend/                    # Interface do sistema
-│   ├── css/                        # Arquivos de estilo
-│   ├── html/                       # Páginas HTML do sistema
-│   ├── js/                         # Scripts JavaScript (frontend)
-│   ├── img/                        # Imagens do sistema
+```env
+HOST=localhost
+USER=seu_usuario
+PASSWORD=sua_senha
+PORT=3306
+DATABASE=nome_do_banco
+```
 
-├── 🔤 fonts/                       # Fontes utilizadas no projeto
+## Instalação
 
-├── 📦 node_modules/                # Dependências instaladas (gerado automaticamente)
+No diretório raiz do projeto, execute:
 
-├── ⚙️ .vscode/                     # Configurações do ambiente de desenvolvimento
+```bash
+npm install
+```
 
+## Executando o servidor
 
-# UML(Caso de Uso)
+- Para rodar em modo normal:
 
-`
-[Usuário]
-   |
-   |----> (Buscar Produto)
-   |----> (Buscar Pessoa)
-   |----> (Inventariar Produto)
-   |----> (Atualizar Status Produto)
+```bash
+npm start
+```
 
-`
+- Para rodar em modo de desenvolvimento com reinício automático:
 
-`
-[Login]
-   |
-   |----> (Acessar Tela de Login)
-   |----> (Inserir Email e Senha)
-   |----> (Validar Credenciais)
-   |----> (Autenticar Usuário)
-   |----> (Acessar Sistema)
+```bash
+npm run dev
+```
 
-`
+O backend escuta na porta `10000`.
 
-`
-[CadastroUsuario]
-   |
-   |----> (Acessar Cadastro de Funcionários)
-   |----> (Preencher Dados da Pessoa)
-   |----> (Validar Dados)
-   |----> (Cadastrar Pessoa)
-   |----> (Listar Pessoas)
+## Acessando o frontend
 
-`
+Atualmente o frontend é composto por arquivos estáticos em `frontend/html/`.
 
-`
-[CadastroProduto]
-   |
-   |----> (Acessar Cadastro de Produtos)
-   |----> (Preencher Dados do Produto)
-   |----> (Validar Dados)
-   |----> (Cadastrar Produto)
-   |----> (Definir Disponibilidade)
-   |----> (Listar Produtos)
+- Abra `frontend/html/login.html` no navegador
+- Ou use uma extensão como Live Server para servir os arquivos locais
 
-`
+## Endpoints principais da API
 
-`
-[Inventario]
-   |
-   |----> (Acessar Tela de Inventário)
-   |----> (Solicitar Lista)
-   |----> (Visualizar Produtos Vinculados)
-   |----> (Ver Detalhes do Produto)
+- `POST /cadastrousuarios/` — cria usuário
+- `POST /login/` — autentica usuário
+- `POST /pessoas/` — cadastra pessoa
+- `GET /pessoas` — lista pessoas
+- `GET /pessoas/:id` — busca pessoa por ID
+- `PUT /pessoas/:id` — atualiza pessoa
+- `DELETE /pessoas/:id` — remove pessoa
+- `POST /produtos/` — cadastra produto
+- `GET /produtos` — lista produtos
+- `GET /produtos/:id` — busca produto por ID
+- `DELETE /produtos/:id` — remove produto
+- `PUT /produtos/:id` — atualiza produto
+- `GET /inventarios` — lista inventários
+- `POST /inventariar` — registra inventário/vínculo de produto
+- `DELETE /inventario/:id` — remove inventário
 
-`
+## Observações importantes
 
-`
-[Inventariar]
-   |
-   |----> (Buscar Produto por IMEI)
-   |----> (Buscar Pessoa por Código)
-   |----> (Validar Disponibilidade do Produto)
-   |----> (Vincular Produto à Pessoa)
-   |----> (Atualizar Status do Produto)
-   |----> (Confirmar Operação)
+- Certifique-se de que a conexão MySQL esteja correta antes de iniciar o servidor.
+- O projeto utiliza variáveis de ambiente em `banco_dados/db.js`.
+- Se o backend e o frontend estiverem rodando localmente, ajuste chamadas JavaScript para `http://localhost:10000` quando necessário.
 
-`
+## Sugestões rápidas
 
-`
-[DeletarProduto]
-   |
-   |----> (Acessar Inventário)
-   |----> (Selecionar Produto Vinculado)
-   |----> (Remover Vínculo)
-   |----> (Atualizar Disponibilidade do Produto)
-   |----> (Confirmar Remoção)
+- Use o arquivo `env-exemplo` como base para criar o `.env`.
+- Se quiser, instale `Live Server` no VS Code para abrir o frontend sem abrir os arquivos diretamente.
+- Verifique se a tabela `usuarios` existe no banco antes de testar o login.
 
-`
-
-`
-[Dashboard]
-   |
-   |----> (Acessar Dashboard)
-   |----> (Visualizar Total de Produtos)
-   |----> (Visualizar Produtos Disponíveis)
-   |----> (Visualizar Produtos em Uso)
-   |----> (Visualizar Funcionários)
-   
-`
-
-# UML(Classes)
-Classe Pessoa
------------------------------
-- id: int (PK)
-- nome: varchar
-- telefone: varchar
-- filial: varchar
-- sexo: Enum
-- nacionalidade: varchar
-- nascimento: date
-- departamento: varchar
-- cargo: varchar
-- endereço: varchar
-- cep: varchar
-- codigoPessoa: int
------------------------------
-+ cadastrar()
-+ atualizar()
-+ excluir()
-+ buscarPorId()
-`
-
-Classe Produto
------------------------------
-- id: int (PK)
-- equipamento: varchar
-- responsavel: varchar
-- localestoque: varchar
-- marca: varchar
-- modelo: varchar
-- imei: varchar
 - serie: varchar
 - nrolinha: varchar
 - codchip: varchar
