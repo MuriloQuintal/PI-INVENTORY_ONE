@@ -50,7 +50,7 @@ function fnCadastrarUsuario() {
         return;
     }
 
-    fetch('/api/cadastrousuarios/', {
+    fetch('http://localhost:3000/cadastrousuarios/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formCadUsuario)
