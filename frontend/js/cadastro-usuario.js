@@ -1,22 +1,3 @@
-// function fnValidacaoBootstrap() {
-//     'use strict'
-
-//     const forms = document.querySelectorAll('.validarForms')
-
-//     Array.from(forms).forEach(form => {
-//         form.addEventListener('submit', event => {
-//             if (!form.checkValidity()) {
-//                 event.preventDefault()
-//                 event.stopPropagation()
-//             }
-
-//             form.classList.add('was-validated')
-//         }, false)
-//     })
-
-// }
-
-
 function fnLimparCampos() {
     document.getElementById("cad-user").reset()
 }
@@ -50,7 +31,7 @@ function fnCadastrarUsuario() {
         return;
     }
 
-    fetch('http://localhost:3000/cadastrousuarios/', {
+    fetch('https://pi-inventory-one-fvwa.onrender.com//cadastrousuarios/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formCadUsuario)
