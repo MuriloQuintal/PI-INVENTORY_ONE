@@ -4,7 +4,7 @@ if (localStorage.getItem("logado") != "true") {
 }
 
 function fnSomarTotalInventario() {
-    fetch("http://localhost:3000/produtos-precificacao", { method: "GET" })
+    fetch("https://pi-inventory-one-fvwa.onrender.com/produtos-precificacao", { method: "GET" })
         .then(resposta => resposta.json())
         .then((dados) => {
             fnPreencherValoresPreco(dados[0].soma)
@@ -29,7 +29,7 @@ function fnPreencherValoresPreco(totalPreco) {
 }
 
 function fnListarTodosProdutos() {
-    fetch(`http://localhost:3000/produtos/agrupamentos/dashboard`, { method: "GET" })
+    fetch(`https://pi-inventory-one-fvwa.onrender.com/produtos/agrupamentos/dashboard`, { method: "GET" })
         .then(resposta => resposta.json())
         .then((produtos) => {
             console.log("Chamou a função")
