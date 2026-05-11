@@ -69,8 +69,13 @@ function fnCadastrarUsuario() {
 
 let btn_salvar = document.getElementById("cadastrar")
 
-btn_salvar.addEventListener("click", function () {
-    fnValidacaoBootstrap()
-    fnCadastrarUsuario()
+btn_salvar.addEventListener("click", async function () {
 
+  
+
+    const sucesso = await fnCadastrarUsuario();
+
+    if (sucesso) {
+        window.location.href = "./login.html"
+    }
 })
