@@ -1,1 +1,0 @@
-// Rota para produtos do dashboard - produtos/:categoria/:disponibilidade
