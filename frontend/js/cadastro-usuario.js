@@ -67,15 +67,18 @@ function fnCadastrarUsuario() {
 }
 
 
-let btn_salvar = document.getElementById("cadastrar")
+const form = document.getElementById("cad-user");
 
-btn_salvar.addEventListener("click", async function () {
+form.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
 
   
 
     const sucesso = await fnCadastrarUsuario();
 
     if (sucesso) {
-        window.location.href = "./login.html"
+        window.location.href = "./login.html";
     }
-})
+
+});

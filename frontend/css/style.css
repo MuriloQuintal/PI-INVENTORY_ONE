@@ -17,12 +17,12 @@ body {
     padding: 15px !important;
 }
 
-
 .container_pesquisa {
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
     padding-right: 15px;
+
     border-radius: 10px;
 
     background-color: #FFFFFF;
@@ -34,7 +34,6 @@ body {
 
 .input_pesquisar {
     width: 350px !important;
-
 }
 
 .input_pesquisar::placeholder {
@@ -74,16 +73,15 @@ body {
     align-items: center;
 }
 
-
 .card {
     width: 500px !important;
     height: 130px !important;
+
     border-radius: 10px !important;
 
     display: flex;
     align-items: start;
 }
-
 
 .conteudo_card {
     display: flex;
@@ -125,40 +123,58 @@ body {
     color: #9F9F9F;
 }
 
+/* MENU */
+
 .botoes_navegacao {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 
     margin-top: 50px;
-    gap: 20px;
-}
-
-.icone_navegacao {
-    margin-right: 10px;
+    gap: 10px;
 }
 
 .botao_navegar {
-    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    width: 100%;
+    padding: 15px;
+
+    font-size: 20px;
     text-decoration: none;
     color: white;
+
     position: relative;
     transition: 0.5s;
+
+    white-space: nowrap;
 }
 
-.botoes_navegacao div {
-    transition: 0.3s;
-}
-
-.botoes_navegacao div:hover {
+.botao_navegar:hover {
     transform: translateY(-5px);
-    transition: 0.5s;
+}
+
+.icone_navegacao {
+    min-width: 35px;
+
+    text-align: center;
+
+    font-size: 28px;
+
+    flex-shrink: 0;
+}
+
+.botao_navegar span {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .botao_selecionado {
-    padding: 8px;
-    border-radius: 7px; 
+    padding: 15px;
+    border-radius: 7px;
     background-color: #20385c;
 }
 
@@ -173,17 +189,22 @@ body {
     object-fit: cover;
 }
 
-.container_imagem_menu>hr {
+.container_imagem_menu > hr {
     height: 10px;
     color: white;
 }
 
+/* CARDS INVENTÁRIO */
+
 .card_inventario {
     width: 300px !important;
     height: 200px !important;
+
     border-radius: 10px !important;
+
     margin-top: 30px;
     margin-bottom: 30px;
+
     padding: 10px;
 
     display: flex;
@@ -192,47 +213,47 @@ body {
     background-color: white;
 }
 
-.dados_card{
+.dados_card {
     display: flex;
     justify-content: space-between;
 }
 
-.conteudo_card_inventario{
+.conteudo_card_inventario {
     display: flex;
     flex-direction: column;
 }
 
-.texto_linhas, .texto_totais{
+.texto_linhas,
+.texto_totais {
     font-size: 13px;
     font-weight: bold;
     color: #999898;
 }
 
-.nome_item, .qtd_item{
+.nome_item,
+.qtd_item {
     font-size: 20px;
-    
     font-weight: bold;
-    /* font-family: "poppins"; */
 }
 
-.container_cards{
+.container_cards {
     gap: 120px;
 }
 
-.espaco_pesquisar{
+.espaco_pesquisar {
     width: 400px !important;
 }
 
-.icone_x{
+.icone_x {
     font-size: 14px;
 }
 
-.botao_pesquisar{
+.botao_pesquisar {
     color: #2F4E7C !important;
     border: 1px #2F4E7C solid !important;
 }
 
-.botao_pesquisar:hover{
+.botao_pesquisar:hover {
     background-color: #2F4E7C !important;
     color: white !important;
 }
@@ -240,13 +261,77 @@ body {
 .tabela {
     width: 100%;
     background-color: #FFFFFF;
+
     border-radius: 16px;
+
     padding: 20px;
+
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-
-
-.form-control::-webkit-input-placeholder{
+.form-control::-webkit-input-placeholder {
     color: rgb(211, 210, 210);
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1200px) {
+
+    .botao_navegar {
+        font-size: 18px;
+        gap: 10px;
+    }
+
+    .icone_navegacao {
+        font-size: 22px;
+        min-width: 28px;
+    }
+
+    .valor_total,
+    .valor_depreciacao,
+    .valor_atual {
+        font-size: 24px;
+    }
+
+    .texto_card {
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .menu {
+        min-height: auto;
+    }
+
+    .botao_navegar {
+        justify-content: flex-start;
+    }
+
+    .container_pesquisa {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .espaco_pesquisar {
+        width: 100% !important;
+    }
+
+    .input_pesquisar {
+        width: 100% !important;
+    }
+
+    .container_valores {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100% !important;
+    }
+
+    .container_cards {
+        gap: 30px;
+    }
+
 }

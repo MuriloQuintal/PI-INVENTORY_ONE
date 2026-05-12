@@ -1,51 +1,55 @@
-let logadoSistema = localStorage.getItem("logado")
+let logadoSistema = localStorage.getItem("logado");
 
 if (logadoSistema == "true") {
-    localStorage.setItem("logado", "false")
-    window.location.href = "login.html"
+    localStorage.setItem("logado", "false");
+    window.location.href = "login.html";
 }
-
 
 function fnLimparCampos() {
-    document.getElementById("login").reset()
+    document.getElementById("login").reset();
 }
 
-function fnLoginUsuario() {
+async function fnLoginUsuario() {
     let formLoginUsuario = {
         email: document.getElementById("campoEmail").value,
         senha: document.getElementById("campoSenha").value
+    };
+
+    if (formLoginUsuario.email == "" || formLoginUsuario.senha == "") {
+        document.getElementById("mensagemErro").innerHTML = "Campos vazios, preencha email e senha";
+        return false;
     }
 
-    if (formLoginUsuario.email == "" || formLoginUsuario.email == null || formLoginUsuario.senha == "" || formLoginUsuario.senha == null) {
-        document.getElementById("mensagemErro").innerHTML = "Campos vazios, preencha email e senha"
-    } else {
-
-        fetch('http://localhost:3000/login/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+    try {
+        const resposta = await fetch("http://localhost:3000/login/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(formLoginUsuario)
-        })
-            .then(resposta => resposta.status)
-            .then((dados) => {
-                fnLimparCampos()
-                if (dados == 200) {
-                    localStorage.setItem("logado", "true")
-                    window.location.href = "dashboard.html"
-                } else {
-                    document.getElementById("mensagemErro").innerHTML = "Email ou senha inválidos"
-                }
-            })
+        });
 
+        if (resposta.status == 200) {
+            localStorage.setItem("logado", "true");
+            return true;
+        } else {
+            document.getElementById("mensagemErro").innerHTML = "Email ou senha inválidos";
+            return false;
+        }
 
-            .catch(erro => console.log(erro.message))
+    } catch (erro) {
+        console.log(erro.message);
+        document.getElementById("mensagemErro").innerHTML = "Erro ao conectar com o servidor";
+        return false;
     }
-
 }
 
+const form = document.getElementById("login");
 
-let btn_login = document.getElementById("entrar")
+form.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-btn_login.addEventListener("click", function () {
-    fnLoginUsuario()
+    const sucesso = await fnLoginUsuario();
 
-})
+    if (sucesso) {
+        window.location.href = "./dashboard.html";
+    }
+});
